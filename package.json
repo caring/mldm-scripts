@@ -1,0 +1,42 @@
+{
+  "name": "mldm-scripts",
+  "version": "1.0.0",
+  "description": "contains the scripts used to move data from legacy to MM",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "clean": "rm -rf dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "20.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caring/mldm-scripts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caring/mldm-scripts/issues"
+  },
+  "homepage": "https://github.com/caring/mldm-scripts#readme",
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "@types/pg": "^8.18.0",
+    "@types/ssh2": "^1.15.5",
+    "@types/tunnel-ssh": "^5.0.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "mysql2": "^3.19.1",
+    "pg": "^8.20.0",
+    "ssh2": "^1.17.0",
+    "tunnel-ssh": "^5.2.0"
+  }
+}
