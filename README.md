@@ -80,3 +80,21 @@ npm start
 - `src/index.ts` - Main entry point
 
 
+---
+
+ssh -o StrictHostKeyChecking=no -L 5435:canario-db-replica.csokkjcgv0yx.us-east-1.rds.amazonaws.com:5432 ec2-user@canary-bastion.caring.com -i ~/.ssh/hsarapalle -N
+
+
+# stage
+POSTGRES_HOST=canario-db-replica.csokkjcgv0yx.us-east-1.rds.amazonaws.com
+POSTGRES_PORT=5432
+POSTGRES_USER=hsarapalle
+POSTGRES_PASSWORD=dfjhdsbf93f
+POSTGRES_DATABASE=monolith
+
+# prod 
+POSTGRES_HOST=canario-db-replica.csokkjcgv0yx.us-east-1.rds.amazonaws.com
+POSTGRES_PORT=5432
+POSTGRES_USER=hsarapalle
+POSTGRES_PASSWORD=dfjhdsbf93f
+POSTGRES_DATABASE=monolith

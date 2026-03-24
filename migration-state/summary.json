@@ -1,0 +1,38 @@
+{
+  "affiliate_notes": {
+    "status": "completed",
+    "time_range": {
+      "from": "2026-03-18T15:13:44.021Z",
+      "to": "2026-03-11T15:13:44.021Z",
+      "to_relative": "7 days"
+    },
+    "batch_size": 10,
+    "total_batches": 8,
+    "completed_batches": 8,
+    "total_rows_fetched": 5302,
+    "total_success": 5279,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-03-18T15:13:44.023Z",
+    "last_updated_at": "2026-03-23T10:32:10.769Z"
+  },
+  "self_qualified_notes": {
+    "status": "completed",
+    "time_range": {
+      "from": "2026-03-23T10:42:17.945Z",
+      "to": "2024-03-23T10:42:17.945Z",
+      "to_relative": "2 years"
+    },
+    "batch_size": 1000,
+    "total_batches": 0,
+    "completed_batches": 0,
+    "total_rows_fetched": 0,
+    "total_success": 0,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-03-23T10:42:17.952Z",
+    "last_updated_at": null
+  }
+}
