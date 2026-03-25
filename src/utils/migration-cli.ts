@@ -13,6 +13,7 @@ export interface MigrationCLIOptions {
   report: boolean;
   idsFile: string | null;
   idsInline: string | null;
+  lookbackYears: number | null;
 }
 
 /**
@@ -29,6 +30,7 @@ export function parseMigrationArgs(): MigrationCLIOptions {
     report: false,
     idsFile: null,
     idsInline: null,
+    lookbackYears: null,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -42,6 +44,9 @@ export function parseMigrationArgs(): MigrationCLIOptions {
         break;
       case '--batch-size':
         options.batchSize = parseInt(args[++i], 10);
+        break;
+      case '--lookback-years':
+        options.lookbackYears = parseInt(args[++i], 10);
         break;
       case '--dry-run':
         options.dryRun = true;
@@ -84,6 +89,9 @@ Options:
                         Examples: "5 years", "30 days", "2020-01-01"
 
   --batch-size <num>    Number of rows per batch (default: 1000)
+
+  --lookback-years <num> Number of years to look back (default: varies by script)
+                        Example: --lookback-years 3
 
   --ids <file>          Path to file with IDs to migrate (one per line)
                         Overrides time-based migration

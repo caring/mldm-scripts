@@ -14,7 +14,8 @@
     "test:affiliate-notes": "ts-node src/test-affiliate-notes-query.ts",
     "test:self-qualified-notes": "ts-node test-self-qualified-query.ts",
     "migrate:notes:affiliate": "ts-node src/migrations/notes/affiliate-notes.ts",
-    "migrate:notes:self-qualified": "ts-node src/migrations/notes/self-qualified-notes.ts"
+    "migrate:notes:self-qualified": "ts-node src/migrations/notes/self-qualified-notes.ts",
+    "migrate:contact-history": "ts-node src/migrations/contact-history/contact-history.ts"
   },
   "engines": {
     "node": "20.20.0"

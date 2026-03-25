@@ -34,5 +34,22 @@
     "total_failed": 0,
     "started_at": "2026-03-23T10:42:17.952Z",
     "last_updated_at": null
+  },
+  "contact_history": {
+    "status": "completed",
+    "time_range": {
+      "from": "2026-03-22T09:04:34.901Z",
+      "to": null
+    },
+    "batch_size": 1000,
+    "total_batches": 0,
+    "completed_batches": 99,
+    "total_rows_fetched": 1342457,
+    "total_success": 971675,
+    "total_skipped": 370773,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-03-24T09:04:34.909Z",
+    "last_updated_at": "2026-03-25T10:01:47.245Z"
   }
 }
