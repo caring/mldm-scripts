@@ -51,5 +51,23 @@
     "total_failed": 0,
     "started_at": "2026-03-24T09:04:34.909Z",
     "last_updated_at": "2026-03-25T10:01:47.245Z"
+  },
+  "lead_status_tour_history": {
+    "status": "in_progress",
+    "time_range": {
+      "from": "2026-03-30T10:27:54.353Z",
+      "to": "2025-03-30T10:27:54.353Z",
+      "to_relative": "1 year"
+    },
+    "batch_size": 10000,
+    "total_batches": 0,
+    "completed_batches": 0,
+    "total_rows_fetched": 0,
+    "total_success": 0,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-03-30T10:27:54.360Z",
+    "last_updated_at": null
   }
 }
