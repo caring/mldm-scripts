@@ -1,7 +1,6 @@
 import { connectMySQL, disconnectMySQL, getMySQLConnection } from '../../db/mysql';
 import { connectPostgres, disconnectPostgres, getPostgresClient } from '../../db/postgres';
 import { parseTimeParam, formatDate, getRelativeDescription } from '../../utils/time-utils';
-import { promises as fs } from 'fs';
 import {
   ensureMigrationDir,
   appendBatch,
@@ -14,12 +13,15 @@ import {
 } from '../../utils/file-utils';
 import {
   parseMigrationArgs,
-  parseIds,
   printMigrationHelp,
   isHelpRequested,
   printMigrationOptions,
   MigrationCLIOptions,
 } from '../../utils/migration-cli';
+import {
+  fetchCareRecipientLeadsByDateRange,
+  resolveExplicitCareRecipientLeads,
+} from '../../utils/care-recipient-lead-selection';
 
 const MIGRATION_NAME = 'lead_status_tour_history';
 
@@ -43,10 +45,6 @@ export interface DirLeadStatus {
 interface MMLeadData {
   id: string;
   mldmMigratedModmonAt: Date | null;
-}
-
-interface MMLeadBatchRow {
-  legacyId: string | null;
 }
 
 async function migrateLeadStatusTourHistory() {
@@ -128,13 +126,15 @@ async function runMigration(options: MigrationCLIOptions) {
   const pgClient = getPostgresClient();
 
   try {
-    const explicitLeadIds = await resolveExplicitLeadIds(options, pgClient);
+    const explicitResolution = await resolveExplicitCareRecipientLeads(options, pgClient);
+    const explicitLeadIds = explicitResolution?.matchedLeads.map((lead) => lead.legacyId) || null;
     const fromDate = parseTimeParam(options.from);
     const toDate = options.to ? parseTimeParam(options.to, fromDate) : null;
 
     console.log('Migration scope:');
-    if (explicitLeadIds) {
-      console.log(`  Explicit lead IDs provided: ${explicitLeadIds.length}`);
+    if (explicitResolution) {
+      console.log(`  Explicit lead IDs provided: ${explicitResolution.requestedCount}`);
+      console.log(`  Matching MM care_recipient_leads found: ${explicitResolution.matchedLeads.length}`);
       console.log('  Source: --ids-inline / --ids file (supports CSV with legacyId or id columns)');
     } else {
       console.log(`  MM leads created before: ${formatDate(fromDate)}`);
@@ -449,32 +449,8 @@ export async function fetchLeadBatchFromMM(
   batchSize: number,
   offset: number
 ): Promise<DirLead[]> {
-  const whereParts = ['"deletedAt" IS NULL', '"legacyId" IS NOT NULL', '"createdAt" <= $1'];
-  const params: any[] = [fromDate];
-
-  if (toDate) {
-    whereParts.push(`"createdAt" >= $2`);
-    params.push(toDate);
-  }
-
-  params.push(batchSize, offset);
-  const limitParam = toDate ? '$3' : '$2';
-  const offsetParam = toDate ? '$4' : '$3';
-
-  const mmResult = await pgClient.query(
-    `
-    SELECT "legacyId"
-    FROM care_recipient_leads
-    WHERE ${whereParts.join(' AND ')}
-    ORDER BY "createdAt" DESC
-    LIMIT ${limitParam} OFFSET ${offsetParam}
-    `,
-    params
-  );
-
-  const legacyIds = (mmResult.rows as MMLeadBatchRow[])
-    .map((row) => parseInt(row.legacyId || '', 10))
-    .filter((id) => !isNaN(id) && id > 0);
+  const mmLeads = await fetchCareRecipientLeadsByDateRange(pgClient, fromDate, toDate, batchSize, offset);
+  const legacyIds = mmLeads.map((lead) => lead.legacyId);
 
   if (legacyIds.length === 0) {
     return [];
@@ -506,179 +482,6 @@ async function fetchLeadsByIds(mysqlConn: any, leadIds: number[]): Promise<DirLe
   return rows as DirLead[];
 }
 
-export async function resolveExplicitLeadIds(options: MigrationCLIOptions, pgClient: any): Promise<number[] | null> {
-  if (!options.idsInline && !options.idsFile) {
-    return null;
-  }
-
-  if (options.idsInline) {
-    const parsedInlineIds = await parseIds(options);
-    if (!parsedInlineIds || parsedInlineIds.length === 0) {
-      throw new Error('No valid IDs found in --ids-inline parameter');
-    }
-    return dedupeNumericIds(parsedInlineIds);
-  }
-
-  const fileContent = await fs.readFile(options.idsFile!, 'utf-8');
-  const csvIds = parseLeadIdsFromCsv(fileContent);
-  const looksLikeCsvInput = fileContent.includes(',') || looksLikeHeaderRow(fileContent);
-
-  if (looksLikeCsvInput) {
-    if (csvIds.legacyIds.length > 0) {
-      return dedupeNumericIds(csvIds.legacyIds);
-    }
-
-    if (csvIds.crlIds.length > 0) {
-      const result = await pgClient.query(
-        `
-        SELECT "legacyId"
-        FROM care_recipient_leads
-        WHERE id = ANY($1::uuid[])
-          AND "legacyId" IS NOT NULL
-        `,
-        [csvIds.crlIds]
-      );
-      const mappedIds = result.rows
-        .map((r: any) => parseInt(r.legacyId, 10))
-        .filter((id: number) => !isNaN(id));
-
-      if (mappedIds.length === 0) {
-        throw new Error('No numeric legacyId values found for provided care_recipient_leads IDs');
-      }
-
-      return dedupeNumericIds(mappedIds);
-    }
-  }
-
-  const parsedFileIds = await parseIds({
-    ...options,
-    idsInline: null,
-  });
-  if (parsedFileIds && parsedFileIds.length > 0) {
-    return dedupeNumericIds(parsedFileIds);
-  }
-
-  throw new Error(`Could not parse lead IDs from file: ${options.idsFile}`);
-}
-
-function dedupeNumericIds(ids: number[]): number[] {
-  return [...new Set(ids.filter(id => Number.isInteger(id) && id > 0))];
-}
-
-export function parseLeadIdsFromCsv(content: string): { legacyIds: number[]; crlIds: string[] } {
-  const rows = parseCsvRows(content);
-  if (rows.length === 0) {
-    return { legacyIds: [], crlIds: [] };
-  }
-
-  const headers = rows[0].map(h => h.trim().toLowerCase());
-  const headerIdx = {
-    legacyId: headers.findIndex(h => ['legacyid', 'legacy_id', 'local_resource_lead_id'].includes(h)),
-    id: headers.findIndex(h => ['id', 'care_recipient_lead_id', 'care_recipient_leads_id'].includes(h)),
-  };
-
-  const dataRows = rows.slice(1);
-  const legacyIds: number[] = [];
-  const crlIds: string[] = [];
-
-  if (headerIdx.legacyId >= 0 || headerIdx.id >= 0) {
-    for (const row of dataRows) {
-      if (headerIdx.legacyId >= 0) {
-        const value = (row[headerIdx.legacyId] || '').trim();
-        const id = parseInt(value, 10);
-        if (!isNaN(id)) legacyIds.push(id);
-      } else if (headerIdx.id >= 0) {
-        const id = (row[headerIdx.id] || '').trim();
-        if (id) crlIds.push(id);
-      }
-    }
-
-    return { legacyIds, crlIds };
-  }
-
-  // Fallback: no headers, first column can be either numeric legacyId or UUID CRL id
-  for (const row of rows) {
-    const first = (row[0] || '').trim();
-    if (!first) continue;
-    const numeric = parseInt(first, 10);
-    if (!isNaN(numeric) && String(numeric) === first) {
-      legacyIds.push(numeric);
-    } else {
-      crlIds.push(first);
-    }
-  }
-
-  return { legacyIds, crlIds };
-}
-
-function parseCsvRows(content: string): string[][] {
-  const rows: string[][] = [];
-  let row: string[] = [];
-  let field = '';
-  let inQuotes = false;
-
-  for (let i = 0; i < content.length; i++) {
-    const ch = content[i];
-    const next = content[i + 1];
-
-    if (ch === '"') {
-      if (inQuotes && next === '"') {
-        field += '"';
-        i++;
-      } else {
-        inQuotes = !inQuotes;
-      }
-      continue;
-    }
-
-    if (!inQuotes && ch === ',') {
-      row.push(field);
-      field = '';
-      continue;
-    }
-
-    if (!inQuotes && (ch === '\n' || ch === '\r')) {
-      if (ch === '\r' && next === '\n') i++;
-      row.push(field);
-      if (row.some(v => v.trim() !== '')) {
-        rows.push(row);
-      }
-      row = [];
-      field = '';
-      continue;
-    }
-
-    field += ch;
-  }
-
-  if (field.length > 0 || row.length > 0) {
-    row.push(field);
-    if (row.some(v => v.trim() !== '')) {
-      rows.push(row);
-    }
-  }
-
-  return rows;
-}
-
-function looksLikeHeaderRow(content: string): boolean {
-  const firstLine = content
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .find(line => line.length > 0);
-
-  if (!firstLine) return false;
-
-  const normalized = firstLine.toLowerCase();
-  return [
-    'id',
-    'legacyid',
-    'legacy_id',
-    'local_resource_lead_id',
-    'care_recipient_lead_id',
-    'care_recipient_leads_id',
-  ].includes(normalized);
-}
 
 async function fetchStatusesForBatch(
   mysqlConn: any,

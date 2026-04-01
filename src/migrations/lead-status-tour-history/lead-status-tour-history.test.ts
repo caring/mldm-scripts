@@ -14,11 +14,13 @@ import {
   buildLeadStatusSummary,
   deriveLeadPriority,
   fetchLeadBatchFromMM,
-  resolveExplicitLeadIds,
-  parseLeadIdsFromCsv,
   DirLeadStatus,
 } from './lead-status-tour-history';
 import { MigrationCLIOptions } from '../../utils/migration-cli';
+import {
+  parseLeadIdsFromCsv,
+  resolveExplicitCareRecipientLeads,
+} from '../../utils/care-recipient-lead-selection';
 
 function makeStatus(overrides: Partial<DirLeadStatus> = {}): DirLeadStatus {
   return {
@@ -423,7 +425,7 @@ describe('parseLeadIdsFromCsv', () => {
   });
 });
 
-describe('resolveExplicitLeadIds', () => {
+describe('resolveExplicitCareRecipientLeads', () => {
   it('uses ids-inline directly with dedupe', async () => {
     const options: MigrationCLIOptions = {
       from: 'now',
@@ -437,8 +439,16 @@ describe('resolveExplicitLeadIds', () => {
       lookbackYears: null,
     };
 
-    const result = await resolveExplicitLeadIds(options, { query: async () => ({ rows: [] }) });
-    expect(result).toEqual([57601684, 57601685]);
+    const result = await resolveExplicitCareRecipientLeads(options, {
+      query: async (_q: string, _p: any[]) => ({
+        rows: [
+          { id: '11111111-1111-1111-1111-111111111111', legacyId: '57601684' },
+          { id: '22222222-2222-2222-2222-222222222222', legacyId: '57601685' },
+        ],
+      }),
+    });
+    expect(result?.requestedCount).toBe(2);
+    expect(result?.matchedLeads.map((l) => l.legacyId)).toEqual([57601684, 57601685]);
   });
 
   it('maps CSV care_recipient_leads ids to numeric legacyIds via MM', async () => {
@@ -463,8 +473,9 @@ describe('resolveExplicitLeadIds', () => {
         query: async (_query: string, _params: any[]) => ({ rows: [{ legacyId: '57601684' }] }),
       };
 
-      const result = await resolveExplicitLeadIds(options, pgClient);
-      expect(result).toEqual([57601684]);
+      const result = await resolveExplicitCareRecipientLeads(options, pgClient);
+      expect(result?.requestedCount).toBe(1);
+      expect(result?.matchedLeads.map((l) => l.legacyId)).toEqual([57601684]);
     } finally {
       await rm(dir, { recursive: true, force: true });
     }
