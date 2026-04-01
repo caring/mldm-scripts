@@ -26,7 +26,9 @@ export function createLeadStatusTourHistoryTestDatabase() {
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       "legacyId" VARCHAR UNIQUE,
       "legacyLeadStatusAndTourHistory" VARCHAR(2000),
-      "mldmMigratedAt" TIMESTAMP WITH TIME ZONE,
+      "leadPriority" VARCHAR(50),
+      "pipelineStage" VARCHAR(50),
+      "mldmMigratedModmonAt" TIMESTAMP WITH TIME ZONE,
       "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
       "updatedAt" TIMESTAMP DEFAULT NOW(),
       "deletedAt" TIMESTAMP
@@ -42,7 +44,7 @@ export async function seedLeadStatusTourHistoryTestData(db: any) {
       id,
       "legacyId",
       "legacyLeadStatusAndTourHistory",
-      "mldmMigratedAt"
+      "mldmMigratedModmonAt"
     )
     VALUES
       (

@@ -1,4 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { mkdtemp, writeFile, rm } from 'fs/promises';
+import { tmpdir } from 'os';
+import { join } from 'path';
 import {
   createLeadStatusTourHistoryTestDatabase,
   seedLeadStatusTourHistoryTestData,
@@ -9,8 +12,13 @@ import {
   formatStatusText,
   formatStatusLine,
   buildLeadStatusSummary,
+  deriveLeadPriority,
+  fetchLeadBatchFromMM,
+  resolveExplicitLeadIds,
+  parseLeadIdsFromCsv,
   DirLeadStatus,
 } from './lead-status-tour-history';
+import { MigrationCLIOptions } from '../../utils/migration-cli';
 
 function makeStatus(overrides: Partial<DirLeadStatus> = {}): DirLeadStatus {
   return {
@@ -191,6 +199,36 @@ describe('buildLeadStatusSummary', () => {
   });
 });
 
+describe('deriveLeadPriority', () => {
+  it('returns On Hold when allowFollowup is true', () => {
+    expect(deriveLeadPriority(true, 0)).toBe('On Hold');
+    expect(deriveLeadPriority(1, 1)).toBe('On Hold');
+    expect(deriveLeadPriority('1', 2)).toBe('On Hold');
+  });
+
+  it('returns HOT when allowFollowup is false and followup_rank is 0', () => {
+    expect(deriveLeadPriority(false, 0)).toBe('HOT');
+    expect(deriveLeadPriority(0, 0)).toBe('HOT');
+    expect(deriveLeadPriority('0', 0)).toBe('HOT');
+  });
+
+  it('returns Warm when allowFollowup is false and followup_rank is 1/2/3', () => {
+    expect(deriveLeadPriority(false, 1)).toBe('Warm');
+    expect(deriveLeadPriority(false, 2)).toBe('Warm');
+    expect(deriveLeadPriority(false, 3)).toBe('Warm');
+  });
+
+  it('returns On Hold when allowFollowup is false and followup_rank is 4', () => {
+    expect(deriveLeadPriority(false, 4)).toBe('On Hold');
+  });
+
+  it('falls back to On Hold for null/unknown values', () => {
+    expect(deriveLeadPriority(null, 0)).toBe('On Hold');
+    expect(deriveLeadPriority(false, null)).toBe('On Hold');
+    expect(deriveLeadPriority(false, 99)).toBe('On Hold');
+  });
+});
+
 describe('care_recipient_leads lookup', () => {
   let db: any;
   let client: any;
@@ -203,14 +241,14 @@ describe('care_recipient_leads lookup', () => {
 
   it('finds a lead by legacyId', async () => {
     const result = await client.query(
-      `SELECT id, "legacyId", "mldmMigratedAt"
+      `SELECT id, "legacyId", "mldmMigratedModmonAt"
        FROM care_recipient_leads
        WHERE "legacyId" = $1 AND "deletedAt" IS NULL`,
       ['1001']
     );
     expect(result.rows).toHaveLength(1);
     expect(result.rows[0].id).toBe('00000000-0000-0000-0000-000000000001');
-    expect(result.rows[0].mldmMigratedAt).toBeNull();
+    expect(result.rows[0].mldmMigratedModmonAt).toBeNull();
   });
 
   it('returns empty for a legacyId not in MM', async () => {
@@ -230,12 +268,12 @@ describe('care_recipient_leads lookup', () => {
     expect(result.rows).toHaveLength(3);
   });
 
-  it('detects an already-migrated lead via mldmMigratedAt', async () => {
+  it('detects an already-migrated lead via mldmMigratedModmonAt', async () => {
     const result = await client.query(
-      `SELECT "mldmMigratedAt" FROM care_recipient_leads WHERE "legacyId" = $1`,
+      `SELECT "mldmMigratedModmonAt" FROM care_recipient_leads WHERE "legacyId" = $1`,
       ['1002']
     );
-    expect(result.rows[0].mldmMigratedAt).not.toBeNull();
+    expect(result.rows[0].mldmMigratedModmonAt).not.toBeNull();
   });
 });
 
@@ -249,27 +287,27 @@ describe('bulk update care_recipient_leads', () => {
     client = await getTestClient(db);
   });
 
-  it('updates legacyLeadStatusAndTourHistory and mldmMigratedAt', async () => {
+  it('updates legacyLeadStatusAndTourHistory and mldmMigratedModmonAt', async () => {
     const summary = '9/1/25 10:18am - Tour scheduled, in person - Aidan Moloney';
 
     await client.query(
       `UPDATE care_recipient_leads
        SET
          "legacyLeadStatusAndTourHistory" = $1,
-         "mldmMigratedAt" = NOW(),
+         "mldmMigratedModmonAt" = NOW(),
          "updatedAt" = NOW()
        WHERE "legacyId" = $2 AND "deletedAt" IS NULL`,
       [summary, '1001']
     );
 
     const result = await client.query(
-      `SELECT "legacyLeadStatusAndTourHistory", "mldmMigratedAt"
+      `SELECT "legacyLeadStatusAndTourHistory", "mldmMigratedModmonAt"
        FROM care_recipient_leads WHERE "legacyId" = $1`,
       ['1001']
     );
 
     expect(result.rows[0].legacyLeadStatusAndTourHistory).toBe(summary);
-    expect(result.rows[0].mldmMigratedAt).not.toBeNull();
+    expect(result.rows[0].mldmMigratedModmonAt).not.toBeNull();
   });
 
   it('bulk updates multiple leads independently', async () => {
@@ -283,7 +321,7 @@ describe('bulk update care_recipient_leads', () => {
         `UPDATE care_recipient_leads
          SET
            "legacyLeadStatusAndTourHistory" = $1,
-           "mldmMigratedAt" = NOW(),
+           "mldmMigratedModmonAt" = NOW(),
            "updatedAt" = NOW()
          WHERE "legacyId" = $2 AND "deletedAt" IS NULL`,
         [u.summary, u.legacyId]
@@ -309,7 +347,7 @@ describe('bulk update care_recipient_leads', () => {
 
     await client.query(
       `UPDATE care_recipient_leads
-       SET "legacyLeadStatusAndTourHistory" = $1, "mldmMigratedAt" = NOW(), "updatedAt" = NOW()
+       SET "legacyLeadStatusAndTourHistory" = $1, "mldmMigratedModmonAt" = NOW(), "updatedAt" = NOW()
        WHERE "legacyId" = $2 AND "deletedAt" IS NULL`,
       ['should not appear', '1001']
     );
@@ -319,5 +357,116 @@ describe('bulk update care_recipient_leads', () => {
     );
 
     expect(result.rows[0].legacyLeadStatusAndTourHistory).toBeNull();
+  });
+});
+
+describe('fetchLeadBatchFromMM', () => {
+  it('selects MM leads in timeframe and then fetches corresponding legacy leads', async () => {
+    const pgCalls: any[] = [];
+    const pgClient = {
+      query: async (query: string, params: any[]) => {
+        pgCalls.push({ query, params });
+        return ({
+        rows: [{ legacyId: '57601684' }, { legacyId: '57601685' }, { legacyId: null }],
+        });
+      },
+    };
+
+    const mysqlCalls: any[] = [];
+    const mysqlConn = {
+      query: async (query: string, params: any[]) => {
+        mysqlCalls.push({ query, params });
+        return [[
+          { id: 57601684, created_at: new Date('2025-01-01T00:00:00Z'), followup_rank: 0, allowFollowup: 0 },
+          { id: 57601685, created_at: new Date('2025-01-02T00:00:00Z'), followup_rank: 1, allowFollowup: 0 },
+        ]];
+      },
+    };
+
+    const rows = await fetchLeadBatchFromMM(
+      pgClient,
+      mysqlConn,
+      new Date('2026-03-31T00:00:00Z'),
+      new Date('2025-03-31T00:00:00Z'),
+      1000,
+      0
+    );
+
+    expect(rows).toHaveLength(2);
+    expect(pgCalls).toHaveLength(1);
+    expect(pgCalls[0].query).toContain('"legacyId" IS NOT NULL');
+    expect(pgCalls[0].query).toContain('"createdAt" <=');
+    expect(pgCalls[0].query).toContain('"createdAt" >=');
+    expect(mysqlCalls).toHaveLength(1);
+    expect(mysqlCalls[0].params).toEqual([57601684, 57601685]);
+  });
+});
+
+describe('parseLeadIdsFromCsv', () => {
+  it('parses numeric legacy IDs from legacyId column', () => {
+    const csv = `legacyId,name\n57601684,A\n57601685,B\n`;
+    expect(parseLeadIdsFromCsv(csv)).toEqual({
+      legacyIds: [57601684, 57601685],
+      crlIds: [],
+    });
+  });
+
+  it('parses CRL IDs from id column when legacyId column is absent', () => {
+    const csv = `id,name\n11111111-1111-1111-1111-111111111111,A\n22222222-2222-2222-2222-222222222222,B\n`;
+    expect(parseLeadIdsFromCsv(csv)).toEqual({
+      legacyIds: [],
+      crlIds: [
+        '11111111-1111-1111-1111-111111111111',
+        '22222222-2222-2222-2222-222222222222',
+      ],
+    });
+  });
+});
+
+describe('resolveExplicitLeadIds', () => {
+  it('uses ids-inline directly with dedupe', async () => {
+    const options: MigrationCLIOptions = {
+      from: 'now',
+      to: null,
+      batchSize: 1000,
+      dryRun: true,
+      retryFailed: false,
+      report: false,
+      idsFile: null,
+      idsInline: '57601684,57601685,57601684',
+      lookbackYears: null,
+    };
+
+    const result = await resolveExplicitLeadIds(options, { query: async () => ({ rows: [] }) });
+    expect(result).toEqual([57601684, 57601685]);
+  });
+
+  it('maps CSV care_recipient_leads ids to numeric legacyIds via MM', async () => {
+    const dir = await mkdtemp(join(tmpdir(), 'lead-status-csv-'));
+    const csvPath = join(dir, 'crl.csv');
+    try {
+      await writeFile(csvPath, 'id\n11111111-1111-1111-1111-111111111111\n');
+
+      const options: MigrationCLIOptions = {
+        from: 'now',
+        to: null,
+        batchSize: 1000,
+        dryRun: true,
+        retryFailed: false,
+        report: false,
+        idsFile: csvPath,
+        idsInline: null,
+        lookbackYears: null,
+      };
+
+      const pgClient = {
+        query: async (_query: string, _params: any[]) => ({ rows: [{ legacyId: '57601684' }] }),
+      };
+
+      const result = await resolveExplicitLeadIds(options, pgClient);
+      expect(result).toEqual([57601684]);
+    } finally {
+      await rm(dir, { recursive: true, force: true });
+    }
   });
 });
