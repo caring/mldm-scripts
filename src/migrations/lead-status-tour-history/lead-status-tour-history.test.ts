@@ -171,7 +171,7 @@ describe('buildLeadStatusSummary', () => {
     expect(summary.split('\n')).toHaveLength(10);
   });
 
-  it('truncates to 1000 characters on a clean line boundary', () => {
+  it('truncates to 2000 characters on a clean line boundary', () => {
     const statuses: DirLeadStatus[] = Array.from({ length: 10 }, (_, i) =>
       makeStatus({
         created_at: new Date(2025, 0, i + 1, 10, 0, 0),
@@ -181,7 +181,7 @@ describe('buildLeadStatusSummary', () => {
       })
     );
     const summary = buildLeadStatusSummary(statuses);
-    expect(summary.length).toBeLessThanOrEqual(1000);
+    expect(summary.length).toBeLessThanOrEqual(2000);
     const lines = summary.split('\n');
     lines.forEach(line => expect(line.length).toBeGreaterThan(0));
   });

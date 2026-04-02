@@ -621,7 +621,7 @@ export function buildLeadStatusSummary(statuses: DirLeadStatus[]): string {
   const top10 = sorted.slice(0, 10);
   const lines = top10.map(formatStatusLine);
 
-  const MAX_LENGTH = 1000;
+  const MAX_LENGTH = 2000;
   let summary = lines.join('\n');
 
   if (summary.length > MAX_LENGTH) {
