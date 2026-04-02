@@ -140,9 +140,11 @@ describe('formatStatusLine', () => {
     expect(line).toBe('9/1/25 10:18am - Tour scheduled, in person - Aidan Moloney');
   });
 
-  it('uses "Unknown" when created_by is null', () => {
+  it('omits created_by suffix when created_by is null', () => {
     const status = makeStatus({ created_by: null });
-    expect(formatStatusLine(status)).toContain('- Unknown');
+    const line = formatStatusLine(status);
+    expect(line).not.toContain('- Unknown');
+    expect(line).toMatch(/^\d{1,2}\/\d{1,2}\/\d{2} \d{2}:\d{2}(am|pm) - Valid$/);
   });
 });
 
@@ -359,6 +361,42 @@ describe('bulk update care_recipient_leads', () => {
     );
 
     expect(result.rows[0].legacyLeadStatusAndTourHistory).toBeNull();
+  });
+
+  it('updates leadPriority and pipelineStage even when summary is null', async () => {
+    await client.query(
+      `UPDATE care_recipient_leads
+       SET
+         "legacyLeadStatusAndTourHistory" = $1,
+         "leadPriority" = $2,
+         "pipelineStage" = $3
+       WHERE "legacyId" = $4`,
+      ['existing summary', 'Warm', 'Prospecting', '1002']
+    );
+
+    await client.query(
+      `UPDATE care_recipient_leads AS crl
+       SET
+         "legacyLeadStatusAndTourHistory" = COALESCE(v.summary, crl."legacyLeadStatusAndTourHistory"),
+         "leadPriority" = v.lead_priority,
+         "pipelineStage" = v.pipeline_stage,
+         "mldmMigratedModmonAt" = NOW(),
+         "updatedAt" = NOW()
+       FROM (VALUES ($1, $2, $3, $4)) AS v(legacy_id, summary, lead_priority, pipeline_stage)
+       WHERE crl."legacyId" = v.legacy_id
+         AND crl."deletedAt" IS NULL`,
+      ['1002', null, 'HOT', 'Working']
+    );
+
+    const result = await client.query(
+      `SELECT "legacyLeadStatusAndTourHistory", "leadPriority", "pipelineStage"
+       FROM care_recipient_leads
+       WHERE "legacyId" = '1002'`
+    );
+
+    expect(result.rows[0].legacyLeadStatusAndTourHistory).toBe('existing summary');
+    expect(result.rows[0].leadPriority).toBe('HOT');
+    expect(result.rows[0].pipelineStage).toBe('Working');
   });
 });
 

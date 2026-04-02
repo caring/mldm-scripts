@@ -314,7 +314,7 @@ async function processLeadBatch(args: {
 
   const bulkUpdates: Array<{
     legacyId: string;
-    summary: string;
+    summary: string | null;
     leadPriority: string;
     pipelineStage: string;
   }> = [];
@@ -341,25 +341,10 @@ async function processLeadBatch(args: {
 
       const statuses = statusesByLeadId[lead.id] || [];
 
-      if (statuses.length === 0) {
-        batchSkipped++;
-        console.log(`  ⊘ Lead ${lead.id}: No statuses`);
-
-        if (!options.dryRun) {
-          await appendRow(`${MIGRATION_NAME}/${batchId}`, {
-            batch_id: batchId,
-            source_id: lead.id.toString(),
-            status: 'skipped' as any,
-            reason: 'no_statuses',
-            processed_at: formatDate(new Date()),
-          });
-        }
-        continue;
-      }
-
-      const summary = buildLeadStatusSummary(statuses);
       const leadPriority = deriveLeadPriority(lead.allowFollowup, lead.followup_rank);
       const pipelineStage = 'Working';
+      const hasStatuses = statuses.length > 0;
+      const summary = hasStatuses ? buildLeadStatusSummary(statuses) : null;
 
       bulkUpdates.push({
         legacyId: lead.id.toString(),
@@ -368,15 +353,23 @@ async function processLeadBatch(args: {
         pipelineStage,
       });
       batchSuccess++;
-      console.log(
-        `  ✓ Lead ${lead.id}: Prepared (${statuses.length} statuses, leadPriority=${leadPriority}, pipelineStage=${pipelineStage})`
-      );
+
+      if (hasStatuses) {
+        console.log(
+          `  ✓ Lead ${lead.id}: Prepared (${statuses.length} statuses, leadPriority=${leadPriority}, pipelineStage=${pipelineStage})`
+        );
+      } else {
+        console.log(
+          `  ✓ Lead ${lead.id}: Prepared (no statuses, leadPriority=${leadPriority}, pipelineStage=${pipelineStage}, summary unchanged)`
+        );
+      }
 
       if (!options.dryRun) {
         await appendRow(`${MIGRATION_NAME}/${batchId}`, {
           batch_id: batchId,
           source_id: lead.id.toString(),
           status: 'success',
+          reason: hasStatuses ? undefined : 'no_statuses_priority_stage_only',
           processed_at: formatDate(new Date()),
         });
       }
@@ -549,7 +542,7 @@ async function bulkUpdateMM(
   pgClient: any,
   updates: Array<{
     legacyId: string;
-    summary: string;
+    summary: string | null;
     leadPriority: string;
     pipelineStage: string;
   }>
@@ -571,7 +564,7 @@ async function bulkUpdateMM(
   const query = `
     UPDATE care_recipient_leads AS crl
     SET
-      "legacyLeadStatusAndTourHistory" = v.summary,
+      "legacyLeadStatusAndTourHistory" = COALESCE(v.summary, crl."legacyLeadStatusAndTourHistory"),
       "leadPriority" = v.lead_priority,
       "pipelineStage" = v.pipeline_stage,
       "mldmMigratedModmonAt" = NOW(),
@@ -638,7 +631,10 @@ export function buildLeadStatusSummary(statuses: DirLeadStatus[]): string {
 export function formatStatusLine(status: DirLeadStatus): string {
   const date = formatStatusDate(new Date(status.created_at));
   const statusText = formatStatusText(status);
-  const createdBy = status.created_by || 'Unknown';
+  const createdBy = (status.created_by || '').trim();
+  if (!createdBy) {
+    return `${date} - ${statusText}`;
+  }
   return `${date} - ${statusText} - ${createdBy}`;
 }
 
