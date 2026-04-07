@@ -17,7 +17,8 @@
     "migrate:notes:self-qualified": "ts-node src/migrations/notes/self-qualified-notes.ts",
     "migrate:contact-history": "ts-node src/migrations/contact-history/contact-history.ts",
     "migrate:lead-status-tour-history": "ts-node src/migrations/lead-status-tour-history/lead-status-tour-history.ts",
-    "migrate:inquiries": "ts-node src/migrations/inquiries/sync-inquiries.ts"
+    "migrate:inquiries": "ts-node src/migrations/inquiries/sync-inquiries.ts",
+    "migrate:care-recipient-lead-notes": "ts-node src/migrations/care-recipient-lead-notes/care-recipient-lead-notes.ts"
   },
   "engines": {
     "node": "20.20.0"

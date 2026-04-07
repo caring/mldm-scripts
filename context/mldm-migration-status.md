@@ -105,13 +105,105 @@ This document tracks the progress of Mass Legacy Data Migration (MLDM) from lega
 
 ---
 
+## 🆕 New Migrations
+
+### Script 6: Care Recipient Notes Consolidation (`care-recipient-notes.ts`)
+**Status:** ✅ READY - Consolidates to Single Text Column
+**Script Location:** `src/migrations/care-recipient-notes/care-recipient-notes.ts`
+**Purpose:** Consolidate all care_recipient_notes (AFFILIATE + INTERNAL) into single lead-level text field
+**Destination:** `care_recipient_leads.legacyCareRecipientNotes` (VARCHAR 10000)
+
+**Completed Work:**
+- ✅ Consolidates all care_recipient_notes (AFFILIATE + INTERNAL) into single field
+- ✅ Supports care seeker ID-based migration (`--ids` parameter)
+- ✅ Supports time-based migration (default)
+- ✅ Format: `[TYPE] DATE - NOTE TEXT` (newest first)
+- ✅ Automatic truncation at 10,000 chars with message
+- ✅ Full test coverage
+- ✅ Documentation complete
+
+**Database Change Required:**
+```sql
+ALTER TABLE care_recipient_leads
+ADD COLUMN "legacyCareRecipientNotes" VARCHAR(10000) NULL;
+```
+
+**Use Case:** When you want a simple text summary of notes in the leads table itself.
+
+---
+
+### Script 7: Care Recipient Lead Notes Migration (`care-recipient-lead-notes.ts`)
+**Status:** ✅ READY - Supports Care Seeker ID-Based Migration
+**Script Location:** `src/migrations/care-recipient-notes/care-recipient-notes.ts`
+**Purpose:** Migrate all care_recipient_notes (AFFILIATE + INTERNAL) to lead-level notes table
+**Source:** MM `care_recipient_notes` table
+**Destination:** MM `care_recipient_leads_notes` table
+
+**Completed Work:**
+- ✅ Migrates all care_recipient_notes (AFFILIATE + INTERNAL) as individual rows
+- ✅ Supports care seeker ID-based migration (`--ids` parameter)
+- ✅ Supports time-based migration (default)
+- ✅ Marks migrated notes with `mldmMigratedModmonAt` to prevent Hubspot sync
+- ✅ No size limits - each note stored separately (TEXT field)
+- ✅ Full test coverage
+- ✅ Documentation complete
+
+**Database Changes Required:**
+MM repo PR #5063 adds required column and sync exclusion:
+```sql
+ALTER TABLE care_recipient_leads_notes
+ADD COLUMN "mldmMigratedModmonAt" TIMESTAMP WITH TIME ZONE;
+
+CREATE INDEX "IDX_crln_mldm_migrated_modmon_at_not_null"
+  ON care_recipient_leads_notes ("mldmMigratedModmonAt")
+  WHERE "mldmMigratedModmonAt" IS NOT NULL;
+```
+
+Adapter updated to exclude migrated notes from Hubspot sync:
+```typescript
+.andWhere("crln.mldmMigratedModmonAt IS NULL")
+```
+
+**Ready for Execution:**
+  1. Wait for MM PR #5063 to be merged and deployed
+  2. Receive CSV file from business team with care seeker IDs
+  3. Run dry-run: `npm run migrate:care-recipient-notes -- --ids ./care-seeker-ids.csv --dry-run`
+  4. Review output for validation
+  5. Run actual migration: `npm run migrate:care-recipient-notes -- --ids ./care-seeker-ids.csv`
+  6. Verify notes inserted into `care_recipient_leads_notes` with `mldmMigratedModmonAt` set
+
+**How It Works:**
+1. Fetches all leads for care seekers (or by date range)
+2. For each lead, gets all AFFILIATE + INTERNAL notes for that care recipient
+3. Creates individual rows in `care_recipient_leads_notes` table:
+   - `value`: `[TYPE] note text` (e.g., `[AFFILIATE] Great community`)
+   - `creator`: `'MLDM Migration'`
+   - `createdAt`: Original note's creation date
+   - `mldmMigratedModmonAt`: NOW() (marks as migrated, excludes from Hubspot sync)
+4. No truncation - all notes migrated completely
+
+**Benefits:**
+- **No data loss** - No truncation, unlimited note length
+- **Proper data model** - One row per note (queryable, filterable)
+- **No Hubspot impact** - Migrated notes marked to exclude from sync
+- **User notes unaffected** - Only migrated notes excluded, user-created notes still sync
+- **Scalable** - Can handle 1M+ notes without issues
+
+**Data Statistics:**
+- Average: ~5 notes per care recipient
+- Average note length: ~293 characters
+- Max note length: 122,674 characters (all fit without truncation)
+- 95th percentile: 18 notes per care recipient
+
+---
+
 ## 🚧 Pending Migrations
 
 ### 4. Inquiry Creation
 
 **Destination Table:** `inquiries` (MM PostgreSQL)
 
-- **Status:** ⏸️ Script Created but NOT Run
+- **Status:** ✅ ENHANCED - Now Supports Care Seeker ID-Based Migration
 - **Script Location:** `src/migrations/inquiries/sync-inquiries.ts`
 - **Source:** DIR MySQL `inquiries` table
 - **Destination:** MM PostgreSQL `inquiries` table
@@ -121,10 +213,36 @@ This document tracks the progress of Mass Legacy Data Migration (MLDM) from lega
   - Marketing data: UTM parameters, campaign data, GCLID, etc.
   - `mldmMigratedModmonAt` timestamp
 - **Features:**
-  - Supports both date range and explicit lead ID list migration
+  - ✅ Supports care seeker ID-based migration (NEW)
+  - ✅ Supports date range and explicit lead ID list migration
+  - ✅ Optimal approach: starts from MM, filters to leads needing inquiries
   - Maps legacy inquiry IDs to care recipient leads
   - Batch processing with state tracking
-  - Can create or update inquiries
+  - Can create or update inquiries in MM
+
+**Ready for Execution (Care Seeker ID Mode):**
+  1. Receive CSV file from business team with **legacy care seeker IDs** (contact IDs)
+  2. Run dry-run: `npm run migrate:inquiries -- --ids ./care-seeker-ids.csv --dry-run`
+  3. Review output for validation
+  4. Run actual migration: `npm run migrate:inquiries -- --ids ./care-seeker-ids.csv`
+  5. Verify:
+     - Inquiries created in MM `inquiries` table
+     - `care_recipient_leads.inquiryId` updated correctly
+
+**How It Works (Care Seeker ID Mode):**
+1. Query MM for leads WHERE:
+   - `care_seekers.legacyId` IN (input care seeker IDs)
+   - `care_recipient_leads.legacyId` IS NOT NULL (has legacy mapping)
+   - `care_recipient_leads.inquiryId` IS NULL (missing inquiry)
+2. Get inquiry IDs from DIR for those leads
+3. Fetch full inquiry data from DIR
+4. Create inquiries in MM
+5. Update `care_recipient_leads.inquiryId` mappings
+
+**Optimizations:**
+- Only processes leads that actually NEED inquiries (inquiryId IS NULL)
+- Only processes leads that EXIST in MM
+- Minimal data transfer between databases inquiries
 - **Migration State Directory:** `migration-state/inquiries/` (ready to use when migration runs)
 
 ---
@@ -157,23 +275,43 @@ This document tracks the progress of Mass Legacy Data Migration (MLDM) from lega
 ---
 
 ### Script 2: Contact History (`contact-history.ts`)
-**Status:** ✅ ENHANCED - Now Supports Lead-Based Migration
+**Status:** ✅ ENHANCED - Now Supports Care Seeker ID-Based Migration
 **Completed Work:**
-- ✅ Added `--ids` and `--ids-inline` parameter support
+- ✅ Added `--ids` and `--ids-inline` parameter support for care seeker IDs
 - ✅ Implemented smart timestamp recalculation (ALWAYS updated)
 - ✅ Implemented conditional summary rebuild (only if new events since last run)
-- ✅ Added lead → care_recipient resolution from DIR
+- ✅ Added care seeker ID → care_recipient resolution from DIR
 - ✅ Checks for new events across all 6 source tables
 - ✅ Efficient: Only rebuilds summaries when needed
 **Ready for Execution:**
-  1. Receive CSV file from business team with legacy lead IDs (1 ID per line)
-  2. Run dry-run: `npm run migrate:contact-history -- --ids ./legacy-leads.csv --dry-run`
+  1. Receive CSV file from business team with **legacy care seeker IDs** (contact IDs, 1 ID per line)
+  2. Run dry-run: `npm run migrate:contact-history -- --ids ./care-seeker-ids.csv --dry-run`
   3. Review output for validation
-  4. Run actual migration: `npm run migrate:contact-history -- --ids ./legacy-leads.csv`
+  4. Run actual migration: `npm run migrate:contact-history -- --ids ./care-seeker-ids.csv`
   5. Verify all 3 fields are updated:
      - `legacyLastContactedAt` (always updated)
      - `legacyLastDealSentAt` (always updated)
      - `legacyContactHistorySummary` (rebuilt only if new events)
+
+**Input Format:**
+- **Care Seeker IDs** = Legacy Contact IDs from DIR (`contacts.id`)
+- These map to `care_seekers.legacyId` in MM (synced by Data Bridge)
+- Script resolves: contact.id → contact.care_recipient_id → care_recipients in MM
+
+**Example CSV:**
+```csv
+legacyContactId
+123456
+789012
+345678
+```
+
+Or simple list:
+```
+123456
+789012
+345678
+```
 
 ---
 

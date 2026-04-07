@@ -17,6 +17,7 @@ import {
   isHelpRequested,
   printMigrationOptions,
   MigrationCLIOptions,
+  parseIds,
 } from '../../utils/migration-cli';
 import {
   CareRecipientLeadRef,
@@ -153,6 +154,16 @@ async function runMigration(options: MigrationCLIOptions) {
   const pgClient = getPostgresClient();
 
   try {
+    // Check if --ids parameter is provided (care seeker IDs)
+    const careSeekerIds = await parseIds(options);
+
+    if (careSeekerIds && careSeekerIds.length > 0) {
+      // Care seeker ID-based migration
+      await runCareSeekerIdBasedMigration(mysqlConn, pgClient, careSeekerIds, options);
+      return;
+    }
+
+    // Existing flow: explicit lead IDs or date range
     const explicitResolution = await resolveExplicitCareRecipientLeads(options, pgClient);
     const fromDate = parseTimeParam(options.from);
     const toDate = options.to ? parseTimeParam(options.to, fromDate) : null;
@@ -428,6 +439,117 @@ async function processBatch(args: {
   console.log(`  ✓ Success: ${batchSuccess}`);
   console.log(`  ⊘ Skipped: ${batchSkipped}`);
   console.log(`  ✗ Failed: ${batchFailed}`);
+}
+
+/**
+ * Run migration for specific care seeker IDs (legacy contact IDs)
+ */
+async function runCareSeekerIdBasedMigration(
+  mysqlConn: any,
+  pgClient: any,
+  careSeekerIds: number[],
+  options: MigrationCLIOptions
+) {
+  console.log(`Migration scope: ${careSeekerIds.length} care seeker IDs (legacy contact IDs)`);
+  console.log();
+
+  // Step 1: Get MM leads that need inquiries (inquiryId IS NULL)
+  console.log('Fetching MM leads that need inquiries...');
+  const mmLeadsNeedingInquiries = await fetchMMLeadsNeedingInquiries(pgClient, careSeekerIds);
+  console.log(`✓ Found ${mmLeadsNeedingInquiries.length} MM leads needing inquiries`);
+  console.log();
+
+  if (mmLeadsNeedingInquiries.length === 0) {
+    console.log('No leads need inquiry sync. All done!');
+    return;
+  }
+
+  // Step 2: Get inquiry mapping from DIR
+  console.log('Fetching inquiry mapping from DIR...');
+  const legacyLeadIds = mmLeadsNeedingInquiries.map(l => l.legacyId);
+  const inquiryMap = await fetchLegacyLeadInquiryMap(mysqlConn, legacyLeadIds);
+  console.log(`✓ Found ${inquiryMap.size} leads with inquiries in DIR`);
+  console.log();
+
+  // Build mappings
+  const mappings: MappingRow[] = [];
+  for (const mmLead of mmLeadsNeedingInquiries) {
+    const inquiryId = inquiryMap.get(mmLead.legacyId);
+    if (inquiryId) {
+      mappings.push({
+        careRecipientLeadId: mmLead.id,
+        legacyLeadId: mmLead.legacyId,
+        legacyInquiryId: inquiryId,
+        existingInquiryId: null,
+      });
+    }
+  }
+
+  console.log(`Mapped ${mappings.length} leads to inquiries`);
+  console.log();
+
+  if (mappings.length === 0) {
+    console.log('No inquiry mappings found in DIR');
+    return;
+  }
+
+  // Step 3: Fetch full inquiry data from DIR
+  const uniqueInquiryIds = [...new Set(mappings.map(m => m.legacyInquiryId))];
+  console.log(`Fetching ${uniqueInquiryIds.length} unique inquiries from DIR...`);
+  const legacyInquiries = await fetchLegacyInquiries(mysqlConn, uniqueInquiryIds);
+  const legacyInquiryById = new Map<number, LegacyInquiryRow>();
+  legacyInquiries.forEach((row) => legacyInquiryById.set(row.legacy_inquiry_id, row));
+  console.log(`✓ Fetched ${legacyInquiries.length} inquiries`);
+  console.log();
+
+  // Step 4 & 5: Sync inquiries to MM and update lead mappings
+  if (!options.dryRun) {
+    console.log('Syncing inquiries to MM...');
+    await syncMMInquiriesForMappings(pgClient, mappings, legacyInquiryById);
+    console.log(`✓ Synced ${uniqueInquiryIds.length} inquiries and updated ${mappings.length} leads`);
+  } else {
+    console.log(`[DRY RUN] Would sync ${uniqueInquiryIds.length} inquiries and update ${mappings.length} leads`);
+  }
+
+  console.log();
+  console.log('=== Migration Complete ===');
+  console.log(`Care seekers processed: ${careSeekerIds.length}`);
+  console.log(`Leads updated: ${mappings.length}`);
+  console.log(`Inquiries synced: ${uniqueInquiryIds.length}`);
+}
+
+/**
+ * Fetch MM leads that need inquiries for given care seeker IDs
+ */
+async function fetchMMLeadsNeedingInquiries(
+  pgClient: any,
+  careSeekerIds: number[]
+): Promise<Array<{ id: string; legacyId: number }>> {
+  if (careSeekerIds.length === 0) return [];
+
+  const result = await pgClient.query(
+    `
+    SELECT
+      crl.id,
+      crl."legacyId"
+    FROM care_recipient_leads crl
+    INNER JOIN care_recipients cr ON cr.id = crl."careRecipientId"
+    INNER JOIN care_seekers cs ON cs.id = cr."careSeekerId"
+    WHERE cs."legacyId" = ANY($1)
+      AND crl."legacyId" IS NOT NULL
+      AND crl."inquiryId" IS NULL
+      AND crl."deletedAt" IS NULL
+      AND cr."deletedAt" IS NULL
+      AND cs."deletedAt" IS NULL
+    ORDER BY crl."createdAt" DESC
+    `,
+    [careSeekerIds.map(id => id.toString())]
+  );
+
+  return result.rows.map((row: any) => ({
+    id: row.id,
+    legacyId: parseInt(row.legacyId, 10),
+  }));
 }
 
 async function fetchLegacyLeadInquiryMap(

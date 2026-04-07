@@ -25,6 +25,7 @@ import {
   isHelpRequested,
   printMigrationOptions,
   MigrationCLIOptions,
+  parseIds,
 } from '../../utils/migration-cli';
 
 const MIGRATION_NAME = 'contact_history';
@@ -132,7 +133,16 @@ async function runMigration(options: MigrationCLIOptions) {
   const pgClient = getPostgresClient();
 
   try {
-    // Parse time range (default: 2 years ago to now)
+    // Check if --ids parameter is provided (care seeker IDs)
+    const careSeekerIds = await parseIds(options);
+
+    if (careSeekerIds && careSeekerIds.length > 0) {
+      // ID-based migration
+      await runIdBasedMigration(mysqlConn, pgClient, careSeekerIds, options);
+      return;
+    }
+
+    // Time-based migration (default)
     const fromDate = parseTimeParam(options.from);
     const toDate = options.to ? parseTimeParam(options.to, fromDate) : null;
 
@@ -404,6 +414,121 @@ async function runMigration(options: MigrationCLIOptions) {
     await disconnectMySQL();
     await disconnectPostgres();
   }
+}
+
+/**
+ * Run migration for specific care seeker IDs
+ */
+async function runIdBasedMigration(
+  mysqlConn: any,
+  pgClient: any,
+  careSeekerIds: number[],
+  options: MigrationCLIOptions
+) {
+  console.log(`Migration scope: ${careSeekerIds.length} care seeker IDs (legacy contact IDs)`);
+  console.log();
+
+  // Resolve care seeker IDs → care recipient IDs
+  console.log('Resolving care seeker IDs to care recipient IDs...');
+  const careRecipients = await fetchCareRecipientsByCareSeekerIds(mysqlConn, careSeekerIds);
+  console.log(`✓ Found ${careRecipients.length} care recipients for ${careSeekerIds.length} care seekers`);
+  console.log();
+
+  if (careRecipients.length === 0) {
+    console.log('No care recipients found for provided care seeker IDs');
+    return;
+  }
+
+  // Fetch MM data
+  console.log('Fetching MM data...');
+  const mmDataMap = await fetchMMDataForBatch(pgClient, careRecipients);
+  console.log(`✓ Found ${Object.keys(mmDataMap).length} care recipients in MM`);
+  console.log();
+
+  // Fetch events
+  console.log('Fetching history events...');
+  const allEventsMap = await fetchAllEventsForBatch(mysqlConn, careRecipients, mmDataMap);
+  console.log(`✓ Fetched events for ${Object.keys(allEventsMap).length} care recipients`);
+  console.log();
+
+  // Process and prepare bulk updates
+  const bulkUpdates: Array<{
+    id: string;
+    summary: string;
+    lastContactedAt: Date | null;
+    lastDealSentAt: Date | null;
+  }> = [];
+
+  let success = 0;
+  let skipped = 0;
+
+  for (const dirCr of careRecipients) {
+    const mmInfo = mmDataMap[dirCr.id];
+    const events = allEventsMap[dirCr.id] || [];
+
+    if (!mmInfo) {
+      skipped++;
+      console.log(`  ⊘ Care recipient ${dirCr.id}: Not in MM`);
+      continue;
+    }
+
+    if (events.length === 0) {
+      skipped++;
+      console.log(`  ⊘ Care recipient ${dirCr.id}: No events`);
+      continue;
+    }
+
+    const { summary, lastContactedAt, lastDealSentAt } = buildContactHistorySummary(events);
+
+    bulkUpdates.push({
+      id: mmInfo.id,
+      summary,
+      lastContactedAt,
+      lastDealSentAt,
+    });
+
+    success++;
+    console.log(`  ✓ Care recipient ${dirCr.id}: Prepared (${events.length} events)`);
+  }
+
+  console.log();
+  console.log(`Summary: ${success} prepared, ${skipped} skipped`);
+  console.log();
+
+  if (bulkUpdates.length > 0 && !options.dryRun) {
+    console.log(`Updating ${bulkUpdates.length} care recipients in MM...`);
+    await bulkUpdateMM(pgClient, bulkUpdates);
+    console.log('✓ Update complete');
+  } else if (options.dryRun) {
+    console.log(`[DRY RUN] Would update ${bulkUpdates.length} care recipients`);
+  }
+}
+
+/**
+ * Fetch care recipients by care seeker IDs (contact IDs)
+ */
+async function fetchCareRecipientsByCareSeekerIds(
+  mysqlConn: any,
+  careSeekerIds: number[]
+): Promise<DirCareRecipient[]> {
+  if (careSeekerIds.length === 0) return [];
+
+  const placeholders = careSeekerIds.map(() => '?').join(', ');
+  const query = `
+    SELECT DISTINCT
+      c.care_recipient_id AS id,
+      cr.created_at
+    FROM contacts c
+    INNER JOIN care_recipients cr ON cr.id = c.care_recipient_id
+    WHERE c.id IN (${placeholders})
+      AND c.care_recipient_id IS NOT NULL
+      AND c.deleted_at IS NULL
+      AND cr.deleted_at IS NULL
+    ORDER BY cr.created_at DESC
+  `;
+
+  const [rows] = await mysqlConn.query(query, careSeekerIds);
+  return rows;
 }
 
 /**
