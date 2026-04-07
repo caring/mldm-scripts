@@ -39,7 +39,8 @@ export interface DirLeadStatus {
   sub_status: string | null;
   tour_date: string | null;
   tour_time: string | null;
-  created_by: string | null;
+  source: string | null;
+  account_name: string | null;
 }
 
 interface MMLeadData {
@@ -358,6 +359,15 @@ async function processLeadBatch(args: {
         console.log(
           `  ✓ Lead ${lead.id}: Prepared (${statuses.length} statuses, leadPriority=${leadPriority}, pipelineStage=${pipelineStage})`
         );
+        if (options.dryRun) {
+          // Show summary preview in dry-run mode
+          console.log(`     Summary preview (${summary?.length || 0} chars):`);
+          const previewLines = summary?.split('\n').slice(0, 3) || [];
+          previewLines.forEach(line => console.log(`     │ ${line}`));
+          if ((summary?.split('\n').length || 0) > 3) {
+            console.log(`     │ ... (${(summary?.split('\n').length || 0) - 3} more lines)`);
+          }
+        }
       } else {
         console.log(
           `  ✓ Lead ${lead.id}: Prepared (no statuses, leadPriority=${leadPriority}, pipelineStage=${pipelineStage}, summary unchanged)`
@@ -391,10 +401,15 @@ async function processLeadBatch(args: {
     }
   }
 
-  if (bulkUpdates.length > 0 && !options.dryRun) {
-    console.log(`\nPerforming bulk update for ${bulkUpdates.length} leads...`);
-    await bulkUpdateMM(pgClient, bulkUpdates);
-    console.log('✓ Bulk update complete');
+  if (bulkUpdates.length > 0) {
+    if (options.dryRun) {
+      console.log(`\n[DRY RUN] Would update ${bulkUpdates.length} leads in care_recipient_leads`);
+      console.log(`[DRY RUN] Fields to update: legacyLeadStatusAndTourHistory, leadPriority, pipelineStage, mldmMigratedModmonAt`);
+    } else {
+      console.log(`\nPerforming bulk update for ${bulkUpdates.length} leads...`);
+      await bulkUpdateMM(pgClient, bulkUpdates);
+      console.log('✓ Bulk update complete');
+    }
   }
 
   if (!options.dryRun) {
@@ -485,16 +500,18 @@ async function fetchStatusesForBatch(
   const placeholders = leadIds.map(() => '?').join(', ');
   const query = `
     SELECT
-      local_resource_lead_id AS lead_id,
-      created_at,
-      status,
-      sub_status,
-      tour_date,
-      tour_time,
-      created_by
-    FROM lead_statuses
-    WHERE local_resource_lead_id IN (${placeholders})
-    ORDER BY local_resource_lead_id, created_at DESC
+      ls.local_resource_lead_id AS lead_id,
+      ls.created_at,
+      ls.status,
+      ls.sub_status,
+      ls.tour_date,
+      ls.tour_time,
+      ls.source,
+      COALESCE(a.full_name, a.email) AS account_name
+    FROM lead_statuses ls
+    LEFT JOIN accounts a ON a.id = ls.account_id
+    WHERE ls.local_resource_lead_id IN (${placeholders})
+    ORDER BY ls.local_resource_lead_id, ls.created_at DESC
   `;
 
   const [rows] = await mysqlConn.query(query, leadIds);
@@ -631,11 +648,24 @@ export function buildLeadStatusSummary(statuses: DirLeadStatus[]): string {
 export function formatStatusLine(status: DirLeadStatus): string {
   const date = formatStatusDate(new Date(status.created_at));
   const statusText = formatStatusText(status);
-  const createdBy = (status.created_by || '').trim();
-  if (!createdBy) {
+  const attribution = getStatusAttribution(status);
+  if (!attribution) {
     return `${date} - ${statusText}`;
   }
-  return `${date} - ${statusText} - ${createdBy}`;
+  return `${date} - ${statusText} - ${attribution}`;
+}
+
+function getStatusAttribution(status: DirLeadStatus): string {
+  // Match the logic from LeadStatusLabel.jsx statusLabel function
+  if (status.account_name) {
+    return status.account_name;
+  } else if (status.source === 'provider') {
+    return 'Provider';
+  } else if (status.source === 'lead' || status.source === 'contact') {
+    return 'Contact';
+  } else {
+    return 'Caring Staff';
+  }
 }
 
 export function formatStatusText(status: DirLeadStatus): string {

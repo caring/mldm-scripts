@@ -61,13 +61,13 @@
     },
     "batch_size": 10000,
     "total_batches": 0,
-    "completed_batches": 169,
-    "total_rows_fetched": 1685945,
-    "total_success": 1685942,
+    "completed_batches": 168,
+    "total_rows_fetched": 3357620,
+    "total_success": 3357615,
     "total_skipped": 0,
     "total_duplicate": 0,
     "total_failed": 0,
     "started_at": "2026-04-02T09:22:09.059Z",
-    "last_updated_at": "2026-04-02T12:51:49.606Z"
+    "last_updated_at": "2026-04-07T11:07:48.766Z"
   }
 }

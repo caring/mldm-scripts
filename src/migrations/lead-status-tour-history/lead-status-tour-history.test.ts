@@ -30,7 +30,8 @@ function makeStatus(overrides: Partial<DirLeadStatus> = {}): DirLeadStatus {
     sub_status: null,
     tour_date: null,
     tour_time: null,
-    created_by: 'Aidan Moloney',
+    source: 'csr',
+    account_name: 'Aidan Moloney',
     ...overrides,
   };
 }
@@ -128,31 +129,43 @@ describe('formatStatusText', () => {
 });
 
 describe('formatStatusLine', () => {
-  it('formats a complete status line', () => {
+  it('formats a complete status line with account name', () => {
     const status = makeStatus({
       created_at: new Date(2025, 8, 1, 10, 18, 0),
       status: 'tour_scheduled',
       sub_status: 'in person',
       tour_date: '2025-09-10',
-      created_by: 'Aidan Moloney',
+      account_name: 'Aidan Moloney',
+      source: 'csr',
     });
     const line = formatStatusLine(status);
     expect(line).toBe('9/1/25 10:18am - Tour scheduled, in person - Aidan Moloney');
   });
 
-  it('omits created_by suffix when created_by is null', () => {
-    const status = makeStatus({ created_by: null });
+  it('shows "Provider" when source is provider and no account', () => {
+    const status = makeStatus({ account_name: null, source: 'provider' });
     const line = formatStatusLine(status);
-    expect(line).not.toContain('- Unknown');
-    expect(line).toMatch(/^\d{1,2}\/\d{1,2}\/\d{2} \d{2}:\d{2}(am|pm) - Valid$/);
+    expect(line).toContain('- Provider');
+  });
+
+  it('shows "Contact" when source is contact/lead and no account', () => {
+    const status = makeStatus({ account_name: null, source: 'contact' });
+    const line = formatStatusLine(status);
+    expect(line).toContain('- Contact');
+  });
+
+  it('shows "Caring Staff" as fallback when no account and source is not provider/contact', () => {
+    const status = makeStatus({ account_name: null, source: 'csr' });
+    const line = formatStatusLine(status);
+    expect(line).toContain('- Caring Staff');
   });
 });
 
 describe('buildLeadStatusSummary', () => {
   it('returns latest statuses first (sorted DESC)', () => {
     const statuses: DirLeadStatus[] = [
-      makeStatus({ created_at: new Date(2025, 7, 1, 9, 0, 0), status: 'contacted', created_by: 'Old' }),
-      makeStatus({ created_at: new Date(2025, 8, 1, 10, 0, 0), status: 'valid_lead', created_by: 'New' }),
+      makeStatus({ created_at: new Date(2025, 7, 1, 9, 0, 0), status: 'contacted', account_name: 'Old' }),
+      makeStatus({ created_at: new Date(2025, 8, 1, 10, 0, 0), status: 'valid_lead', account_name: 'New' }),
     ];
     const summary = buildLeadStatusSummary(statuses);
     const lines = summary.split('\n');
@@ -166,7 +179,7 @@ describe('buildLeadStatusSummary', () => {
       makeStatus({
         created_at: new Date(2025, 0, i + 1, 10, 0, 0),
         status: 'contacted',
-        created_by: `Agent ${i}`,
+        account_name: `Agent ${i}`,
       })
     );
     const summary = buildLeadStatusSummary(statuses);
@@ -179,7 +192,7 @@ describe('buildLeadStatusSummary', () => {
         created_at: new Date(2025, 0, i + 1, 10, 0, 0),
         status: 'contacted',
         sub_status: 'left_voicemail_with_callback_request_followup',
-        created_by: 'A'.repeat(80),
+        account_name: 'A'.repeat(80),
       })
     );
     const summary = buildLeadStatusSummary(statuses);
@@ -190,7 +203,7 @@ describe('buildLeadStatusSummary', () => {
 
   it('handles a single status', () => {
     const statuses = [
-      makeStatus({ status: 'valid_lead', created_by: 'Aidan Moloney' }),
+      makeStatus({ status: 'valid_lead', account_name: 'Aidan Moloney' }),
     ];
     const summary = buildLeadStatusSummary(statuses);
     expect(summary).toContain('Valid');
