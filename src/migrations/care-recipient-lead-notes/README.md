@@ -2,13 +2,25 @@
 
 ## Overview
 
-Migrates all care recipient notes (both AFFILIATE and INTERNAL types) from the `care_recipient_notes` table to the `care_recipient_leads_notes` table at the lead level.
+**Incremental migration** that moves care recipient notes from the `care_recipient_notes` table to the `care_recipient_leads_notes` table at the lead level.
 
-## What It Does
+## What It Does (Incremental Approach)
 
-1. Fetches all notes for each care recipient (both AFFILIATE and INTERNAL types)
-2. Creates individual note records in `care_recipient_leads_notes` for each note
-3. Marks migrated notes with `mldmMigratedModmonAt` timestamp to prevent Hubspot sync
+1. **Finds NEW notes** created since last run (`createdAt > last_run_time`)
+2. **Groups by care_recipient** to identify affected care recipients
+3. **For each affected care_recipient:**
+   - Fetches ALL leads for that care_recipient
+   - Fetches ALL notes (old + new) for that care_recipient
+   - For EACH lead:
+     - **DELETES** existing migrated notes (where `mldmMigratedModmonAt IS NOT NULL`)
+     - **INSERTS** ALL current notes (fresh aggregation)
+4. **Marks notes** with `mldmMigratedModmonAt` timestamp to prevent Hubspot sync
+
+### Benefits of Incremental Approach:
+- ✅ **Efficient**: Only processes care_recipients with new notes
+- ✅ **Idempotent**: Delete-then-insert ensures clean state
+- ✅ **Incremental**: Can run daily/weekly to stay up-to-date
+- ✅ **Safe**: Protects user-created notes (doesn't touch notes without `mldmMigratedModmonAt`)
 
 ## Database Changes Required
 
@@ -53,12 +65,25 @@ id: def-456, leadId: xyz-789, value: "[INTERNAL] Follow up needed next week"
 
 ## Usage
 
-### Time-Based Migration (Default)
+### Incremental Migration (Recommended)
 
-Migrate all leads created in the last 2 years:
+Migrate notes created since last run (incremental updates):
+
 ```bash
+# First run: Process notes created in last 2 years
 npm run migrate:care-recipient-lead-notes -- --from "2 years"
+
+# Subsequent runs: Process notes created since last run
+npm run migrate:care-recipient-lead-notes -- --from "2026-04-08T05:00:00.000Z"
 ```
+
+The script will:
+1. Find notes created after the `--from` date
+2. Group by care_recipient_id to find affected care recipients
+3. For each affected care_recipient:
+   - Fetch ALL leads
+   - DELETE existing migrated notes for those leads
+   - INSERT ALL current notes (old + new)
 
 Migrate leads within a specific date range:
 ```bash
@@ -136,9 +161,10 @@ npm run migrate:care-recipient-lead-notes -- --report
 - Creates individual note records for ALL notes from the care recipient
 
 ### Idempotency
-- **NOT idempotent** - Running multiple times will create duplicate notes
-- Only run once per set of leads
-- Use migration state to track what's been processed
+- ✅ **NOW IDEMPOTENT** - Delete-then-insert pattern ensures clean state
+- ✅ Safe to run multiple times - produces same result
+- ✅ Incremental approach - only processes care_recipients with new notes
+- ✅ User notes protected - only deletes notes with `mldmMigratedModmonAt IS NOT NULL`
 
 ## Troubleshooting
 
@@ -147,8 +173,8 @@ npm run migrate:care-recipient-lead-notes -- --report
 - Lead will be skipped
 
 ### Duplicate notes
-- If you run the migration twice on the same leads, you'll get duplicate notes
-- Check migration state before re-running
+- ✅ **No longer an issue** - Delete-then-insert pattern prevents duplicates
+- Running twice produces the same result (idempotent)
 
 ### Performance
 - Inserts 1000 notes per SQL batch

@@ -73,7 +73,7 @@ export interface NoteInsert {
 export async function insertNote(pgClient: any, note: NoteInsert): Promise<void> {
   const query = `
     INSERT INTO care_recipient_notes
-      (id, "legacyId", "careRecipientId", value, "agentAccountId", "agentName", source, "createdAt", "updatedAt", "mldmMigratedAt")
+      (id, "legacyId", "careRecipientId", value, "agentAccountId", "agentName", source, "createdAt", "updatedAt", "mldmMigratedModmonAt")
     VALUES
       (gen_random_uuid(), $1, $2, $3, $4, $5, $6, $7, $8, NOW())
     ON CONFLICT ("legacyId", source) DO NOTHING

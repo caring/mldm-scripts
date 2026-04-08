@@ -189,7 +189,7 @@ async function runCareSeekerIdBasedMigration(
 }
 
 /**
- * Run time-based migration
+ * Run incremental time-based migration (only processes care_recipients with new notes)
  */
 async function runTimeBasedMigration(
   pgClient: any,
@@ -197,42 +197,171 @@ async function runTimeBasedMigration(
   toDate: Date | null,
   options: MigrationCLIOptions
 ) {
-  const batchSize = options.batchSize;
-  let offset = 0;
-  let batchNumber = 0;
-  let hasMore = true;
+  console.log('=== Incremental Note Migration ===\n');
 
-  while (hasMore) {
-    batchNumber++;
-    const batchId = `batch_${Date.now()}_${batchNumber}`;
+  // Fetch NEW notes created since fromDate
+  console.log(`Fetching notes created after: ${formatDate(fromDate)}`);
+  const newNotes = await fetchNotesCreatedAfter(pgClient, fromDate);
+  console.log(`✓ Found ${newNotes.length} new notes`);
+  console.log();
 
-    console.log(`\n=== Batch ${batchNumber} (offset: ${offset}) ===`);
-    await appendBatch(MIGRATION_NAME, { batchId, offset });
+  if (newNotes.length === 0) {
+    console.log('No new notes to process');
+    console.log('Migration complete (nothing to migrate)');
+    return;
+  }
 
-    // Fetch batch of leads
-    const leads = await fetchLeadBatch(pgClient, fromDate, toDate, batchSize, offset);
+  // Get unique affected care_recipient_ids
+  const affectedCareRecipientIds = [...new Set(newNotes.map(n => n.careRecipientId))];
+  console.log(`Affected care recipients: ${affectedCareRecipientIds.length}`);
+  console.log();
 
-    if (leads.length === 0) {
-      console.log('No more leads to process');
-      hasMore = false;
-      break;
-    }
+  // Process in batches of care_recipients
+  const batchSize = 100; // Process 100 care_recipients at a time
+  let processedCount = 0;
+  let totalLeadsUpdated = 0;
+  let totalNotesInserted = 0;
 
-    console.log(`Processing ${leads.length} leads...`);
-    await processLeadBatch(pgClient, leads, batchId, options);
+  for (let i = 0; i < affectedCareRecipientIds.length; i += batchSize) {
+    const careRecipientBatch = affectedCareRecipientIds.slice(i, i + batchSize);
+    const batchId = `batch_${Date.now()}_${Math.floor(i / batchSize) + 1}`;
 
-    if (leads.length < batchSize) {
-      hasMore = false;
-    } else {
-      offset += batchSize;
-    }
+    console.log(`\n=== Processing Care Recipient Batch ${Math.floor(i / batchSize) + 1} ===`);
+    console.log(`Care recipients in batch: ${careRecipientBatch.length}`);
+
+    await appendBatch(MIGRATION_NAME, {
+      batchId,
+      care_recipient_count: careRecipientBatch.length,
+      mode: 'incremental'
+    });
+
+    // Fetch ALL leads for these care_recipients
+    const leads = await fetchLeadsByCareRecipients(pgClient, careRecipientBatch);
+    console.log(`Found ${leads.length} leads to update`);
+
+    // Process each lead (delete old migrated notes + insert all current notes)
+    const result = await processLeadsWithIncrementalUpdate(
+      pgClient,
+      leads,
+      batchId,
+      options
+    );
+
+    processedCount += careRecipientBatch.length;
+    totalLeadsUpdated += result.leadsUpdated;
+    totalNotesInserted += result.notesInserted;
+
+    console.log(`Progress: ${processedCount}/${affectedCareRecipientIds.length} care recipients processed`);
   }
 
   console.log('\n=== Migration Complete ===');
+  console.log(`Total care recipients processed: ${processedCount}`);
+  console.log(`Total leads updated: ${totalLeadsUpdated}`);
+  console.log(`Total notes inserted: ${totalNotesInserted}`);
 }
 
 /**
- * Process a batch of leads
+ * Process leads with incremental update (delete-then-insert pattern)
+ */
+async function processLeadsWithIncrementalUpdate(
+  pgClient: any,
+  leads: MMCareRecipientLead[],
+  batchId: string,
+  options: MigrationCLIOptions
+): Promise<{ leadsUpdated: number; notesInserted: number }> {
+  if (leads.length === 0) return { leadsUpdated: 0, notesInserted: 0 };
+
+  // Get unique care recipient IDs
+  const careRecipientIds = [...new Set(leads.map(l => l.careRecipientId))];
+
+  console.log(`Fetching ALL notes for ${careRecipientIds.length} care recipients...`);
+  const notesMap = await fetchNotesForCareRecipients(pgClient, careRecipientIds);
+  console.log(`✓ Fetched notes for ${Object.keys(notesMap).length} care recipients`);
+  console.log();
+
+  let leadsUpdated = 0;
+  let notesInserted = 0;
+  let skipped = 0;
+
+  for (const lead of leads) {
+    const notes = notesMap[lead.careRecipientId];
+
+    if (!notes || notes.length === 0) {
+      skipped++;
+      await appendRow(MIGRATION_NAME, batchId, {
+        id: lead.id,
+        legacy_id: lead.legacyId,
+        status: 'SKIPPED',
+        reason: 'No notes found',
+      } as RowRecord);
+      console.log(`  ⊘ Lead ${lead.legacyId}: No notes`);
+      continue;
+    }
+
+    if (options.dryRun) {
+      console.log(`  [DRY RUN] Lead ${lead.legacyId}: Would delete existing + insert ${notes.length} notes`);
+      leadsUpdated++;
+      notesInserted += notes.length;
+      continue;
+    }
+
+    try {
+      await pgClient.query('BEGIN');
+
+      // Delete existing migrated notes for this lead
+      const deletedCount = await deleteMigratedNotesForLead(pgClient, lead.id);
+
+      // Prepare ALL notes for insertion
+      const notesToInsert: LeadNoteToInsert[] = notes.map(note => ({
+        id: generateUUID(),
+        leadId: lead.id,
+        value: formatNoteValue(note),
+        creator: 'MLDM Migration',
+        createdAt: note.createdAt,
+        updatedAt: note.createdAt,
+        mldmMigratedModmonAt: new Date(),
+      }));
+
+      // Insert ALL notes
+      await bulkInsertLeadNotes(pgClient, notesToInsert);
+
+      await pgClient.query('COMMIT');
+
+      leadsUpdated++;
+      notesInserted += notes.length;
+
+      await appendRow(MIGRATION_NAME, batchId, {
+        id: lead.id,
+        legacy_id: lead.legacyId,
+        status: 'SUCCESS',
+        deleted_count: deletedCount,
+        inserted_count: notes.length,
+      } as RowRecord);
+
+      console.log(`  ✓ Lead ${lead.legacyId}: Deleted ${deletedCount}, Inserted ${notes.length} notes`);
+
+    } catch (error) {
+      await pgClient.query('ROLLBACK');
+      console.error(`  ✗ Lead ${lead.legacyId}: Error -`, error);
+
+      await appendRow(MIGRATION_NAME, batchId, {
+        id: lead.id,
+        legacy_id: lead.legacyId,
+        status: 'FAILED',
+        error: error instanceof Error ? error.message : String(error),
+      } as RowRecord);
+    }
+  }
+
+  console.log();
+  console.log(`Summary: ${leadsUpdated} leads updated, ${notesInserted} notes inserted, ${skipped} leads skipped`);
+  console.log();
+
+  return { leadsUpdated, notesInserted };
+}
+
+/**
+ * Process a batch of leads (legacy function for care-seeker mode)
  */
 async function processLeadBatch(
   pgClient: any,
@@ -492,6 +621,88 @@ export {
   formatNoteValue,
   generateUUID,
 };
+
+/**
+ * Fetch new notes created since last run (incremental approach)
+ */
+async function fetchNotesCreatedAfter(
+  pgClient: any,
+  afterDate: Date
+): Promise<MMCareRecipientNote[]> {
+  const result = await pgClient.query(
+    `
+    SELECT
+      id,
+      "careRecipientId",
+      "noteText",
+      "noteType",
+      "createdAt"
+    FROM care_recipient_notes
+    WHERE "createdAt" > $1
+      AND "deletedAt" IS NULL
+      AND "noteType" IN ('AFFILIATE', 'INTERNAL')
+    ORDER BY "createdAt" ASC
+    `,
+    [afterDate]
+  );
+
+  return result.rows.map((row: any) => ({
+    id: row.id,
+    careRecipientId: row.careRecipientId,
+    noteText: row.noteText,
+    noteType: row.noteType,
+    createdAt: row.createdAt,
+  }));
+}
+
+/**
+ * Fetch ALL leads for specific care_recipient_ids
+ */
+async function fetchLeadsByCareRecipients(
+  pgClient: any,
+  careRecipientIds: string[]
+): Promise<MMCareRecipientLead[]> {
+  if (careRecipientIds.length === 0) return [];
+
+  const result = await pgClient.query(
+    `
+    SELECT
+      id,
+      "legacyId",
+      "careRecipientId"
+    FROM care_recipient_leads
+    WHERE "careRecipientId" = ANY($1)
+      AND "deletedAt" IS NULL
+    ORDER BY "createdAt" DESC
+    `,
+    [careRecipientIds]
+  );
+
+  return result.rows.map((row: any) => ({
+    id: row.id,
+    legacyId: row.legacyId,
+    careRecipientId: row.careRecipientId,
+  }));
+}
+
+/**
+ * Delete existing migrated notes for a lead
+ */
+async function deleteMigratedNotesForLead(
+  pgClient: any,
+  leadId: string
+): Promise<number> {
+  const result = await pgClient.query(
+    `
+    DELETE FROM care_recipient_leads_notes
+    WHERE "leadId" = $1
+      AND "mldmMigratedModmonAt" IS NOT NULL
+    `,
+    [leadId]
+  );
+
+  return result.rowCount || 0;
+}
 
 // Run migration if called directly
 if (require.main === module) {

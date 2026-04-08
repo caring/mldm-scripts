@@ -5277,3 +5277,984 @@
 {"batch_id":"batch_000011","source_id":"7545078","status":"success","legacy_id":"7545078","care_recipient_id":"ddf0b662-18b9-4487-95f4-2016fcc61555","processed_at":"2026-03-23T10:32:10.181Z"}
 {"batch_id":"batch_000011","source_id":"7545048","status":"success","legacy_id":"7545048","care_recipient_id":"0102fc4c-d5c1-43c8-a5f5-761c25c253d9","processed_at":"2026-03-23T10:32:10.467Z"}
 {"batch_id":"batch_000011","source_id":"7545033","status":"success","legacy_id":"7545033","care_recipient_id":"22ca9b46-9ac5-4d0b-b3a1-26468f6a2e38","processed_at":"2026-03-23T10:32:10.756Z"}
+{"batch_id":"batch_000018","source_id":"7544733","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:18.981Z"}
+{"batch_id":"batch_000018","source_id":"7544587","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:19.264Z"}
+{"batch_id":"batch_000018","source_id":"7544552","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:19.547Z"}
+{"batch_id":"batch_000018","source_id":"7544528","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:20.005Z"}
+{"batch_id":"batch_000018","source_id":"7544527","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:20.566Z"}
+{"batch_id":"batch_000018","source_id":"7544515","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:20.851Z"}
+{"batch_id":"batch_000018","source_id":"7544514","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:21.134Z"}
+{"batch_id":"batch_000018","source_id":"7544510","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:21.423Z"}
+{"batch_id":"batch_000018","source_id":"7544447","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:21.704Z"}
+{"batch_id":"batch_000018","source_id":"7544391","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:22.155Z"}
+{"batch_id":"batch_000018","source_id":"7544365","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:22.460Z"}
+{"batch_id":"batch_000018","source_id":"7544354","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:22.769Z"}
+{"batch_id":"batch_000018","source_id":"7544303","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:23.107Z"}
+{"batch_id":"batch_000018","source_id":"7544194","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:23.388Z"}
+{"batch_id":"batch_000018","source_id":"7543931","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:23.672Z"}
+{"batch_id":"batch_000018","source_id":"7543673","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:23.998Z"}
+{"batch_id":"batch_000018","source_id":"7543616","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:24.306Z"}
+{"batch_id":"batch_000018","source_id":"7543591","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:24.677Z"}
+{"batch_id":"batch_000018","source_id":"7543519","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:24.959Z"}
+{"batch_id":"batch_000018","source_id":"7543384","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:25.240Z"}
+{"batch_id":"batch_000018","source_id":"7543150","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:25.533Z"}
+{"batch_id":"batch_000018","source_id":"7542946","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:25.813Z"}
+{"batch_id":"batch_000018","source_id":"7542739","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:26.152Z"}
+{"batch_id":"batch_000018","source_id":"7542652","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:26.456Z"}
+{"batch_id":"batch_000018","source_id":"7542614","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:26.865Z"}
+{"batch_id":"batch_000018","source_id":"7542465","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:27.172Z"}
+{"batch_id":"batch_000018","source_id":"7542021","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:27.453Z"}
+{"batch_id":"batch_000018","source_id":"7541807","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:27.739Z"}
+{"batch_id":"batch_000018","source_id":"7541452","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:28.100Z"}
+{"batch_id":"batch_000018","source_id":"7541271","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:28.373Z"}
+{"batch_id":"batch_000018","source_id":"7541120","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:28.645Z"}
+{"batch_id":"batch_000018","source_id":"7540957","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:28.919Z"}
+{"batch_id":"batch_000018","source_id":"7540948","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:29.222Z"}
+{"batch_id":"batch_000018","source_id":"7540925","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:29.631Z"}
+{"batch_id":"batch_000018","source_id":"7540855","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:29.922Z"}
+{"batch_id":"batch_000018","source_id":"7540783","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:30.207Z"}
+{"batch_id":"batch_000018","source_id":"7540515","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:30.479Z"}
+{"batch_id":"batch_000018","source_id":"7540396","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:31.042Z"}
+{"batch_id":"batch_000018","source_id":"7540389","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:31.370Z"}
+{"batch_id":"batch_000018","source_id":"7540248","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:31.679Z"}
+{"batch_id":"batch_000018","source_id":"7540196","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:32.036Z"}
+{"batch_id":"batch_000018","source_id":"7539983","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:32.394Z"}
+{"batch_id":"batch_000018","source_id":"7539894","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:32.666Z"}
+{"batch_id":"batch_000018","source_id":"7539421","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:33.110Z"}
+{"batch_id":"batch_000018","source_id":"7539400","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:33.418Z"}
+{"batch_id":"batch_000018","source_id":"7539245","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:33.690Z"}
+{"batch_id":"batch_000018","source_id":"7539060","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:34.135Z"}
+{"batch_id":"batch_000018","source_id":"7538980","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:34.442Z"}
+{"batch_id":"batch_000018","source_id":"7538819","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:34.719Z"}
+{"batch_id":"batch_000018","source_id":"7538667","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:35.058Z"}
+{"batch_id":"batch_000018","source_id":"7538660","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:35.363Z"}
+{"batch_id":"batch_000018","source_id":"7538655","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:35.774Z"}
+{"batch_id":"batch_000018","source_id":"7538640","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:36.075Z"}
+{"batch_id":"batch_000018","source_id":"7538632","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:36.360Z"}
+{"batch_id":"batch_000018","source_id":"7538551","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:36.798Z"}
+{"batch_id":"batch_000018","source_id":"7538507","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:37.068Z"}
+{"batch_id":"batch_000018","source_id":"7538271","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:37.341Z"}
+{"batch_id":"batch_000018","source_id":"7538242","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:37.614Z"}
+{"batch_id":"batch_000018","source_id":"7538228","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:37.924Z"}
+{"batch_id":"batch_000018","source_id":"7538139","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:38.334Z"}
+{"batch_id":"batch_000018","source_id":"7538082","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:38.606Z"}
+{"batch_id":"batch_000018","source_id":"7537880","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:38.877Z"}
+{"batch_id":"batch_000018","source_id":"7537782","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:39.256Z"}
+{"batch_id":"batch_000018","source_id":"7537584","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:39.529Z"}
+{"batch_id":"batch_000018","source_id":"7537416","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:39.973Z"}
+{"batch_id":"batch_000018","source_id":"7537034","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:40.280Z"}
+{"batch_id":"batch_000018","source_id":"7536998","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:40.588Z"}
+{"batch_id":"batch_000018","source_id":"7536916","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:40.997Z"}
+{"batch_id":"batch_000018","source_id":"7536724","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:41.576Z"}
+{"batch_id":"batch_000018","source_id":"7536679","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:41.866Z"}
+{"batch_id":"batch_000018","source_id":"7536627","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:42.225Z"}
+{"batch_id":"batch_000018","source_id":"7536582","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:42.502Z"}
+{"batch_id":"batch_000018","source_id":"7536573","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:42.839Z"}
+{"batch_id":"batch_000018","source_id":"7536526","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:43.145Z"}
+{"batch_id":"batch_000018","source_id":"7536511","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:43.453Z"}
+{"batch_id":"batch_000018","source_id":"7536510","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:43.726Z"}
+{"batch_id":"batch_000018","source_id":"7536494","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:44.117Z"}
+{"batch_id":"batch_000018","source_id":"7536465","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:44.390Z"}
+{"batch_id":"batch_000018","source_id":"7536434","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:44.663Z"}
+{"batch_id":"batch_000018","source_id":"7536027","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:44.991Z"}
+{"batch_id":"batch_000018","source_id":"7535708","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:45.298Z"}
+{"batch_id":"batch_000018","source_id":"7535627","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:45.648Z"}
+{"batch_id":"batch_000018","source_id":"7535518","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:45.922Z"}
+{"batch_id":"batch_000018","source_id":"7535369","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:46.195Z"}
+{"batch_id":"batch_000018","source_id":"7535356","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:46.526Z"}
+{"batch_id":"batch_000018","source_id":"7535163","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:46.818Z"}
+{"batch_id":"batch_000018","source_id":"7534986","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:47.242Z"}
+{"batch_id":"batch_000018","source_id":"7534913","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:47.540Z"}
+{"batch_id":"batch_000018","source_id":"7534830","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:47.856Z"}
+{"batch_id":"batch_000018","source_id":"7534132","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:48.165Z"}
+{"batch_id":"batch_000018","source_id":"7534131","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:48.471Z"}
+{"batch_id":"batch_000018","source_id":"7534108","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:48.793Z"}
+{"batch_id":"batch_000018","source_id":"7534100","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:49.066Z"}
+{"batch_id":"batch_000018","source_id":"7533961","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:49.392Z"}
+{"batch_id":"batch_000018","source_id":"7533935","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:49.700Z"}
+{"batch_id":"batch_000018","source_id":"7533849","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:49.974Z"}
+{"batch_id":"batch_000018","source_id":"7533765","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:50.248Z"}
+{"batch_id":"batch_000018","source_id":"7533714","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:50.519Z"}
+{"batch_id":"batch_000018","source_id":"7533679","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:50.929Z"}
+{"batch_id":"batch_000018","source_id":"7533590","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:51.203Z"}
+{"batch_id":"batch_000018","source_id":"7533571","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:51.542Z"}
+{"batch_id":"batch_000018","source_id":"7533490","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:52.118Z"}
+{"batch_id":"batch_000018","source_id":"7533467","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:52.567Z"}
+{"batch_id":"batch_000018","source_id":"7533426","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:52.875Z"}
+{"batch_id":"batch_000018","source_id":"7533195","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:53.183Z"}
+{"batch_id":"batch_000018","source_id":"7533154","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:53.517Z"}
+{"batch_id":"batch_000018","source_id":"7533139","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:53.788Z"}
+{"batch_id":"batch_000018","source_id":"7533088","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:54.060Z"}
+{"batch_id":"batch_000018","source_id":"7532960","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:54.331Z"}
+{"batch_id":"batch_000018","source_id":"7532917","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:54.604Z"}
+{"batch_id":"batch_000018","source_id":"7532592","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:54.921Z"}
+{"batch_id":"batch_000018","source_id":"7532559","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:55.229Z"}
+{"batch_id":"batch_000018","source_id":"7532514","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:55.639Z"}
+{"batch_id":"batch_000018","source_id":"7532413","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:55.946Z"}
+{"batch_id":"batch_000018","source_id":"7532311","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:56.218Z"}
+{"batch_id":"batch_000018","source_id":"7532307","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:56.561Z"}
+{"batch_id":"batch_000018","source_id":"7531957","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:56.871Z"}
+{"batch_id":"batch_000018","source_id":"7531956","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:57.249Z"}
+{"batch_id":"batch_000018","source_id":"7531951","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:57.544Z"}
+{"batch_id":"batch_000018","source_id":"7531819","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:57.817Z"}
+{"batch_id":"batch_000018","source_id":"7531390","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:58.095Z"}
+{"batch_id":"batch_000018","source_id":"7531038","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:58.407Z"}
+{"batch_id":"batch_000018","source_id":"7530880","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:58.814Z"}
+{"batch_id":"batch_000018","source_id":"7530864","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:59.119Z"}
+{"batch_id":"batch_000018","source_id":"7530757","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:59.428Z"}
+{"batch_id":"batch_000018","source_id":"7530680","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:14:59.838Z"}
+{"batch_id":"batch_000018","source_id":"7530450","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:00.111Z"}
+{"batch_id":"batch_000018","source_id":"7530375","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:00.452Z"}
+{"batch_id":"batch_000018","source_id":"7530353","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:00.758Z"}
+{"batch_id":"batch_000018","source_id":"7530239","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:01.029Z"}
+{"batch_id":"batch_000018","source_id":"7530107","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:01.476Z"}
+{"batch_id":"batch_000018","source_id":"7529984","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:01.783Z"}
+{"batch_id":"batch_000018","source_id":"7529677","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:02.061Z"}
+{"batch_id":"batch_000018","source_id":"7529655","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:02.774Z"}
+{"batch_id":"batch_000018","source_id":"7529513","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:03.050Z"}
+{"batch_id":"batch_000018","source_id":"7529455","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:03.525Z"}
+{"batch_id":"batch_000018","source_id":"7529424","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:03.831Z"}
+{"batch_id":"batch_000018","source_id":"7529411","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:04.104Z"}
+{"batch_id":"batch_000018","source_id":"7529329","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:04.528Z"}
+{"batch_id":"batch_000018","source_id":"7529008","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:04.855Z"}
+{"batch_id":"batch_000018","source_id":"7528980","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:05.162Z"}
+{"batch_id":"batch_000018","source_id":"7528946","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:05.469Z"}
+{"batch_id":"batch_000018","source_id":"7528901","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:05.740Z"}
+{"batch_id":"batch_000018","source_id":"7528764","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:06.187Z"}
+{"batch_id":"batch_000018","source_id":"7528704","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:06.495Z"}
+{"batch_id":"batch_000018","source_id":"7528607","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:06.768Z"}
+{"batch_id":"batch_000018","source_id":"7528549","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:07.041Z"}
+{"batch_id":"batch_000018","source_id":"7528095","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:07.315Z"}
+{"batch_id":"batch_000018","source_id":"7528050","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:07.667Z"}
+{"batch_id":"batch_000018","source_id":"7528040","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:07.944Z"}
+{"batch_id":"batch_000018","source_id":"7527918","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:08.218Z"}
+{"batch_id":"batch_000018","source_id":"7527837","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:08.541Z"}
+{"batch_id":"batch_000018","source_id":"7527815","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:08.814Z"}
+{"batch_id":"batch_000018","source_id":"7527686","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:09.117Z"}
+{"batch_id":"batch_000018","source_id":"7527625","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:09.391Z"}
+{"batch_id":"batch_000018","source_id":"7527516","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:09.665Z"}
+{"batch_id":"batch_000018","source_id":"7527334","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:09.939Z"}
+{"batch_id":"batch_000018","source_id":"7527225","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:10.293Z"}
+{"batch_id":"batch_000018","source_id":"7527207","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:10.589Z"}
+{"batch_id":"batch_000018","source_id":"7527199","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:10.862Z"}
+{"batch_id":"batch_000018","source_id":"7527164","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:11.133Z"}
+{"batch_id":"batch_000018","source_id":"7527093","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:11.406Z"}
+{"batch_id":"batch_000018","source_id":"7527079","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:11.714Z"}
+{"batch_id":"batch_000018","source_id":"7526864","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:12.023Z"}
+{"batch_id":"batch_000018","source_id":"7526799","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:12.433Z"}
+{"batch_id":"batch_000018","source_id":"7526626","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:12.710Z"}
+{"batch_id":"batch_000018","source_id":"7526510","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:13.458Z"}
+{"batch_id":"batch_000018","source_id":"7526509","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:13.764Z"}
+{"batch_id":"batch_000018","source_id":"7526504","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:14.048Z"}
+{"batch_id":"batch_000018","source_id":"7526412","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:14.319Z"}
+{"batch_id":"batch_000018","source_id":"7526312","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:14.589Z"}
+{"batch_id":"batch_000018","source_id":"7526259","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:14.862Z"}
+{"batch_id":"batch_000018","source_id":"7526149","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:15.135Z"}
+{"batch_id":"batch_000018","source_id":"7526073","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:15.406Z"}
+{"batch_id":"batch_000018","source_id":"7525818","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:15.694Z"}
+{"batch_id":"batch_000018","source_id":"7525768","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:16.054Z"}
+{"batch_id":"batch_000018","source_id":"7525767","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:16.327Z"}
+{"batch_id":"batch_000018","source_id":"7525630","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:16.599Z"}
+{"batch_id":"batch_000018","source_id":"7525608","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:16.871Z"}
+{"batch_id":"batch_000018","source_id":"7525474","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:17.143Z"}
+{"batch_id":"batch_000018","source_id":"7525162","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:17.414Z"}
+{"batch_id":"batch_000018","source_id":"7524992","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:17.694Z"}
+{"batch_id":"batch_000018","source_id":"7524968","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:18.065Z"}
+{"batch_id":"batch_000018","source_id":"7524839","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:18.371Z"}
+{"batch_id":"batch_000018","source_id":"7524824","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:18.681Z"}
+{"batch_id":"batch_000018","source_id":"7524766","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:18.988Z"}
+{"batch_id":"batch_000018","source_id":"7524657","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:19.295Z"}
+{"batch_id":"batch_000018","source_id":"7524446","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:19.567Z"}
+{"batch_id":"batch_000018","source_id":"7524364","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:19.842Z"}
+{"batch_id":"batch_000018","source_id":"7524288","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:20.113Z"}
+{"batch_id":"batch_000018","source_id":"7524073","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:20.422Z"}
+{"batch_id":"batch_000018","source_id":"7523984","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:20.831Z"}
+{"batch_id":"batch_000018","source_id":"7523954","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:21.138Z"}
+{"batch_id":"batch_000018","source_id":"7523585","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:21.412Z"}
+{"batch_id":"batch_000018","source_id":"7523415","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:21.685Z"}
+{"batch_id":"batch_000018","source_id":"7523325","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:21.958Z"}
+{"batch_id":"batch_000018","source_id":"7523069","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:22.229Z"}
+{"batch_id":"batch_000018","source_id":"7522772","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:22.525Z"}
+{"batch_id":"batch_000018","source_id":"7522749","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:22.877Z"}
+{"batch_id":"batch_000018","source_id":"7522673","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:23.148Z"}
+{"batch_id":"batch_000018","source_id":"7522631","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:23.690Z"}
+{"batch_id":"batch_000018","source_id":"7522570","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:23.961Z"}
+{"batch_id":"batch_000018","source_id":"7522255","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:24.311Z"}
+{"batch_id":"batch_000018","source_id":"7521474","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:24.584Z"}
+{"batch_id":"batch_000018","source_id":"7521276","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:24.855Z"}
+{"batch_id":"batch_000018","source_id":"7521135","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:25.236Z"}
+{"batch_id":"batch_000018","source_id":"7521115","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:25.509Z"}
+{"batch_id":"batch_000018","source_id":"7520696","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:25.800Z"}
+{"batch_id":"batch_000018","source_id":"7520170","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:26.071Z"}
+{"batch_id":"batch_000018","source_id":"7520135","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:26.341Z"}
+{"batch_id":"batch_000018","source_id":"7520053","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:26.615Z"}
+{"batch_id":"batch_000018","source_id":"7519994","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:26.888Z"}
+{"batch_id":"batch_000018","source_id":"7519976","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:27.159Z"}
+{"batch_id":"batch_000018","source_id":"7519974","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:27.431Z"}
+{"batch_id":"batch_000018","source_id":"7519902","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:27.702Z"}
+{"batch_id":"batch_000018","source_id":"7519832","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:27.998Z"}
+{"batch_id":"batch_000018","source_id":"7519802","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:28.305Z"}
+{"batch_id":"batch_000018","source_id":"7519775","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:28.640Z"}
+{"batch_id":"batch_000018","source_id":"7519717","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:28.912Z"}
+{"batch_id":"batch_000018","source_id":"7519032","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:29.184Z"}
+{"batch_id":"batch_000018","source_id":"7518669","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:29.533Z"}
+{"batch_id":"batch_000018","source_id":"7518651","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:29.840Z"}
+{"batch_id":"batch_000018","source_id":"7518332","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:30.217Z"}
+{"batch_id":"batch_000018","source_id":"7518231","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:30.560Z"}
+{"batch_id":"batch_000018","source_id":"7518219","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:30.831Z"}
+{"batch_id":"batch_000018","source_id":"7518176","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:31.102Z"}
+{"batch_id":"batch_000018","source_id":"7518142","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:31.376Z"}
+{"batch_id":"batch_000018","source_id":"7518076","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:31.673Z"}
+{"batch_id":"batch_000018","source_id":"7517579","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:31.990Z"}
+{"batch_id":"batch_000018","source_id":"7517522","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:32.313Z"}
+{"batch_id":"batch_000018","source_id":"7517507","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:32.606Z"}
+{"batch_id":"batch_000018","source_id":"7517316","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:32.877Z"}
+{"batch_id":"batch_000018","source_id":"7517300","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:33.150Z"}
+{"batch_id":"batch_000018","source_id":"7517295","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:33.420Z"}
+{"batch_id":"batch_000018","source_id":"7517236","status":"failed","reason":"insert_error","error":"column \"mldmMigratedAt\" of relation \"care_recipient_notes\" does not exist","processed_at":"2026-04-07T12:15:34.005Z"}
+{"batch_id":"batch_000019","source_id":"7517092","status":"success","legacy_id":"7517092","care_recipient_id":"e03c080d-2992-4dfc-8cf0-b36b19e7bb96","processed_at":"2026-04-07T12:18:32.821Z"}
+{"batch_id":"batch_000019","source_id":"7517090","status":"success","legacy_id":"7517090","care_recipient_id":"8fd98fbe-b44f-4807-91d8-a27bdc5d76c3","processed_at":"2026-04-07T12:18:33.241Z"}
+{"batch_id":"batch_000019","source_id":"7517065","status":"success","legacy_id":"7517065","care_recipient_id":"06fe0ffc-063f-4ad3-bed6-eecafe3a9dcb","processed_at":"2026-04-07T12:18:33.548Z"}
+{"batch_id":"batch_000019","source_id":"7517060","status":"success","legacy_id":"7517060","care_recipient_id":"30c08a2f-bd33-4546-a642-88907889023e","processed_at":"2026-04-07T12:18:33.855Z"}
+{"batch_id":"batch_000019","source_id":"7517027","status":"success","legacy_id":"7517027","care_recipient_id":"197702fe-77ec-48f9-b23e-c64989ea3f68","processed_at":"2026-04-07T12:18:34.152Z"}
+{"batch_id":"batch_000019","source_id":"7516904","status":"success","legacy_id":"7516904","care_recipient_id":"17442d43-eed0-4064-8216-882f19424f25","processed_at":"2026-04-07T12:18:34.536Z"}
+{"batch_id":"batch_000019","source_id":"7516864","status":"success","legacy_id":"7516864","care_recipient_id":"58e746ca-bb3d-4f8d-89ec-76da7424ca28","processed_at":"2026-04-07T12:18:34.832Z"}
+{"batch_id":"batch_000019","source_id":"7516835","status":"success","legacy_id":"7516835","care_recipient_id":"32b50c5b-44a4-4027-bfb4-7c17dbc388e9","processed_at":"2026-04-07T12:18:35.424Z"}
+{"batch_id":"batch_000019","source_id":"7516740","status":"success","legacy_id":"7516740","care_recipient_id":"023a45e7-f070-47ce-8086-f9ddd0af7d68","processed_at":"2026-04-07T12:18:35.725Z"}
+{"batch_id":"batch_000019","source_id":"7516677","status":"success","legacy_id":"7516677","care_recipient_id":"29828524-5c4c-4ae4-a497-003857f4e1a9","processed_at":"2026-04-07T12:18:36.107Z"}
+{"batch_id":"batch_000019","source_id":"7516461","status":"success","legacy_id":"7516461","care_recipient_id":"d058dcc9-e210-441a-8603-bc44826ac94c","processed_at":"2026-04-07T12:18:36.402Z"}
+{"batch_id":"batch_000019","source_id":"7516353","status":"success","legacy_id":"7516353","care_recipient_id":"a32ffc2b-9f65-4358-b944-87bb6a1e880c","processed_at":"2026-04-07T12:18:36.722Z"}
+{"batch_id":"batch_000019","source_id":"7516336","status":"success","legacy_id":"7516336","care_recipient_id":"7d11ba24-86cf-44cc-8814-e2a6b3b6c7c9","processed_at":"2026-04-07T12:18:37.017Z"}
+{"batch_id":"batch_000019","source_id":"7516075","status":"success","legacy_id":"7516075","care_recipient_id":"d8ac3640-9fff-45ca-8343-1e1517bf72c9","processed_at":"2026-04-07T12:18:37.387Z"}
+{"batch_id":"batch_000019","source_id":"7516051","status":"success","legacy_id":"7516051","care_recipient_id":"4bfe9f8b-afcb-4bc3-ab34-dfae6f6c7304","processed_at":"2026-04-07T12:18:37.708Z"}
+{"batch_id":"batch_000019","source_id":"7515942","status":"success","legacy_id":"7515942","care_recipient_id":"3b8abb3d-daa3-4a23-8c80-9fc80348cf20","processed_at":"2026-04-07T12:18:38.008Z"}
+{"batch_id":"batch_000019","source_id":"7515652","status":"success","legacy_id":"7515652","care_recipient_id":"9d27c42e-6602-46ef-a4a6-fe6fbca8c249","processed_at":"2026-04-07T12:18:38.465Z"}
+{"batch_id":"batch_000019","source_id":"7515495","status":"success","legacy_id":"7515495","care_recipient_id":"2fa79139-a079-42a9-88b3-f05600ef0545","processed_at":"2026-04-07T12:18:38.772Z"}
+{"batch_id":"batch_000019","source_id":"7515394","status":"success","legacy_id":"7515394","care_recipient_id":"de6784b1-9457-49ca-9c03-81c01a0147d0","processed_at":"2026-04-07T12:18:39.067Z"}
+{"batch_id":"batch_000019","source_id":"7515329","status":"success","legacy_id":"7515329","care_recipient_id":"83ff887b-0143-4c00-875f-193086713038","processed_at":"2026-04-07T12:18:39.363Z"}
+{"batch_id":"batch_000019","source_id":"7515241","status":"success","legacy_id":"7515241","care_recipient_id":"431a3302-e923-48d5-8db6-d65083cce27f","processed_at":"2026-04-07T12:18:39.660Z"}
+{"batch_id":"batch_000019","source_id":"7515178","status":"success","legacy_id":"7515178","care_recipient_id":"e3600b8b-f718-458c-a4cc-909764533c33","processed_at":"2026-04-07T12:18:40.102Z"}
+{"batch_id":"batch_000019","source_id":"7515086","status":"success","legacy_id":"7515086","care_recipient_id":"e22cc3e4-66e2-4335-93c3-f9c95afeec28","processed_at":"2026-04-07T12:18:40.400Z"}
+{"batch_id":"batch_000019","source_id":"7515074","status":"success","legacy_id":"7515074","care_recipient_id":"a7e8c96c-0638-4c0d-9598-0b457c5027ab","processed_at":"2026-04-07T12:18:40.716Z"}
+{"batch_id":"batch_000019","source_id":"7515051","status":"success","legacy_id":"7515051","care_recipient_id":"4baaad75-a497-499e-b8ec-1b4a06d3e3d1","processed_at":"2026-04-07T12:18:41.126Z"}
+{"batch_id":"batch_000019","source_id":"7515019","status":"success","legacy_id":"7515019","care_recipient_id":"f02b2cb0-f4e9-4a5f-a932-20139e27aa1e","processed_at":"2026-04-07T12:18:41.421Z"}
+{"batch_id":"batch_000019","source_id":"7514791","status":"success","legacy_id":"7514791","care_recipient_id":"73575c31-f321-456e-915a-517beb85ed24","processed_at":"2026-04-07T12:18:41.719Z"}
+{"batch_id":"batch_000019","source_id":"7514764","status":"success","legacy_id":"7514764","care_recipient_id":"1c6f35c3-1a32-41de-a89e-cbf86891ffbf","processed_at":"2026-04-07T12:18:42.015Z"}
+{"batch_id":"batch_000019","source_id":"7514713","status":"success","legacy_id":"7514713","care_recipient_id":"439f8cbc-e82e-4ce3-bf7d-553243f8dc09","processed_at":"2026-04-07T12:18:42.354Z"}
+{"batch_id":"batch_000019","source_id":"7514632","status":"success","legacy_id":"7514632","care_recipient_id":"5ab9d9ad-7cbe-4125-a652-f06be78fb8b8","processed_at":"2026-04-07T12:18:42.650Z"}
+{"batch_id":"batch_000019","source_id":"7514491","status":"success","legacy_id":"7514491","care_recipient_id":"27d4db8d-8856-4b45-be6b-15f28a9efbd7","processed_at":"2026-04-07T12:18:42.969Z"}
+{"batch_id":"batch_000019","source_id":"7514460","status":"success","legacy_id":"7514460","care_recipient_id":"57df33ff-e2be-47cb-a59a-a10108b5a353","processed_at":"2026-04-07T12:18:43.275Z"}
+{"batch_id":"batch_000019","source_id":"7514118","status":"success","legacy_id":"7514118","care_recipient_id":"4b0e592a-b4f2-46d5-8e8f-2690904c0856","processed_at":"2026-04-07T12:18:43.586Z"}
+{"batch_id":"batch_000019","source_id":"7513970","status":"success","legacy_id":"7513970","care_recipient_id":"f9b1a4ac-a961-42ac-ab34-ec25c9cf9471","processed_at":"2026-04-07T12:18:43.884Z"}
+{"batch_id":"batch_000019","source_id":"7513661","status":"success","legacy_id":"7513661","care_recipient_id":"78587f50-01b0-4d3d-8b98-914482de2406","processed_at":"2026-04-07T12:18:44.238Z"}
+{"batch_id":"batch_000019","source_id":"7513235","status":"success","legacy_id":"7513235","care_recipient_id":"36f8102e-248a-47be-9023-69a3c4827ff3","processed_at":"2026-04-07T12:18:44.535Z"}
+{"batch_id":"batch_000019","source_id":"7513215","status":"success","legacy_id":"7513215","care_recipient_id":"a43cdfe2-a52c-4479-8520-6f9df2e8ddfd","processed_at":"2026-04-07T12:18:44.832Z"}
+{"batch_id":"batch_000019","source_id":"7513129","status":"success","legacy_id":"7513129","care_recipient_id":"88e63ec2-35f5-4741-8fa4-421fd63b7a1b","processed_at":"2026-04-07T12:18:45.325Z"}
+{"batch_id":"batch_000019","source_id":"7513113","status":"success","legacy_id":"7513113","care_recipient_id":"7fa32d40-5de4-49f9-8d80-d0aa8d4be0d5","processed_at":"2026-04-07T12:18:45.911Z"}
+{"batch_id":"batch_000019","source_id":"7513106","status":"success","legacy_id":"7513106","care_recipient_id":"c869b625-0189-4257-98f6-4449460d3213","processed_at":"2026-04-07T12:18:46.208Z"}
+{"batch_id":"batch_000019","source_id":"7513098","status":"success","legacy_id":"7513098","care_recipient_id":"7917fda5-b3d6-4fcf-a101-3f2d27d7b95a","processed_at":"2026-04-07T12:18:46.554Z"}
+{"batch_id":"batch_000019","source_id":"7513031","status":"success","legacy_id":"7513031","care_recipient_id":"316875bd-f0b2-4358-9581-b39008e667a6","processed_at":"2026-04-07T12:18:46.850Z"}
+{"batch_id":"batch_000019","source_id":"7513007","status":"success","legacy_id":"7513007","care_recipient_id":"f1817231-e742-42a5-81ed-d46c84b8bb43","processed_at":"2026-04-07T12:18:47.168Z"}
+{"batch_id":"batch_000019","source_id":"7512963","status":"success","legacy_id":"7512963","care_recipient_id":"53bf97ff-97c2-4fef-bdb4-c3c6bda97b1d","processed_at":"2026-04-07T12:18:47.512Z"}
+{"batch_id":"batch_000019","source_id":"7512940","status":"success","legacy_id":"7512940","care_recipient_id":"2eeaa6d2-e5a4-4cf6-b4b1-74591dc13f4f","processed_at":"2026-04-07T12:18:47.869Z"}
+{"batch_id":"batch_000019","source_id":"7512800","status":"success","legacy_id":"7512800","care_recipient_id":"7f119355-35bf-4b91-8646-3784d33f0ce5","processed_at":"2026-04-07T12:18:48.192Z"}
+{"batch_id":"batch_000019","source_id":"7512789","status":"success","legacy_id":"7512789","care_recipient_id":"ec5f1eb3-3f07-4027-bb0b-c0b07b02f2ca","processed_at":"2026-04-07T12:18:48.497Z"}
+{"batch_id":"batch_000019","source_id":"7512441","status":"success","legacy_id":"7512441","care_recipient_id":"dccde91d-e08c-449b-b719-741868396d2a","processed_at":"2026-04-07T12:18:48.795Z"}
+{"batch_id":"batch_000019","source_id":"7512426","status":"success","legacy_id":"7512426","care_recipient_id":"bbd7197c-380e-4e93-a6e6-94f8afe9fab2","processed_at":"2026-04-07T12:18:49.113Z"}
+{"batch_id":"batch_000019","source_id":"7512349","status":"success","legacy_id":"7512349","care_recipient_id":"1d9285f7-156c-467f-90dc-19aade3e7b8a","processed_at":"2026-04-07T12:18:49.449Z"}
+{"batch_id":"batch_000019","source_id":"7512167","status":"success","legacy_id":"7512167","care_recipient_id":"0a44d408-452e-40f9-a014-41765d02769a","processed_at":"2026-04-07T12:18:49.748Z"}
+{"batch_id":"batch_000019","source_id":"7512155","status":"success","legacy_id":"7512155","care_recipient_id":"834442e5-d66e-4fdc-86e7-19e14f21e771","processed_at":"2026-04-07T12:18:50.045Z"}
+{"batch_id":"batch_000019","source_id":"7512109","status":"success","legacy_id":"7512109","care_recipient_id":"f88263f4-eac5-4788-943c-4075d44dae61","processed_at":"2026-04-07T12:18:50.343Z"}
+{"batch_id":"batch_000019","source_id":"7512108","status":"success","legacy_id":"7512108","care_recipient_id":"fd1f0564-e862-4faa-8307-1e80b491aa67","processed_at":"2026-04-07T12:18:50.648Z"}
+{"batch_id":"batch_000019","source_id":"7512023","status":"success","legacy_id":"7512023","care_recipient_id":"2282ca51-c97c-4138-b0b5-9d7bc808c8ad","processed_at":"2026-04-07T12:18:51.021Z"}
+{"batch_id":"batch_000019","source_id":"7511840","status":"success","legacy_id":"7511840","care_recipient_id":"c2766cf4-a3e7-4ad8-9c24-60d2aca664e0","processed_at":"2026-04-07T12:18:51.365Z"}
+{"batch_id":"batch_000019","source_id":"7511698","status":"success","legacy_id":"7511698","care_recipient_id":"9b61172a-5e77-44aa-9716-aa44babd2606","processed_at":"2026-04-07T12:18:51.672Z"}
+{"batch_id":"batch_000019","source_id":"7511695","status":"success","legacy_id":"7511695","care_recipient_id":"bfc8450c-e847-4532-8e7e-e009c2f59337","processed_at":"2026-04-07T12:18:51.968Z"}
+{"batch_id":"batch_000019","source_id":"7511551","status":"success","legacy_id":"7511551","care_recipient_id":"9861c5eb-c5f8-47be-a420-e71992886eb6","processed_at":"2026-04-07T12:18:52.286Z"}
+{"batch_id":"batch_000019","source_id":"7511305","status":"success","legacy_id":"7511305","care_recipient_id":"33bbe6aa-13b1-4a3a-9878-bd1e8de7cddf","processed_at":"2026-04-07T12:18:52.591Z"}
+{"batch_id":"batch_000019","source_id":"7511147","status":"success","legacy_id":"7511147","care_recipient_id":"61a65464-37ba-4f36-8b02-a21726aefe86","processed_at":"2026-04-07T12:18:52.901Z"}
+{"batch_id":"batch_000019","source_id":"7511104","status":"success","legacy_id":"7511104","care_recipient_id":"d3a33494-c898-4981-8688-284799eb33be","processed_at":"2026-04-07T12:18:53.196Z"}
+{"batch_id":"batch_000019","source_id":"7511064","status":"success","legacy_id":"7511064","care_recipient_id":"e2e04000-2597-4c95-9573-20a9c579bbb4","processed_at":"2026-04-07T12:18:53.500Z"}
+{"batch_id":"batch_000019","source_id":"7511008","status":"success","legacy_id":"7511008","care_recipient_id":"667dac84-d7e4-49e7-9015-9ed20c49f265","processed_at":"2026-04-07T12:18:53.826Z"}
+{"batch_id":"batch_000019","source_id":"7510865","status":"success","legacy_id":"7510865","care_recipient_id":"86c81f4f-874c-40e0-a8a3-48f5d8d7a566","processed_at":"2026-04-07T12:18:54.159Z"}
+{"batch_id":"batch_000019","source_id":"7510781","status":"success","legacy_id":"7510781","care_recipient_id":"239a22e0-5cd6-4b42-96a6-4a95d80330a0","processed_at":"2026-04-07T12:18:54.541Z"}
+{"batch_id":"batch_000019","source_id":"7510697","status":"success","legacy_id":"7510697","care_recipient_id":"47d1d65e-e75e-44b9-8ac4-8764d9540f9c","processed_at":"2026-04-07T12:18:54.836Z"}
+{"batch_id":"batch_000019","source_id":"7510430","status":"success","legacy_id":"7510430","care_recipient_id":"a5af0447-5bb9-4d9e-b375-1cc1df97b111","processed_at":"2026-04-07T12:18:55.257Z"}
+{"batch_id":"batch_000019","source_id":"7510200","status":"success","legacy_id":"7510200","care_recipient_id":"2e73abdb-6dc6-4525-b2a2-9313c040b9fd","processed_at":"2026-04-07T12:18:55.565Z"}
+{"batch_id":"batch_000019","source_id":"7510100","status":"success","legacy_id":"7510100","care_recipient_id":"b6ddf16a-1c2e-4e26-bd1b-15b5b1151853","processed_at":"2026-04-07T12:18:55.870Z"}
+{"batch_id":"batch_000019","source_id":"7509783","status":"success","legacy_id":"7509783","care_recipient_id":"37e8bebd-1c30-4244-9333-66bc3ceb6794","processed_at":"2026-04-07T12:18:56.457Z"}
+{"batch_id":"batch_000019","source_id":"7509638","status":"success","legacy_id":"7509638","care_recipient_id":"91e61303-d159-45e0-9962-20071135957f","processed_at":"2026-04-07T12:18:56.786Z"}
+{"batch_id":"batch_000019","source_id":"7509635","status":"success","legacy_id":"7509635","care_recipient_id":"878c67b9-cd3b-44e5-912a-75b64086ac61","processed_at":"2026-04-07T12:18:57.081Z"}
+{"batch_id":"batch_000019","source_id":"7509597","status":"success","legacy_id":"7509597","care_recipient_id":"8b0740e7-497d-46c4-88f9-4de14cd1e68f","processed_at":"2026-04-07T12:18:57.407Z"}
+{"batch_id":"batch_000019","source_id":"7509546","status":"success","legacy_id":"7509546","care_recipient_id":"cea54cca-3d1a-485b-a74e-dbb722efe3eb","processed_at":"2026-04-07T12:18:57.702Z"}
+{"batch_id":"batch_000019","source_id":"7509431","status":"success","legacy_id":"7509431","care_recipient_id":"0705c2b8-3e35-4075-bca7-60e3e3435d19","processed_at":"2026-04-07T12:18:58.005Z"}
+{"batch_id":"batch_000019","source_id":"7509352","status":"success","legacy_id":"7509352","care_recipient_id":"f7848ce3-fd99-4642-8fd0-d56cf55aacf9","processed_at":"2026-04-07T12:18:58.432Z"}
+{"batch_id":"batch_000019","source_id":"7509255","status":"success","legacy_id":"7509255","care_recipient_id":"e8cda071-a30e-4813-b2b8-3c2214522936","processed_at":"2026-04-07T12:18:58.732Z"}
+{"batch_id":"batch_000019","source_id":"7509149","status":"success","legacy_id":"7509149","care_recipient_id":"20881e64-04a0-4fe4-aa0f-a81cc900d85a","processed_at":"2026-04-07T12:18:59.045Z"}
+{"batch_id":"batch_000019","source_id":"7509136","status":"success","legacy_id":"7509136","care_recipient_id":"51dc558b-c2ab-4bd6-82f0-12a454b7cf55","processed_at":"2026-04-07T12:18:59.455Z"}
+{"batch_id":"batch_000019","source_id":"7509121","status":"success","legacy_id":"7509121","care_recipient_id":"ca359a3b-6790-494a-a1dd-844762ee005c","processed_at":"2026-04-07T12:18:59.750Z"}
+{"batch_id":"batch_000019","source_id":"7509118","status":"success","legacy_id":"7509118","care_recipient_id":"185bf771-4cee-4676-af3a-d3b7c184280c","processed_at":"2026-04-07T12:19:00.069Z"}
+{"batch_id":"batch_000019","source_id":"7509089","status":"success","legacy_id":"7509089","care_recipient_id":"1e7c94b6-6dd6-49a9-9b94-3a5ea9ea61ce","processed_at":"2026-04-07T12:19:00.369Z"}
+{"batch_id":"batch_000019","source_id":"7509083","status":"success","legacy_id":"7509083","care_recipient_id":"49b17fa8-d53f-49c1-92e9-572bb8b362ed","processed_at":"2026-04-07T12:19:00.750Z"}
+{"batch_id":"batch_000019","source_id":"7509073","status":"success","legacy_id":"7509073","care_recipient_id":"afaaabb9-0ced-4623-9014-051fb151cd71","processed_at":"2026-04-07T12:19:01.093Z"}
+{"batch_id":"batch_000019","source_id":"7509028","status":"success","legacy_id":"7509028","care_recipient_id":"5eda1b0d-e07d-4d09-aebc-ab4ca858c0d9","processed_at":"2026-04-07T12:19:01.389Z"}
+{"batch_id":"batch_000019","source_id":"7508948","status":"success","legacy_id":"7508948","care_recipient_id":"231b5810-4333-4686-b38f-ab6d22ecabb5","processed_at":"2026-04-07T12:19:01.707Z"}
+{"batch_id":"batch_000019","source_id":"7508938","status":"success","legacy_id":"7508938","care_recipient_id":"99f64e6b-c8fb-4af3-8111-5d48a34cb430","processed_at":"2026-04-07T12:19:02.028Z"}
+{"batch_id":"batch_000019","source_id":"7508934","status":"success","legacy_id":"7508934","care_recipient_id":"a1d20118-b3d4-40bf-a776-f50660bc0590","processed_at":"2026-04-07T12:19:02.327Z"}
+{"batch_id":"batch_000019","source_id":"7508891","status":"success","legacy_id":"7508891","care_recipient_id":"3bc88f81-4ba8-4586-9b9c-59e0e8be2595","processed_at":"2026-04-07T12:19:02.629Z"}
+{"batch_id":"batch_000019","source_id":"7508670","status":"success","legacy_id":"7508670","care_recipient_id":"90a5d2f4-927d-4229-8fd9-f9808ae7bac9","processed_at":"2026-04-07T12:19:02.925Z"}
+{"batch_id":"batch_000019","source_id":"7508444","status":"success","legacy_id":"7508444","care_recipient_id":"a05a23c8-059d-4bf3-ae5a-238d32582ccf","processed_at":"2026-04-07T12:19:03.243Z"}
+{"batch_id":"batch_000019","source_id":"7508380","status":"success","legacy_id":"7508380","care_recipient_id":"207caa5c-fa14-4c66-9a5c-2c39a7ae64f8","processed_at":"2026-04-07T12:19:03.602Z"}
+{"batch_id":"batch_000019","source_id":"7508354","status":"success","legacy_id":"7508354","care_recipient_id":"f85cf997-5fa5-4ab6-9e44-623e8fb0eddd","processed_at":"2026-04-07T12:19:03.961Z"}
+{"batch_id":"batch_000019","source_id":"7508239","status":"success","legacy_id":"7508239","care_recipient_id":"9bf17038-5cf0-4ccf-a503-40e5ef9c01f7","processed_at":"2026-04-07T12:19:04.273Z"}
+{"batch_id":"batch_000019","source_id":"7508170","status":"success","legacy_id":"7508170","care_recipient_id":"29059805-f11b-4532-b6ce-e077b6c0cba9","processed_at":"2026-04-07T12:19:04.678Z"}
+{"batch_id":"batch_000019","source_id":"7508094","status":"success","legacy_id":"7508094","care_recipient_id":"c3d3acac-72a9-484a-98bc-12857ed31705","processed_at":"2026-04-07T12:19:04.977Z"}
+{"batch_id":"batch_000019","source_id":"7508093","status":"success","legacy_id":"7508093","care_recipient_id":"eb2b592e-d300-4ee1-a564-4842ee1222b4","processed_at":"2026-04-07T12:19:05.291Z"}
+{"batch_id":"batch_000019","source_id":"7508040","status":"success","legacy_id":"7508040","care_recipient_id":"be97f1d1-4813-4481-8483-cea63ae84f19","processed_at":"2026-04-07T12:19:05.588Z"}
+{"batch_id":"batch_000019","source_id":"7508016","status":"success","legacy_id":"7508016","care_recipient_id":"58f2b404-408b-4888-8afb-f53b28660597","processed_at":"2026-04-07T12:19:05.908Z"}
+{"batch_id":"batch_000019","source_id":"7508001","status":"success","legacy_id":"7508001","care_recipient_id":"0518ee66-397e-4782-8b21-4c52694e0e48","processed_at":"2026-04-07T12:19:06.226Z"}
+{"batch_id":"batch_000019","source_id":"7507953","status":"success","legacy_id":"7507953","care_recipient_id":"20ec7b17-da5e-46b8-bfc9-cd1a1b8ac983","processed_at":"2026-04-07T12:19:06.812Z"}
+{"batch_id":"batch_000019","source_id":"7507762","status":"success","legacy_id":"7507762","care_recipient_id":"605a88c1-144b-4011-a7c1-8b063f03b61b","processed_at":"2026-04-07T12:19:07.135Z"}
+{"batch_id":"batch_000019","source_id":"7507677","status":"success","legacy_id":"7507677","care_recipient_id":"39175c8d-1f7d-4794-bdb2-dcac7f91897f","processed_at":"2026-04-07T12:19:07.442Z"}
+{"batch_id":"batch_000019","source_id":"7507638","status":"success","legacy_id":"7507638","care_recipient_id":"278ea7b1-af3b-4c1e-bb40-4ef5b13477ec","processed_at":"2026-04-07T12:19:07.796Z"}
+{"batch_id":"batch_000019","source_id":"7507413","status":"success","legacy_id":"7507413","care_recipient_id":"cd1ff2b7-1503-4034-a908-9a0762131ff5","processed_at":"2026-04-07T12:19:08.159Z"}
+{"batch_id":"batch_000019","source_id":"7507364","status":"success","legacy_id":"7507364","care_recipient_id":"aec73e8a-7972-411a-b9b4-c55b8cc68bbf","processed_at":"2026-04-07T12:19:08.467Z"}
+{"batch_id":"batch_000019","source_id":"7507319","status":"success","legacy_id":"7507319","care_recipient_id":"370aac83-e259-4374-b324-c4c160415bdb","processed_at":"2026-04-07T12:19:08.876Z"}
+{"batch_id":"batch_000019","source_id":"7507316","status":"success","legacy_id":"7507316","care_recipient_id":"6b68413d-5dbd-4a00-86ee-64d669ad6074","processed_at":"2026-04-07T12:19:09.184Z"}
+{"batch_id":"batch_000019","source_id":"7507314","status":"success","legacy_id":"7507314","care_recipient_id":"e81b19cc-0af9-4b6f-8462-feb7fe55b7ac","processed_at":"2026-04-07T12:19:09.480Z"}
+{"batch_id":"batch_000019","source_id":"7507294","status":"success","legacy_id":"7507294","care_recipient_id":"3520c00f-8eaf-4e87-92ae-bd215cbe3e63","processed_at":"2026-04-07T12:19:09.779Z"}
+{"batch_id":"batch_000019","source_id":"7507076","status":"success","legacy_id":"7507076","care_recipient_id":"e8ff8cf8-17ac-4213-9ba8-cab6ba164bd9","processed_at":"2026-04-07T12:19:10.104Z"}
+{"batch_id":"batch_000019","source_id":"7506806","status":"success","legacy_id":"7506806","care_recipient_id":"e79b69cb-b72f-4218-8faa-ee6bd6c725d4","processed_at":"2026-04-07T12:19:10.515Z"}
+{"batch_id":"batch_000019","source_id":"7506800","status":"success","legacy_id":"7506800","care_recipient_id":"06a1cdd9-c79b-43e8-a005-0f890ee1358f","processed_at":"2026-04-07T12:19:10.822Z"}
+{"batch_id":"batch_000019","source_id":"7506581","status":"success","legacy_id":"7506581","care_recipient_id":"4ada5601-9e75-4096-bf5f-ba9bdcd59f54","processed_at":"2026-04-07T12:19:11.130Z"}
+{"batch_id":"batch_000019","source_id":"7506572","status":"success","legacy_id":"7506572","care_recipient_id":"ff93b6c5-c1d2-4cc8-8a59-48af06849270","processed_at":"2026-04-07T12:19:11.467Z"}
+{"batch_id":"batch_000019","source_id":"7506553","status":"success","legacy_id":"7506553","care_recipient_id":"91912ae9-7e55-4eca-a87c-5f6bc808baf6","processed_at":"2026-04-07T12:19:11.762Z"}
+{"batch_id":"batch_000019","source_id":"7506379","status":"success","legacy_id":"7506379","care_recipient_id":"7eefbb10-03f9-4957-a4c2-8ce49da9eda2","processed_at":"2026-04-07T12:19:12.060Z"}
+{"batch_id":"batch_000019","source_id":"7506261","status":"success","legacy_id":"7506261","care_recipient_id":"4ee28dfe-ba16-470a-beac-ff0951f3adb0","processed_at":"2026-04-07T12:19:12.357Z"}
+{"batch_id":"batch_000019","source_id":"7506113","status":"success","legacy_id":"7506113","care_recipient_id":"a644b0f6-07a1-40ae-bebb-659ef6f2b46b","processed_at":"2026-04-07T12:19:12.664Z"}
+{"batch_id":"batch_000019","source_id":"7506087","status":"success","legacy_id":"7506087","care_recipient_id":"7351a89d-d9a3-4ed0-a682-426fb11cfb89","processed_at":"2026-04-07T12:19:13.041Z"}
+{"batch_id":"batch_000019","source_id":"7506073","status":"success","legacy_id":"7506073","care_recipient_id":"6ddd81cd-f1e7-486a-8dba-2af9e4bae69e","processed_at":"2026-04-07T12:19:13.339Z"}
+{"batch_id":"batch_000019","source_id":"7505949","status":"success","legacy_id":"7505949","care_recipient_id":"f75c7bd3-58b8-4c41-9786-6ffaa4aa5ab7","processed_at":"2026-04-07T12:19:13.634Z"}
+{"batch_id":"batch_000019","source_id":"7505942","status":"success","legacy_id":"7505942","care_recipient_id":"8e99912d-93d9-40c6-8f82-ae1b356c0f9e","processed_at":"2026-04-07T12:19:13.934Z"}
+{"batch_id":"batch_000019","source_id":"7505928","status":"success","legacy_id":"7505928","care_recipient_id":"5604a569-e32b-45b9-b060-2a408715023a","processed_at":"2026-04-07T12:19:14.299Z"}
+{"batch_id":"batch_000019","source_id":"7505743","status":"success","legacy_id":"7505743","care_recipient_id":"10807b33-5584-4640-a540-f241b3f5d2eb","processed_at":"2026-04-07T12:19:14.613Z"}
+{"batch_id":"batch_000019","source_id":"7505714","status":"success","legacy_id":"7505714","care_recipient_id":"0b60cea5-1bf1-454d-9acf-357f5f613fc2","processed_at":"2026-04-07T12:19:14.918Z"}
+{"batch_id":"batch_000019","source_id":"7505663","status":"success","legacy_id":"7505663","care_recipient_id":"4adac104-201f-4fa6-ace1-2611cd6c2889","processed_at":"2026-04-07T12:19:15.225Z"}
+{"batch_id":"batch_000019","source_id":"7505587","status":"success","legacy_id":"7505587","care_recipient_id":"c4d55547-055a-45b4-adbe-90ca0a73663a","processed_at":"2026-04-07T12:19:15.532Z"}
+{"batch_id":"batch_000019","source_id":"7505561","status":"success","legacy_id":"7505561","care_recipient_id":"acf4f543-bbab-46d9-9641-dccfbdf0bb3e","processed_at":"2026-04-07T12:19:15.841Z"}
+{"batch_id":"batch_000019","source_id":"7505456","status":"success","legacy_id":"7505456","care_recipient_id":"26861d06-e09e-4b99-b874-9930321c5e2e","processed_at":"2026-04-07T12:19:16.251Z"}
+{"batch_id":"batch_000019","source_id":"7505348","status":"success","legacy_id":"7505348","care_recipient_id":"25814ad1-0a40-4c1f-94e6-81d22d60a50f","processed_at":"2026-04-07T12:19:16.557Z"}
+{"batch_id":"batch_000019","source_id":"7505122","status":"success","legacy_id":"7505122","care_recipient_id":"4bd620df-eefc-40ef-be49-af7c58462a49","processed_at":"2026-04-07T12:19:17.144Z"}
+{"batch_id":"batch_000019","source_id":"7505113","status":"success","legacy_id":"7505113","care_recipient_id":"59106568-49ff-4443-91b5-fd9b39e6acad","processed_at":"2026-04-07T12:19:17.540Z"}
+{"batch_id":"batch_000019","source_id":"7505093","status":"success","legacy_id":"7505093","care_recipient_id":"9e9ebfe0-a3ac-4db3-a008-4dd27a4db779","processed_at":"2026-04-07T12:19:17.881Z"}
+{"batch_id":"batch_000019","source_id":"7505092","status":"success","legacy_id":"7505092","care_recipient_id":"a9cd7197-977f-40a1-8aae-2b5a55a4f0c6","processed_at":"2026-04-07T12:19:18.278Z"}
+{"batch_id":"batch_000019","source_id":"7504901","status":"success","legacy_id":"7504901","care_recipient_id":"273d78fb-e2f5-4e77-bda8-9b0a5a1bc70e","processed_at":"2026-04-07T12:19:18.606Z"}
+{"batch_id":"batch_000019","source_id":"7504700","status":"success","legacy_id":"7504700","care_recipient_id":"5f8e7bf3-877d-42ab-a85d-86226989c0bf","processed_at":"2026-04-07T12:19:18.905Z"}
+{"batch_id":"batch_000019","source_id":"7504677","status":"success","legacy_id":"7504677","care_recipient_id":"d1f46270-8940-4d06-8c84-8f508862af4c","processed_at":"2026-04-07T12:19:19.219Z"}
+{"batch_id":"batch_000019","source_id":"7504502","status":"success","legacy_id":"7504502","care_recipient_id":"6b081b66-249d-49bd-acf0-04dc71ec8e16","processed_at":"2026-04-07T12:19:19.528Z"}
+{"batch_id":"batch_000019","source_id":"7504470","status":"success","legacy_id":"7504470","care_recipient_id":"c3af5ebd-4922-40ff-a42c-b5b7428bfa4b","processed_at":"2026-04-07T12:19:19.937Z"}
+{"batch_id":"batch_000019","source_id":"7504426","status":"success","legacy_id":"7504426","care_recipient_id":"90a78c7c-fb23-4b35-9deb-38068cd1e5e0","processed_at":"2026-04-07T12:19:20.241Z"}
+{"batch_id":"batch_000019","source_id":"7504385","status":"success","legacy_id":"7504385","care_recipient_id":"203dc72b-3429-4305-944c-81d237da5b66","processed_at":"2026-04-07T12:19:20.538Z"}
+{"batch_id":"batch_000019","source_id":"7504266","status":"success","legacy_id":"7504266","care_recipient_id":"a229862f-024d-41b4-b6ca-7f50dd874f4a","processed_at":"2026-04-07T12:19:20.960Z"}
+{"batch_id":"batch_000019","source_id":"7504161","status":"success","legacy_id":"7504161","care_recipient_id":"5e518b9d-ee6b-4271-8c19-fd6bb7f0b844","processed_at":"2026-04-07T12:19:21.266Z"}
+{"batch_id":"batch_000019","source_id":"7504097","status":"success","legacy_id":"7504097","care_recipient_id":"cd3e341f-3dba-4fe1-8e2a-05669ec68578","processed_at":"2026-04-07T12:19:21.574Z"}
+{"batch_id":"batch_000019","source_id":"7503999","status":"success","legacy_id":"7503999","care_recipient_id":"4f0dd649-6cdd-4758-9877-c025711d6a97","processed_at":"2026-04-07T12:19:21.953Z"}
+{"batch_id":"batch_000019","source_id":"7503982","status":"success","legacy_id":"7503982","care_recipient_id":"c4886f8a-1fd9-4446-9603-e195a8a9297c","processed_at":"2026-04-07T12:19:22.252Z"}
+{"batch_id":"batch_000019","source_id":"7503766","status":"success","legacy_id":"7503766","care_recipient_id":"d67dd99a-6783-403c-a5e6-23b04b638e41","processed_at":"2026-04-07T12:19:22.598Z"}
+{"batch_id":"batch_000019","source_id":"7503745","status":"success","legacy_id":"7503745","care_recipient_id":"862f9c68-3705-40b8-b38e-c7dfd9f89343","processed_at":"2026-04-07T12:19:22.906Z"}
+{"batch_id":"batch_000019","source_id":"7503718","status":"success","legacy_id":"7503718","care_recipient_id":"4328551c-af21-4273-a330-d07982400078","processed_at":"2026-04-07T12:19:23.213Z"}
+{"batch_id":"batch_000019","source_id":"7503711","status":"success","legacy_id":"7503711","care_recipient_id":"86ed9ef1-926c-4b6f-8438-f91a95cef5ef","processed_at":"2026-04-07T12:19:23.520Z"}
+{"batch_id":"batch_000019","source_id":"7503688","status":"success","legacy_id":"7503688","care_recipient_id":"48d663f9-066e-4162-ae60-4d21c2daf09b","processed_at":"2026-04-07T12:19:23.828Z"}
+{"batch_id":"batch_000019","source_id":"7503685","status":"success","legacy_id":"7503685","care_recipient_id":"c282eb7a-4809-459b-a0b8-30a17bc24049","processed_at":"2026-04-07T12:19:24.135Z"}
+{"batch_id":"batch_000019","source_id":"7503681","status":"success","legacy_id":"7503681","care_recipient_id":"fb55db08-cd1b-4482-8d74-1dae790096d0","processed_at":"2026-04-07T12:19:24.443Z"}
+{"batch_id":"batch_000019","source_id":"7503676","status":"success","legacy_id":"7503676","care_recipient_id":"89a7ee35-2db5-4859-a506-0c5499eaa07c","processed_at":"2026-04-07T12:19:24.751Z"}
+{"batch_id":"batch_000019","source_id":"7503671","status":"success","legacy_id":"7503671","care_recipient_id":"628ad40d-732a-4704-87f7-ab3cad788d82","processed_at":"2026-04-07T12:19:25.158Z"}
+{"batch_id":"batch_000019","source_id":"7503655","status":"success","legacy_id":"7503655","care_recipient_id":"2cf4690e-649a-4986-a026-600b095865b8","processed_at":"2026-04-07T12:19:25.464Z"}
+{"batch_id":"batch_000019","source_id":"7503603","status":"success","legacy_id":"7503603","care_recipient_id":"3dc052bf-7de3-4b17-a5e6-62e9dcfd061e","processed_at":"2026-04-07T12:19:25.764Z"}
+{"batch_id":"batch_000019","source_id":"7503448","status":"success","legacy_id":"7503448","care_recipient_id":"9ba2efd5-a022-4c1f-89fc-8bb3f49579a4","processed_at":"2026-04-07T12:19:26.184Z"}
+{"batch_id":"batch_000019","source_id":"7503384","status":"success","legacy_id":"7503384","care_recipient_id":"9de2e31c-b082-4d08-922e-c9cde62b4142","processed_at":"2026-04-07T12:19:26.490Z"}
+{"batch_id":"batch_000019","source_id":"7503268","status":"success","legacy_id":"7503268","care_recipient_id":"d5a40167-f773-4c03-aa4e-51e3b5e73b7b","processed_at":"2026-04-07T12:19:26.796Z"}
+{"batch_id":"batch_000019","source_id":"7503240","status":"success","legacy_id":"7503240","care_recipient_id":"20e66f7c-b420-47c8-9338-b13f5b831478","processed_at":"2026-04-07T12:19:27.096Z"}
+{"batch_id":"batch_000019","source_id":"7503094","status":"success","legacy_id":"7503094","care_recipient_id":"0c5099ec-5162-4768-90e1-0b8b69bd1b2b","processed_at":"2026-04-07T12:19:27.713Z"}
+{"batch_id":"batch_000019","source_id":"7503082","status":"success","legacy_id":"7503082","care_recipient_id":"5af9b42a-fd07-4012-9cc1-f608278baa4b","processed_at":"2026-04-07T12:19:28.027Z"}
+{"batch_id":"batch_000019","source_id":"7502935","status":"success","legacy_id":"7502935","care_recipient_id":"313b1fb5-ad32-4553-8348-46d4109d48a8","processed_at":"2026-04-07T12:19:28.331Z"}
+{"batch_id":"batch_000019","source_id":"7502866","status":"success","legacy_id":"7502866","care_recipient_id":"b358be24-410c-4cad-a87f-17f5a42a0eab","processed_at":"2026-04-07T12:19:28.640Z"}
+{"batch_id":"batch_000019","source_id":"7502629","status":"success","legacy_id":"7502629","care_recipient_id":"22bc24ce-26e6-4520-9431-cd05d9a35af0","processed_at":"2026-04-07T12:19:28.939Z"}
+{"batch_id":"batch_000019","source_id":"7502406","status":"success","legacy_id":"7502406","care_recipient_id":"eb0dae97-a2c1-4bf0-a8cf-6e35093c9013","processed_at":"2026-04-07T12:19:29.292Z"}
+{"batch_id":"batch_000019","source_id":"7502273","status":"success","legacy_id":"7502273","care_recipient_id":"84e58534-5075-492a-b71b-f1b43cd68ba6","processed_at":"2026-04-07T12:19:29.663Z"}
+{"batch_id":"batch_000019","source_id":"7502122","status":"success","legacy_id":"7502122","care_recipient_id":"86da1a36-44a6-443c-a1ab-abb36b8ded59","processed_at":"2026-04-07T12:19:29.971Z"}
+{"batch_id":"batch_000019","source_id":"7502061","status":"success","legacy_id":"7502061","care_recipient_id":"a2f10b2c-753c-4df0-918e-a5cf8390767d","processed_at":"2026-04-07T12:19:30.382Z"}
+{"batch_id":"batch_000019","source_id":"7501985","status":"success","legacy_id":"7501985","care_recipient_id":"fac09230-00c4-45d3-9fb4-60b0d9ba88ce","processed_at":"2026-04-07T12:19:30.681Z"}
+{"batch_id":"batch_000019","source_id":"7501694","status":"success","legacy_id":"7501694","care_recipient_id":"6b2a33de-24ea-4baa-bc84-c494ebd5d67c","processed_at":"2026-04-07T12:19:30.982Z"}
+{"batch_id":"batch_000019","source_id":"7501640","status":"success","legacy_id":"7501640","care_recipient_id":"c4fcebc6-fb43-4ef3-94d7-961cf7e732b2","processed_at":"2026-04-07T12:19:31.301Z"}
+{"batch_id":"batch_000019","source_id":"7501622","status":"success","legacy_id":"7501622","care_recipient_id":"89ac8e6c-5f3c-4dfe-ba2b-bb1aec74732e","processed_at":"2026-04-07T12:19:31.711Z"}
+{"batch_id":"batch_000019","source_id":"7501587","status":"success","legacy_id":"7501587","care_recipient_id":"bd439dbb-ebbe-4bab-ad9f-cc67fb146852","processed_at":"2026-04-07T12:19:32.017Z"}
+{"batch_id":"batch_000019","source_id":"7501295","status":"success","legacy_id":"7501295","care_recipient_id":"956c27bc-2c91-49f2-a108-6768accd336b","processed_at":"2026-04-07T12:19:32.326Z"}
+{"batch_id":"batch_000019","source_id":"7501263","status":"success","legacy_id":"7501263","care_recipient_id":"7275abb9-7ffb-4c1e-a7e8-21163bf339d4","processed_at":"2026-04-07T12:19:32.633Z"}
+{"batch_id":"batch_000019","source_id":"7501259","status":"success","legacy_id":"7501259","care_recipient_id":"fb3b27e9-9ff6-4d81-8a37-0e75317db738","processed_at":"2026-04-07T12:19:33.043Z"}
+{"batch_id":"batch_000019","source_id":"7501231","status":"success","legacy_id":"7501231","care_recipient_id":"c0ebc83f-b7f8-4833-8e8e-ce61cf302f98","processed_at":"2026-04-07T12:19:33.352Z"}
+{"batch_id":"batch_000019","source_id":"7500859","status":"success","legacy_id":"7500859","care_recipient_id":"0143d1f4-9f1b-4709-968b-e00d2fdfceff","processed_at":"2026-04-07T12:19:33.744Z"}
+{"batch_id":"batch_000019","source_id":"7500854","status":"success","legacy_id":"7500854","care_recipient_id":"b270ea80-4647-4b13-a1c3-9c02291107d1","processed_at":"2026-04-07T12:19:34.044Z"}
+{"batch_id":"batch_000019","source_id":"7500778","status":"success","legacy_id":"7500778","care_recipient_id":"e59933ee-5280-4c3a-aa0f-01b8c9cc6138","processed_at":"2026-04-07T12:19:34.363Z"}
+{"batch_id":"batch_000019","source_id":"7500776","status":"success","legacy_id":"7500776","care_recipient_id":"22cc1635-66e6-47a9-8ed9-347400666c94","processed_at":"2026-04-07T12:19:34.680Z"}
+{"batch_id":"batch_000019","source_id":"7500695","status":"success","legacy_id":"7500695","care_recipient_id":"3c68712a-207f-4716-8b23-cd30a5e00939","processed_at":"2026-04-07T12:19:35.062Z"}
+{"batch_id":"batch_000019","source_id":"7500647","status":"success","legacy_id":"7500647","care_recipient_id":"6b760f22-0f85-4ebb-96da-a0194d16351e","processed_at":"2026-04-07T12:19:35.400Z"}
+{"batch_id":"batch_000019","source_id":"7500533","status":"success","legacy_id":"7500533","care_recipient_id":"4f780ad2-95d0-4de8-8ee1-7e4f58b8469d","processed_at":"2026-04-07T12:19:35.698Z"}
+{"batch_id":"batch_000019","source_id":"7500472","status":"success","legacy_id":"7500472","care_recipient_id":"386c9877-fc73-4388-8f96-277c28f36226","processed_at":"2026-04-07T12:19:35.996Z"}
+{"batch_id":"batch_000019","source_id":"7500300","status":"success","legacy_id":"7500300","care_recipient_id":"dfa20483-41ca-4904-a2dc-cbc6a3037ac8","processed_at":"2026-04-07T12:19:36.319Z"}
+{"batch_id":"batch_000019","source_id":"7500213","status":"success","legacy_id":"7500213","care_recipient_id":"178891d0-6a15-4e38-9a14-7cb532a62c59","processed_at":"2026-04-07T12:19:36.632Z"}
+{"batch_id":"batch_000019","source_id":"7500170","status":"success","legacy_id":"7500170","care_recipient_id":"c31622e3-f466-4b41-b7e7-b62b71e1a49f","processed_at":"2026-04-07T12:19:37.036Z"}
+{"batch_id":"batch_000019","source_id":"7500167","status":"success","legacy_id":"7500167","care_recipient_id":"90f1c6ff-1380-4506-8838-4cc5051a51e0","processed_at":"2026-04-07T12:19:37.345Z"}
+{"batch_id":"batch_000019","source_id":"7500114","status":"success","legacy_id":"7500114","care_recipient_id":"dd13b4fb-fcea-4c51-9518-c360f8332663","processed_at":"2026-04-07T12:19:37.681Z"}
+{"batch_id":"batch_000019","source_id":"7500044","status":"success","legacy_id":"7500044","care_recipient_id":"a809c99c-3edb-4a70-b9ee-00a0d0cb9c7b","processed_at":"2026-04-07T12:19:38.269Z"}
+{"batch_id":"batch_000019","source_id":"7499659","status":"success","legacy_id":"7499659","care_recipient_id":"0609ca2a-bcd3-4bed-8d7a-be2d5dd1379d","processed_at":"2026-04-07T12:19:38.777Z"}
+{"batch_id":"batch_000019","source_id":"7499658","status":"success","legacy_id":"7499658","care_recipient_id":"5acaa1f2-9491-4c6b-9684-cd13495f48dd","processed_at":"2026-04-07T12:19:39.084Z"}
+{"batch_id":"batch_000019","source_id":"7499412","status":"success","legacy_id":"7499412","care_recipient_id":"224fadad-e8c1-4b20-83e4-38d1a084fcf8","processed_at":"2026-04-07T12:19:39.392Z"}
+{"batch_id":"batch_000019","source_id":"7499400","status":"success","legacy_id":"7499400","care_recipient_id":"49243d7d-66fc-4e7c-9a7b-b1e359da66f4","processed_at":"2026-04-07T12:19:39.689Z"}
+{"batch_id":"batch_000019","source_id":"7499380","status":"success","legacy_id":"7499380","care_recipient_id":"228b2054-64fd-454a-a693-6f1d2e0f0873","processed_at":"2026-04-07T12:19:40.110Z"}
+{"batch_id":"batch_000019","source_id":"7499371","status":"success","legacy_id":"7499371","care_recipient_id":"18aaba2b-4776-4dd4-9a13-ad3f00cd0dcb","processed_at":"2026-04-07T12:19:40.416Z"}
+{"batch_id":"batch_000019","source_id":"7499343","status":"success","legacy_id":"7499343","care_recipient_id":"ec741165-6cc0-4200-be56-6c1fb4ca7683","processed_at":"2026-04-07T12:19:41.347Z"}
+{"batch_id":"batch_000019","source_id":"7499317","status":"success","legacy_id":"7499317","care_recipient_id":"62aad410-cb1f-4f77-9d95-2dca20e802fb","processed_at":"2026-04-07T12:19:41.643Z"}
+{"batch_id":"batch_000019","source_id":"7499283","status":"success","legacy_id":"7499283","care_recipient_id":"c1fbf86f-50f3-4c58-9996-5adcc2d90e47","processed_at":"2026-04-07T12:19:41.941Z"}
+{"batch_id":"batch_000019","source_id":"7499207","status":"success","legacy_id":"7499207","care_recipient_id":"cc6889b4-586a-4139-8249-7962f2b8f552","processed_at":"2026-04-07T12:19:42.236Z"}
+{"batch_id":"batch_000019","source_id":"7499203","status":"success","legacy_id":"7499203","care_recipient_id":"1275b41a-e3f2-44fd-80c3-e40d779eb063","processed_at":"2026-04-07T12:19:42.533Z"}
+{"batch_id":"batch_000019","source_id":"7499167","status":"success","legacy_id":"7499167","care_recipient_id":"1279d261-d75a-45e1-a125-bd34e221d6bb","processed_at":"2026-04-07T12:19:42.925Z"}
+{"batch_id":"batch_000019","source_id":"7499156","status":"success","legacy_id":"7499156","care_recipient_id":"abff49bc-e605-45ee-b587-67f3c17cff9e","processed_at":"2026-04-07T12:19:43.228Z"}
+{"batch_id":"batch_000019","source_id":"7498820","status":"success","legacy_id":"7498820","care_recipient_id":"7e9aaeba-5532-4d8c-a69e-4673560fe775","processed_at":"2026-04-07T12:19:43.529Z"}
+{"batch_id":"batch_000019","source_id":"7498727","status":"success","legacy_id":"7498727","care_recipient_id":"8a429083-436f-4f7d-b8a8-d669443d76db","processed_at":"2026-04-07T12:19:43.825Z"}
+{"batch_id":"batch_000019","source_id":"7498547","status":"success","legacy_id":"7498547","care_recipient_id":"1285a594-ea72-49b1-8c95-d9a0f42aad79","processed_at":"2026-04-07T12:19:44.123Z"}
+{"batch_id":"batch_000019","source_id":"7498439","status":"success","legacy_id":"7498439","care_recipient_id":"3b5b7eed-b07f-467e-8bc3-f4d612dc5083","processed_at":"2026-04-07T12:19:44.512Z"}
+{"batch_id":"batch_000019","source_id":"7498373","status":"success","legacy_id":"7498373","care_recipient_id":"6d872054-1daf-4bc2-acc4-71d61b173449","processed_at":"2026-04-07T12:19:44.806Z"}
+{"batch_id":"batch_000019","source_id":"7498279","status":"success","legacy_id":"7498279","care_recipient_id":"0e6bead2-0ded-4edb-aa5f-5a2bff9f709f","processed_at":"2026-04-07T12:19:45.102Z"}
+{"batch_id":"batch_000019","source_id":"7498168","status":"success","legacy_id":"7498168","care_recipient_id":"12aab4f1-4f1e-42f2-8240-1c223b144c39","processed_at":"2026-04-07T12:19:45.433Z"}
+{"batch_id":"batch_000019","source_id":"7498156","status":"success","legacy_id":"7498156","care_recipient_id":"b60b4535-52f0-4bdb-a81d-82341981e6c4","processed_at":"2026-04-07T12:19:45.736Z"}
+{"batch_id":"batch_000019","source_id":"7498084","status":"success","legacy_id":"7498084","care_recipient_id":"5eeadf82-7648-436a-9e39-cc5ef2767e6d","processed_at":"2026-04-07T12:19:46.069Z"}
+{"batch_id":"batch_000019","source_id":"7497805","status":"success","legacy_id":"7497805","care_recipient_id":"61466380-6dd7-40f6-8a48-e7052d1df878","processed_at":"2026-04-07T12:19:46.367Z"}
+{"batch_id":"batch_000019","source_id":"7497675","status":"success","legacy_id":"7497675","care_recipient_id":"ac42dabe-6503-4771-9389-a6f4be849ef5","processed_at":"2026-04-07T12:19:46.664Z"}
+{"batch_id":"batch_000019","source_id":"7497628","status":"success","legacy_id":"7497628","care_recipient_id":"85d074c2-6974-4644-a8ee-6a8644c617e9","processed_at":"2026-04-07T12:19:46.969Z"}
+{"batch_id":"batch_000019","source_id":"7497572","status":"success","legacy_id":"7497572","care_recipient_id":"f40a6b9c-6c21-48da-ab72-48e40480c6d7","processed_at":"2026-04-07T12:19:47.269Z"}
+{"batch_id":"batch_000019","source_id":"7497297","status":"success","legacy_id":"7497297","care_recipient_id":"06554c06-422b-4207-bf52-db51d75c83d9","processed_at":"2026-04-07T12:19:47.642Z"}
+{"batch_id":"batch_000019","source_id":"7497245","status":"success","legacy_id":"7497245","care_recipient_id":"bfdaba1f-3299-4905-9541-1f150276e8c3","processed_at":"2026-04-07T12:19:47.939Z"}
+{"batch_id":"batch_000019","source_id":"7497236","status":"success","legacy_id":"7497236","care_recipient_id":"f3aa33b8-2c4d-406c-999c-25c879ceac17","processed_at":"2026-04-07T12:19:48.239Z"}
+{"batch_id":"batch_000019","source_id":"7497145","status":"success","legacy_id":"7497145","care_recipient_id":"97e39538-60f5-40d7-9a17-0c8300a09cb8","processed_at":"2026-04-07T12:19:48.916Z"}
+{"batch_id":"batch_000019","source_id":"7497144","status":"success","legacy_id":"7497144","care_recipient_id":"dab3a849-b818-4634-ba8d-a054cfbdbb3a","processed_at":"2026-04-07T12:19:49.216Z"}
+{"batch_id":"batch_000019","source_id":"7497137","status":"success","legacy_id":"7497137","care_recipient_id":"23f67af5-b256-4d8d-b3b5-7eb7c59c92a7","processed_at":"2026-04-07T12:19:49.512Z"}
+{"batch_id":"batch_000019","source_id":"7497092","status":"success","legacy_id":"7497092","care_recipient_id":"703a0b35-5fe9-43bf-8e6e-ad0ad3722ad7","processed_at":"2026-04-07T12:19:49.809Z"}
+{"batch_id":"batch_000019","source_id":"7497041","status":"success","legacy_id":"7497041","care_recipient_id":"a86f9b26-55d1-4b46-b6df-413c29296ccd","processed_at":"2026-04-07T12:19:50.143Z"}
+{"batch_id":"batch_000019","source_id":"7496927","status":"success","legacy_id":"7496927","care_recipient_id":"73d855c8-44e4-42d4-a255-c0f2416d64c3","processed_at":"2026-04-07T12:19:50.439Z"}
+{"batch_id":"batch_000019","source_id":"7496920","status":"success","legacy_id":"7496920","care_recipient_id":"9e150774-80d9-47f5-94ba-b7e50fcc7a28","processed_at":"2026-04-07T12:19:50.785Z"}
+{"batch_id":"batch_000019","source_id":"7496854","status":"success","legacy_id":"7496854","care_recipient_id":"05266c81-0af9-4e01-beaa-e8a943a7c1e4","processed_at":"2026-04-07T12:19:51.080Z"}
+{"batch_id":"batch_000019","source_id":"7496817","status":"success","legacy_id":"7496817","care_recipient_id":"9c34ac53-72a3-42f1-80aa-4f5aef6f25d2","processed_at":"2026-04-07T12:19:51.376Z"}
+{"batch_id":"batch_000019","source_id":"7496771","status":"success","legacy_id":"7496771","care_recipient_id":"34fad86c-a651-40f1-b7dc-644c663e3985","processed_at":"2026-04-07T12:19:51.679Z"}
+{"batch_id":"batch_000019","source_id":"7496680","status":"success","legacy_id":"7496680","care_recipient_id":"cfba0302-8f04-4146-8d00-161037c0ea4c","processed_at":"2026-04-07T12:19:51.987Z"}
+{"batch_id":"batch_000019","source_id":"7496477","status":"success","legacy_id":"7496477","care_recipient_id":"5379c389-8d47-47de-b15c-2dcb0f4427c2","processed_at":"2026-04-07T12:19:52.397Z"}
+{"batch_id":"batch_000019","source_id":"7496381","status":"success","legacy_id":"7496381","care_recipient_id":"0bf84f07-b056-4366-8b8a-4f0ea4302d1b","processed_at":"2026-04-07T12:19:52.702Z"}
+{"batch_id":"batch_000019","source_id":"7496347","status":"success","legacy_id":"7496347","care_recipient_id":"708726dc-4268-4288-81da-b130c7a8f1ce","processed_at":"2026-04-07T12:19:52.998Z"}
+{"batch_id":"batch_000019","source_id":"7496312","status":"success","legacy_id":"7496312","care_recipient_id":"13128bf3-6c4b-45e0-90fc-2759e8ba8f17","processed_at":"2026-04-07T12:19:53.295Z"}
+{"batch_id":"batch_000019","source_id":"7496285","status":"success","legacy_id":"7496285","care_recipient_id":"6b6d8a8d-3e99-4a5d-87e1-6b46359016ea","processed_at":"2026-04-07T12:19:53.592Z"}
+{"batch_id":"batch_000019","source_id":"7496280","status":"success","legacy_id":"7496280","care_recipient_id":"79b1bb28-c36c-4dc2-b4e1-05e6f88cfe71","processed_at":"2026-04-07T12:19:53.929Z"}
+{"batch_id":"batch_000019","source_id":"7496033","status":"success","legacy_id":"7496033","care_recipient_id":"6320c112-d553-40b1-a82f-1e22a8906b8e","processed_at":"2026-04-07T12:19:54.241Z"}
+{"batch_id":"batch_000019","source_id":"7496030","status":"success","legacy_id":"7496030","care_recipient_id":"39e182ce-0e00-464a-8951-f836676b4be7","processed_at":"2026-04-07T12:19:54.535Z"}
+{"batch_id":"batch_000019","source_id":"7496029","status":"success","legacy_id":"7496029","care_recipient_id":"923d2eef-d903-4c21-9f06-c188a43def28","processed_at":"2026-04-07T12:19:54.831Z"}
+{"batch_id":"batch_000019","source_id":"7496017","status":"success","legacy_id":"7496017","care_recipient_id":"4ef5bc69-321f-4a7f-9cae-64859a8bb4bf","processed_at":"2026-04-07T12:19:55.128Z"}
+{"batch_id":"batch_000019","source_id":"7495987","status":"success","legacy_id":"7495987","care_recipient_id":"ddeab004-4d43-492b-ab27-533980527d36","processed_at":"2026-04-07T12:19:55.507Z"}
+{"batch_id":"batch_000019","source_id":"7495888","status":"success","legacy_id":"7495888","care_recipient_id":"5d9c67d6-9868-4325-b6aa-789bb4191c60","processed_at":"2026-04-07T12:19:55.803Z"}
+{"batch_id":"batch_000019","source_id":"7495740","status":"success","legacy_id":"7495740","care_recipient_id":"0b3d014a-489a-48f0-8335-6a8d952e67ee","processed_at":"2026-04-07T12:19:56.099Z"}
+{"batch_id":"batch_000019","source_id":"7495726","status":"success","legacy_id":"7495726","care_recipient_id":"ee92da0d-918a-4954-9c57-ceaeac30d8ca","processed_at":"2026-04-07T12:19:56.395Z"}
+{"batch_id":"batch_000019","source_id":"7495685","status":"success","legacy_id":"7495685","care_recipient_id":"abc63234-280e-454b-94f7-378a60ef8bdf","processed_at":"2026-04-07T12:19:56.800Z"}
+{"batch_id":"batch_000019","source_id":"7495626","status":"success","legacy_id":"7495626","care_recipient_id":"bf62f1ee-ba4b-4cd5-bc56-e824ec48b835","processed_at":"2026-04-07T12:19:57.095Z"}
+{"batch_id":"batch_000019","source_id":"7495562","status":"success","legacy_id":"7495562","care_recipient_id":"755a4b98-0055-4c26-a058-8240a3dbdc53","processed_at":"2026-04-07T12:19:57.393Z"}
+{"batch_id":"batch_000019","source_id":"7495515","status":"success","legacy_id":"7495515","care_recipient_id":"1d5a890b-a5f1-4a16-a543-d067cfbb78de","processed_at":"2026-04-07T12:19:57.690Z"}
+{"batch_id":"batch_000019","source_id":"7495341","status":"success","legacy_id":"7495341","care_recipient_id":"f13e61aa-76f7-4bf0-98d8-b770d336ca6b","processed_at":"2026-04-07T12:19:58.004Z"}
+{"batch_id":"batch_000019","source_id":"7495312","status":"success","legacy_id":"7495312","care_recipient_id":"a80ac81a-dbbc-4def-ae25-dd9f6a032aad","processed_at":"2026-04-07T12:19:58.336Z"}
+{"batch_id":"batch_000019","source_id":"7495286","status":"success","legacy_id":"7495286","care_recipient_id":"04666b0e-38c9-4ea6-8ecb-2a4806080e1b","processed_at":"2026-04-07T12:19:58.653Z"}
+{"batch_id":"batch_000019","source_id":"7495131","status":"success","legacy_id":"7495131","care_recipient_id":"f383600a-2a47-43ad-a0d3-2c598ab5fb93","processed_at":"2026-04-07T12:19:59.350Z"}
+{"batch_id":"batch_000019","source_id":"7495027","status":"success","legacy_id":"7495027","care_recipient_id":"5ec68c5f-987f-4f9f-99d1-ff25bd8f2299","processed_at":"2026-04-07T12:19:59.724Z"}
+{"batch_id":"batch_000019","source_id":"7495021","status":"success","legacy_id":"7495021","care_recipient_id":"415f6fe7-d159-4f87-a846-b4ca31171de5","processed_at":"2026-04-07T12:20:00.027Z"}
+{"batch_id":"batch_000019","source_id":"7495015","status":"success","legacy_id":"7495015","care_recipient_id":"8ebe9bd1-3f8a-4f8c-bd22-51ec76d581ae","processed_at":"2026-04-07T12:20:00.368Z"}
+{"batch_id":"batch_000019","source_id":"7495007","status":"success","legacy_id":"7495007","care_recipient_id":"39f2feaa-a445-46f3-aa2e-0259b9624fcf","processed_at":"2026-04-07T12:20:00.750Z"}
+{"batch_id":"batch_000019","source_id":"7495006","status":"success","legacy_id":"7495006","care_recipient_id":"3dd452c5-a313-49e9-9080-923c9c043613","processed_at":"2026-04-07T12:20:01.054Z"}
+{"batch_id":"batch_000019","source_id":"7495001","status":"success","legacy_id":"7495001","care_recipient_id":"a70ab8c7-0a35-476f-8729-1461611ece02","processed_at":"2026-04-07T12:20:01.391Z"}
+{"batch_id":"batch_000019","source_id":"7494982","status":"success","legacy_id":"7494982","care_recipient_id":"d4178328-47e6-424c-8a50-28bf92f64d19","processed_at":"2026-04-07T12:20:01.690Z"}
+{"batch_id":"batch_000019","source_id":"7494977","status":"success","legacy_id":"7494977","care_recipient_id":"5a49d795-0340-4947-bb6c-669dfde978d2","processed_at":"2026-04-07T12:20:01.986Z"}
+{"batch_id":"batch_000019","source_id":"7494955","status":"success","legacy_id":"7494955","care_recipient_id":"6587ccbe-4a8a-4b84-a324-e6b17b760228","processed_at":"2026-04-07T12:20:02.321Z"}
+{"batch_id":"batch_000019","source_id":"7494947","status":"success","legacy_id":"7494947","care_recipient_id":"c344d1e3-ace5-4fe0-8654-a4af804efe4e","processed_at":"2026-04-07T12:20:02.617Z"}
+{"batch_id":"batch_000019","source_id":"7494942","status":"success","legacy_id":"7494942","care_recipient_id":"4a7ac741-31c3-466b-b6c6-cf71f604afd7","processed_at":"2026-04-07T12:20:02.920Z"}
+{"batch_id":"batch_000019","source_id":"7494900","status":"success","legacy_id":"7494900","care_recipient_id":"d67116cb-b7d5-47b1-ae62-c85058d61888","processed_at":"2026-04-07T12:20:03.252Z"}
+{"batch_id":"batch_000019","source_id":"7494889","status":"success","legacy_id":"7494889","care_recipient_id":"8852e498-a6b2-4fc7-b66e-7b10fbf60646","processed_at":"2026-04-07T12:20:03.554Z"}
+{"batch_id":"batch_000019","source_id":"7494872","status":"success","legacy_id":"7494872","care_recipient_id":"11629fde-a654-4797-aac1-eb255eb7b240","processed_at":"2026-04-07T12:20:03.895Z"}
+{"batch_id":"batch_000019","source_id":"7494858","status":"success","legacy_id":"7494858","care_recipient_id":"e7dd3c75-c766-4921-b8b5-1e6aa7b4fd3d","processed_at":"2026-04-07T12:20:04.304Z"}
+{"batch_id":"batch_000019","source_id":"7494835","status":"success","legacy_id":"7494835","care_recipient_id":"72773d2e-b227-4f10-ace0-41eb5c723802","processed_at":"2026-04-07T12:20:04.705Z"}
+{"batch_id":"batch_000019","source_id":"7494806","status":"success","legacy_id":"7494806","care_recipient_id":"3fac37c6-52ab-4023-a125-a3f731c8975b","processed_at":"2026-04-07T12:20:05.159Z"}
+{"batch_id":"batch_000019","source_id":"7494795","status":"success","legacy_id":"7494795","care_recipient_id":"0b0d0226-1927-4f01-8df3-e5a8daf7bc36","processed_at":"2026-04-07T12:20:05.506Z"}
+{"batch_id":"batch_000019","source_id":"7494787","status":"success","legacy_id":"7494787","care_recipient_id":"41993a14-028d-4afb-94d3-488ed136c799","processed_at":"2026-04-07T12:20:05.904Z"}
+{"batch_id":"batch_000019","source_id":"7494599","status":"success","legacy_id":"7494599","care_recipient_id":"b1bb2ec3-c408-4b14-a471-9128904d8dd3","processed_at":"2026-04-07T12:20:06.293Z"}
+{"batch_id":"batch_000019","source_id":"7494487","status":"success","legacy_id":"7494487","care_recipient_id":"c1e3b509-c9d7-4499-8ea5-30df58dc6609","processed_at":"2026-04-07T12:20:06.590Z"}
+{"batch_id":"batch_000019","source_id":"7494482","status":"success","legacy_id":"7494482","care_recipient_id":"7594619c-716f-4401-9a72-c3954b76701d","processed_at":"2026-04-07T12:20:06.887Z"}
+{"batch_id":"batch_000019","source_id":"7494343","status":"success","legacy_id":"7494343","care_recipient_id":"bc75aab4-2999-4289-b669-3886cd5d8c99","processed_at":"2026-04-07T12:20:07.191Z"}
+{"batch_id":"batch_000019","source_id":"7494221","status":"success","legacy_id":"7494221","care_recipient_id":"bf9cba29-1438-4411-953d-95303039bf86","processed_at":"2026-04-07T12:20:07.565Z"}
+{"batch_id":"batch_000019","source_id":"7494161","status":"success","legacy_id":"7494161","care_recipient_id":"775d2ed1-1d3a-4f37-a997-fb46962e45bb","processed_at":"2026-04-07T12:20:07.863Z"}
+{"batch_id":"batch_000019","source_id":"7494160","status":"success","legacy_id":"7494160","care_recipient_id":"da55672b-c93c-47ec-aa2d-69b87fb468eb","processed_at":"2026-04-07T12:20:08.165Z"}
+{"batch_id":"batch_000019","source_id":"7494060","status":"success","legacy_id":"7494060","care_recipient_id":"5f3b521a-54d5-406c-be85-e78504f06047","processed_at":"2026-04-07T12:20:08.467Z"}
+{"batch_id":"batch_000019","source_id":"7493938","status":"success","legacy_id":"7493938","care_recipient_id":"7e0cde35-c7eb-4b8d-9cec-4a029142778f","processed_at":"2026-04-07T12:20:08.774Z"}
+{"batch_id":"batch_000019","source_id":"7493800","status":"success","legacy_id":"7493800","care_recipient_id":"2539b92c-c7b0-466c-8822-ac525f98a316","processed_at":"2026-04-07T12:20:09.190Z"}
+{"batch_id":"batch_000019","source_id":"7493785","status":"success","legacy_id":"7493785","care_recipient_id":"f7715584-2c4e-432d-9dba-6990a399ec9f","processed_at":"2026-04-07T12:20:09.983Z"}
+{"batch_id":"batch_000019","source_id":"7493719","status":"success","legacy_id":"7493719","care_recipient_id":"fa2c2e60-f9bc-432b-9d4f-fff4f053e2d6","processed_at":"2026-04-07T12:20:10.469Z"}
+{"batch_id":"batch_000019","source_id":"7493596","status":"success","legacy_id":"7493596","care_recipient_id":"ed9108b4-f998-4715-997b-fdd661816351","processed_at":"2026-04-07T12:20:10.995Z"}
+{"batch_id":"batch_000019","source_id":"7493125","status":"success","legacy_id":"7493125","care_recipient_id":"17e5797d-d0f1-4f17-b6bf-88683900c107","processed_at":"2026-04-07T12:20:11.490Z"}
+{"batch_id":"batch_000019","source_id":"7493103","status":"success","legacy_id":"7493103","care_recipient_id":"b1c3ae55-2cd8-4904-9a89-abfacfaa629e","processed_at":"2026-04-07T12:20:11.793Z"}
+{"batch_id":"batch_000019","source_id":"7493019","status":"success","legacy_id":"7493019","care_recipient_id":"8005eeb9-4839-46bc-bc76-443cc933413d","processed_at":"2026-04-07T12:20:12.160Z"}
+{"batch_id":"batch_000019","source_id":"7492768","status":"success","legacy_id":"7492768","care_recipient_id":"10540e49-b2f9-47dd-a4f8-ed81f1fea268","processed_at":"2026-04-07T12:20:12.570Z"}
+{"batch_id":"batch_000019","source_id":"7492671","status":"success","legacy_id":"7492671","care_recipient_id":"462d5654-c949-4ef3-9d7e-f331bdda7666","processed_at":"2026-04-07T12:20:12.882Z"}
+{"batch_id":"batch_000019","source_id":"7492469","status":"success","legacy_id":"7492469","care_recipient_id":"e7b01037-5182-45fa-bc8d-bdf598a83e47","processed_at":"2026-04-07T12:20:13.389Z"}
+{"batch_id":"batch_000019","source_id":"7492465","status":"success","legacy_id":"7492465","care_recipient_id":"56faf91e-9b69-4b89-8c3f-cbd6d6d0f738","processed_at":"2026-04-07T12:20:13.900Z"}
+{"batch_id":"batch_000019","source_id":"7492464","status":"success","legacy_id":"7492464","care_recipient_id":"953d2ff8-231a-428b-b505-42e618aed026","processed_at":"2026-04-07T12:20:14.381Z"}
+{"batch_id":"batch_000019","source_id":"7492462","status":"success","legacy_id":"7492462","care_recipient_id":"a4311088-575b-40eb-aab8-db641c72f024","processed_at":"2026-04-07T12:20:14.903Z"}
+{"batch_id":"batch_000019","source_id":"7492456","status":"success","legacy_id":"7492456","care_recipient_id":"f180c434-cb2a-4de0-9b13-41dd71ab7d7b","processed_at":"2026-04-07T12:20:15.430Z"}
+{"batch_id":"batch_000019","source_id":"7492430","status":"success","legacy_id":"7492430","care_recipient_id":"746a954f-fdfe-4acd-9f64-d1f5b5e4daee","processed_at":"2026-04-07T12:20:15.953Z"}
+{"batch_id":"batch_000019","source_id":"7492422","status":"success","legacy_id":"7492422","care_recipient_id":"44a16db2-16f2-4640-a4a4-4b59a654e6dd","processed_at":"2026-04-07T12:20:16.478Z"}
+{"batch_id":"batch_000019","source_id":"7492396","status":"success","legacy_id":"7492396","care_recipient_id":"99263c45-1df2-415f-93b9-d8ce016bbff5","processed_at":"2026-04-07T12:20:17.003Z"}
+{"batch_id":"batch_000019","source_id":"7492346","status":"success","legacy_id":"7492346","care_recipient_id":"d506337d-09e3-4db1-ae7e-04a68bd7c919","processed_at":"2026-04-07T12:20:17.309Z"}
+{"batch_id":"batch_000019","source_id":"7492306","status":"success","legacy_id":"7492306","care_recipient_id":"ab6ce0cd-11c0-4710-82a4-2371b6e264a2","processed_at":"2026-04-07T12:20:17.611Z"}
+{"batch_id":"batch_000019","source_id":"7492273","status":"success","legacy_id":"7492273","care_recipient_id":"b34d4a57-1a8d-415e-a494-dca8118ae6cc","processed_at":"2026-04-07T12:20:18.098Z"}
+{"batch_id":"batch_000019","source_id":"7492266","status":"success","legacy_id":"7492266","care_recipient_id":"36ed57e5-a1cb-49f0-829c-d0d2c3cb6317","processed_at":"2026-04-07T12:20:18.408Z"}
+{"batch_id":"batch_000019","source_id":"7492224","status":"success","legacy_id":"7492224","care_recipient_id":"44f912b5-aabe-4407-a3e5-c8ffd026aefd","processed_at":"2026-04-07T12:20:18.714Z"}
+{"batch_id":"batch_000019","source_id":"7492168","status":"success","legacy_id":"7492168","care_recipient_id":"01c95997-a2b7-4e54-90e3-6263b6018282","processed_at":"2026-04-07T12:20:19.095Z"}
+{"batch_id":"batch_000019","source_id":"7492151","status":"success","legacy_id":"7492151","care_recipient_id":"6877a2bd-ef44-4191-aa66-c976d9e210bd","processed_at":"2026-04-07T12:20:19.473Z"}
+{"batch_id":"batch_000019","source_id":"7492108","status":"success","legacy_id":"7492108","care_recipient_id":"a0c3f663-9472-48fa-aa20-8502f32c82bd","processed_at":"2026-04-07T12:20:19.799Z"}
+{"batch_id":"batch_000019","source_id":"7492106","status":"success","legacy_id":"7492106","care_recipient_id":"2b81f8eb-2135-49e4-91e1-c1e2f1ecc858","processed_at":"2026-04-07T12:20:20.452Z"}
+{"batch_id":"batch_000019","source_id":"7492091","status":"success","legacy_id":"7492091","care_recipient_id":"ad048c08-7438-4e78-8e21-c177a7c54d05","processed_at":"2026-04-07T12:20:20.766Z"}
+{"batch_id":"batch_000019","source_id":"7492053","status":"success","legacy_id":"7492053","care_recipient_id":"d82865c9-7c74-4357-a78e-fcedc0b15de1","processed_at":"2026-04-07T12:20:21.072Z"}
+{"batch_id":"batch_000019","source_id":"7492041","status":"success","legacy_id":"7492041","care_recipient_id":"2fbf79bc-6dbf-488d-97d3-ef85297a432f","processed_at":"2026-04-07T12:20:21.383Z"}
+{"batch_id":"batch_000019","source_id":"7492002","status":"success","legacy_id":"7492002","care_recipient_id":"bdd3e678-73df-4ae0-8c75-c6b35e0ddc30","processed_at":"2026-04-07T12:20:21.721Z"}
+{"batch_id":"batch_000019","source_id":"7491972","status":"success","legacy_id":"7491972","care_recipient_id":"78472792-094b-429b-b170-710956e1f2b7","processed_at":"2026-04-07T12:20:22.092Z"}
+{"batch_id":"batch_000019","source_id":"7491910","status":"success","legacy_id":"7491910","care_recipient_id":"586be9ef-cbc2-4ab2-84f8-82cade8ece81","processed_at":"2026-04-07T12:20:22.511Z"}
+{"batch_id":"batch_000019","source_id":"7491745","status":"success","legacy_id":"7491745","care_recipient_id":"d389c676-b50a-4131-9b22-3d4b8e8b239c","processed_at":"2026-04-07T12:20:22.824Z"}
+{"batch_id":"batch_000019","source_id":"7491706","status":"success","legacy_id":"7491706","care_recipient_id":"992a5125-e782-41ed-b593-a89c2df6b478","processed_at":"2026-04-07T12:20:23.127Z"}
+{"batch_id":"batch_000019","source_id":"7491700","status":"success","legacy_id":"7491700","care_recipient_id":"acde1a6f-db23-4962-9ba8-60b2972dcfe0","processed_at":"2026-04-07T12:20:23.526Z"}
+{"batch_id":"batch_000019","source_id":"7491462","status":"success","legacy_id":"7491462","care_recipient_id":"4d482e0c-0495-4aec-9550-0cc417658137","processed_at":"2026-04-07T12:20:23.839Z"}
+{"batch_id":"batch_000019","source_id":"7491221","status":"success","legacy_id":"7491221","care_recipient_id":"894042c9-e770-433c-aab4-e06ecc6a402e","processed_at":"2026-04-07T12:20:24.338Z"}
+{"batch_id":"batch_000019","source_id":"7491204","status":"success","legacy_id":"7491204","care_recipient_id":"8382efd6-6adb-405e-a6b1-1769c6ade719","processed_at":"2026-04-07T12:20:24.866Z"}
+{"batch_id":"batch_000019","source_id":"7491165","status":"success","legacy_id":"7491165","care_recipient_id":"befd2368-7bec-47e7-982d-54bf572fbb8d","processed_at":"2026-04-07T12:20:26.163Z"}
+{"batch_id":"batch_000019","source_id":"7491154","status":"success","legacy_id":"7491154","care_recipient_id":"6350c6fe-0c82-45de-a3bd-1937e36bf047","processed_at":"2026-04-07T12:20:26.469Z"}
+{"batch_id":"batch_000019","source_id":"7491115","status":"success","legacy_id":"7491115","care_recipient_id":"47611840-c278-4405-be74-bf4d0fa4312b","processed_at":"2026-04-07T12:20:26.804Z"}
+{"batch_id":"batch_000019","source_id":"7491062","status":"success","legacy_id":"7491062","care_recipient_id":"836d18a6-dde9-4eda-b74a-f013552999f7","processed_at":"2026-04-07T12:20:27.213Z"}
+{"batch_id":"batch_000019","source_id":"7491039","status":"success","legacy_id":"7491039","care_recipient_id":"d5e5a934-1ac9-4386-b644-4a34769add99","processed_at":"2026-04-07T12:20:27.520Z"}
+{"batch_id":"batch_000019","source_id":"7491019","status":"success","legacy_id":"7491019","care_recipient_id":"e91285a9-8724-43fb-a209-2f4aabd7203f","processed_at":"2026-04-07T12:20:27.828Z"}
+{"batch_id":"batch_000019","source_id":"7490974","status":"success","legacy_id":"7490974","care_recipient_id":"b717ad4e-6a45-4b86-b0b8-8536f0a9c532","processed_at":"2026-04-07T12:20:28.237Z"}
+{"batch_id":"batch_000019","source_id":"7490959","status":"success","legacy_id":"7490959","care_recipient_id":"019f5926-2a80-46a2-b308-043adccd0c34","processed_at":"2026-04-07T12:20:28.545Z"}
+{"batch_id":"batch_000019","source_id":"7490848","status":"success","legacy_id":"7490848","care_recipient_id":"f77a7940-77a8-44b3-bb28-6cab0adf157e","processed_at":"2026-04-07T12:20:28.953Z"}
+{"batch_id":"batch_000019","source_id":"7490834","status":"success","legacy_id":"7490834","care_recipient_id":"d04fab39-5a7d-4965-b837-afdf7c394158","processed_at":"2026-04-07T12:20:29.265Z"}
+{"batch_id":"batch_000019","source_id":"7490794","status":"success","legacy_id":"7490794","care_recipient_id":"962d8b63-856e-4d38-9bb7-77b53ac426c3","processed_at":"2026-04-07T12:20:29.671Z"}
+{"batch_id":"batch_000019","source_id":"7490690","status":"success","legacy_id":"7490690","care_recipient_id":"9c80ebbd-c59c-4f4a-a2f3-5c589d04e94c","processed_at":"2026-04-07T12:20:29.987Z"}
+{"batch_id":"batch_000019","source_id":"7490663","status":"success","legacy_id":"7490663","care_recipient_id":"61d2566b-3385-40c1-92a0-d1f14d233883","processed_at":"2026-04-07T12:20:30.387Z"}
+{"batch_id":"batch_000019","source_id":"7490540","status":"success","legacy_id":"7490540","care_recipient_id":"7897f359-7b19-4156-9cd7-868a0ab27ac2","processed_at":"2026-04-07T12:20:31.002Z"}
+{"batch_id":"batch_000019","source_id":"7490532","status":"success","legacy_id":"7490532","care_recipient_id":"278e485f-fdef-4d91-9284-497185ed6471","processed_at":"2026-04-07T12:20:31.411Z"}
+{"batch_id":"batch_000019","source_id":"7490518","status":"success","legacy_id":"7490518","care_recipient_id":"88c245e9-24a3-4962-96af-5d9614b38b39","processed_at":"2026-04-07T12:20:31.719Z"}
+{"batch_id":"batch_000019","source_id":"7490497","status":"success","legacy_id":"7490497","care_recipient_id":"50476ba3-38b0-4fa6-bfeb-8c473d93f96f","processed_at":"2026-04-07T12:20:32.022Z"}
+{"batch_id":"batch_000019","source_id":"7490440","status":"success","legacy_id":"7490440","care_recipient_id":"e35e2c61-3ac8-4aae-aa75-eaaf5281abaa","processed_at":"2026-04-07T12:20:32.327Z"}
+{"batch_id":"batch_000019","source_id":"7490413","status":"success","legacy_id":"7490413","care_recipient_id":"ed4dd6d2-cfcd-48df-8dda-853bded43cb3","processed_at":"2026-04-07T12:20:32.742Z"}
+{"batch_id":"batch_000019","source_id":"7490406","status":"success","legacy_id":"7490406","care_recipient_id":"eec4f997-c33e-4484-a9f4-82ef803708be","processed_at":"2026-04-07T12:20:33.152Z"}
+{"batch_id":"batch_000019","source_id":"7490312","status":"success","legacy_id":"7490312","care_recipient_id":"cfbf0145-3f9d-4f3e-b500-0ecbf5947b5b","processed_at":"2026-04-07T12:20:33.561Z"}
+{"batch_id":"batch_000019","source_id":"7490260","status":"success","legacy_id":"7490260","care_recipient_id":"32886e1e-1963-4a18-8239-8ece097fd911","processed_at":"2026-04-07T12:20:33.870Z"}
+{"batch_id":"batch_000019","source_id":"7490137","status":"success","legacy_id":"7490137","care_recipient_id":"a4d3c703-d380-4de1-b40b-e883cd01e286","processed_at":"2026-04-07T12:20:34.327Z"}
+{"batch_id":"batch_000019","source_id":"7490124","status":"success","legacy_id":"7490124","care_recipient_id":"b0f8ba87-74f0-4f16-a686-7b8857f5ce54","processed_at":"2026-04-07T12:20:34.648Z"}
+{"batch_id":"batch_000019","source_id":"7490098","status":"success","legacy_id":"7490098","care_recipient_id":"9182de0b-8300-4dcc-b531-10ee9e0cbdc7","processed_at":"2026-04-07T12:20:34.995Z"}
+{"batch_id":"batch_000019","source_id":"7489996","status":"success","legacy_id":"7489996","care_recipient_id":"23407e81-7eab-42b9-9703-42c14636a702","processed_at":"2026-04-07T12:20:35.406Z"}
+{"batch_id":"batch_000019","source_id":"7489833","status":"success","legacy_id":"7489833","care_recipient_id":"1021b81b-aedf-484a-bac2-a773ccae022c","processed_at":"2026-04-07T12:20:35.720Z"}
+{"batch_id":"batch_000019","source_id":"7489830","status":"success","legacy_id":"7489830","care_recipient_id":"028b14a8-b026-4f49-881c-d15c648d097b","processed_at":"2026-04-07T12:20:36.122Z"}
+{"batch_id":"batch_000019","source_id":"7489741","status":"success","legacy_id":"7489741","care_recipient_id":"0a7646af-29de-46a7-8a72-5393b4b86811","processed_at":"2026-04-07T12:20:36.442Z"}
+{"batch_id":"batch_000019","source_id":"7489737","status":"success","legacy_id":"7489737","care_recipient_id":"ca3016a7-2ebe-454d-abd9-a6be042c5795","processed_at":"2026-04-07T12:20:36.838Z"}
+{"batch_id":"batch_000019","source_id":"7489708","status":"success","legacy_id":"7489708","care_recipient_id":"6a8d856c-228d-449a-aca8-656b127b24bb","processed_at":"2026-04-07T12:20:37.350Z"}
+{"batch_id":"batch_000019","source_id":"7489701","status":"success","legacy_id":"7489701","care_recipient_id":"3a84fc3f-7418-46de-aeac-adfb355ff26c","processed_at":"2026-04-07T12:20:37.667Z"}
+{"batch_id":"batch_000019","source_id":"7489621","status":"success","legacy_id":"7489621","care_recipient_id":"f5fe1b05-9fbf-4c6a-97b3-dee7d78e155e","processed_at":"2026-04-07T12:20:38.067Z"}
+{"batch_id":"batch_000019","source_id":"7489543","status":"success","legacy_id":"7489543","care_recipient_id":"9deadbfe-5b65-4f9e-bdd0-ca960b4aeb10","processed_at":"2026-04-07T12:20:38.579Z"}
+{"batch_id":"batch_000019","source_id":"7489540","status":"success","legacy_id":"7489540","care_recipient_id":"350e1a9c-7912-41e9-ae85-dd1b5a60937f","processed_at":"2026-04-07T12:20:39.091Z"}
+{"batch_id":"batch_000019","source_id":"7489536","status":"success","legacy_id":"7489536","care_recipient_id":"12fbef7a-e27c-46c7-ab2a-e9f032baddb1","processed_at":"2026-04-07T12:20:39.403Z"}
+{"batch_id":"batch_000019","source_id":"7489530","status":"success","legacy_id":"7489530","care_recipient_id":"e2dd19d4-02f0-4ac9-935a-d12329e1ea82","processed_at":"2026-04-07T12:20:39.714Z"}
+{"batch_id":"batch_000019","source_id":"7489524","status":"success","legacy_id":"7489524","care_recipient_id":"82236450-9383-4c47-852f-dc845ac77540","processed_at":"2026-04-07T12:20:40.115Z"}
+{"batch_id":"batch_000019","source_id":"7489494","status":"success","legacy_id":"7489494","care_recipient_id":"e31f2d95-8e89-4eaf-804c-4e06acb1d02b","processed_at":"2026-04-07T12:20:40.627Z"}
+{"batch_id":"batch_000019","source_id":"7489465","status":"success","legacy_id":"7489465","care_recipient_id":"ced2e02d-0291-4e94-8fc5-39bb477af445","processed_at":"2026-04-07T12:20:41.135Z"}
+{"batch_id":"batch_000019","source_id":"7489420","status":"success","legacy_id":"7489420","care_recipient_id":"7fcad0ec-5379-44c1-8ddc-7c7c786e1a54","processed_at":"2026-04-07T12:20:41.734Z"}
+{"batch_id":"batch_000019","source_id":"7489304","status":"success","legacy_id":"7489304","care_recipient_id":"dbc79b7a-87c2-459d-adb0-7b93efc6fc1d","processed_at":"2026-04-07T12:20:42.044Z"}
+{"batch_id":"batch_000019","source_id":"7489301","status":"success","legacy_id":"7489301","care_recipient_id":"637740e4-417d-4c66-ad0d-6708c6b888cc","processed_at":"2026-04-07T12:20:42.357Z"}
+{"batch_id":"batch_000019","source_id":"7489198","status":"success","legacy_id":"7489198","care_recipient_id":"fe1d2d13-9da5-420b-a3bb-df1705d5370f","processed_at":"2026-04-07T12:20:42.777Z"}
+{"batch_id":"batch_000019","source_id":"7489166","status":"success","legacy_id":"7489166","care_recipient_id":"62288e59-d7b6-4805-8e61-a2b5865ef100","processed_at":"2026-04-07T12:20:43.085Z"}
+{"batch_id":"batch_000019","source_id":"7489071","status":"success","legacy_id":"7489071","care_recipient_id":"10807ee0-1380-459f-8790-843352e208e6","processed_at":"2026-04-07T12:20:43.392Z"}
+{"batch_id":"batch_000019","source_id":"7489031","status":"success","legacy_id":"7489031","care_recipient_id":"30c965e8-3b7c-460e-9833-c550faf4fcb4","processed_at":"2026-04-07T12:20:43.802Z"}
+{"batch_id":"batch_000019","source_id":"7488977","status":"success","legacy_id":"7488977","care_recipient_id":"e9407437-f1cb-4b50-bdd1-213dcc566f59","processed_at":"2026-04-07T12:20:44.111Z"}
+{"batch_id":"batch_000019","source_id":"7488869","status":"success","legacy_id":"7488869","care_recipient_id":"618aec93-c969-4ca7-adf9-bd9dae3fe23a","processed_at":"2026-04-07T12:20:44.520Z"}
+{"batch_id":"batch_000019","source_id":"7488619","status":"success","legacy_id":"7488619","care_recipient_id":"f39007e9-4e5e-430d-a1f9-b42f1b33d13c","processed_at":"2026-04-07T12:20:44.828Z"}
+{"batch_id":"batch_000019","source_id":"7488508","status":"success","legacy_id":"7488508","care_recipient_id":"5341a0c3-8ec2-49af-9af3-91d8847a4800","processed_at":"2026-04-07T12:20:45.337Z"}
+{"batch_id":"batch_000019","source_id":"7488492","status":"success","legacy_id":"7488492","care_recipient_id":"3b7dce55-b698-41e2-8a2a-6af8cf6c2a32","processed_at":"2026-04-07T12:20:45.641Z"}
+{"batch_id":"batch_000019","source_id":"7488423","status":"success","legacy_id":"7488423","care_recipient_id":"0595bba5-6bbd-499f-a821-e17e7084ad35","processed_at":"2026-04-07T12:20:45.956Z"}
+{"batch_id":"batch_000019","source_id":"7488338","status":"success","legacy_id":"7488338","care_recipient_id":"4f79813f-aa02-4f18-9f4e-4cf30d25642e","processed_at":"2026-04-07T12:20:46.361Z"}
+{"batch_id":"batch_000019","source_id":"7488118","status":"success","legacy_id":"7488118","care_recipient_id":"042e8cac-c8bd-47ba-bbb2-4ddd78bdd78a","processed_at":"2026-04-07T12:20:46.679Z"}
+{"batch_id":"batch_000019","source_id":"7488081","status":"success","legacy_id":"7488081","care_recipient_id":"58b605b6-5ea8-4c52-824c-ac2ae24a9042","processed_at":"2026-04-07T12:20:46.997Z"}
+{"batch_id":"batch_000019","source_id":"7488045","status":"success","legacy_id":"7488045","care_recipient_id":"247e33e6-adc2-48ed-b7ca-5c82ed480dd3","processed_at":"2026-04-07T12:20:47.300Z"}
+{"batch_id":"batch_000019","source_id":"7488036","status":"success","legacy_id":"7488036","care_recipient_id":"30bcf2f3-86c0-4219-bccb-b93a73fe8132","processed_at":"2026-04-07T12:20:47.607Z"}
+{"batch_id":"batch_000019","source_id":"7488016","status":"success","legacy_id":"7488016","care_recipient_id":"318b0857-77cf-42d5-81fa-724905902306","processed_at":"2026-04-07T12:20:47.937Z"}
+{"batch_id":"batch_000019","source_id":"7487978","status":"success","legacy_id":"7487978","care_recipient_id":"0b7ab8a4-3360-4eae-9665-2dab50d13b06","processed_at":"2026-04-07T12:20:48.308Z"}
+{"batch_id":"batch_000019","source_id":"7487813","status":"success","legacy_id":"7487813","care_recipient_id":"71b328aa-8a0f-4163-9d1b-6bcc087a2117","processed_at":"2026-04-07T12:20:48.718Z"}
+{"batch_id":"batch_000019","source_id":"7487811","status":"success","legacy_id":"7487811","care_recipient_id":"0160afad-d7b2-4074-b113-ea7da2b76496","processed_at":"2026-04-07T12:20:49.029Z"}
+{"batch_id":"batch_000019","source_id":"7487782","status":"success","legacy_id":"7487782","care_recipient_id":"775aa14a-e7c0-4e25-b932-98e18c8bbb16","processed_at":"2026-04-07T12:20:49.340Z"}
+{"batch_id":"batch_000019","source_id":"7487769","status":"success","legacy_id":"7487769","care_recipient_id":"6f42b4cb-3a69-4831-8716-8589c78817cc","processed_at":"2026-04-07T12:20:49.653Z"}
+{"batch_id":"batch_000019","source_id":"7487755","status":"success","legacy_id":"7487755","care_recipient_id":"f7ce93f5-2efe-4459-a21e-72562c619bd7","processed_at":"2026-04-07T12:20:50.033Z"}
+{"batch_id":"batch_000019","source_id":"7487748","status":"success","legacy_id":"7487748","care_recipient_id":"64c4dc6b-c120-4cec-8743-fd8a4605cd02","processed_at":"2026-04-07T12:20:50.354Z"}
+{"batch_id":"batch_000019","source_id":"7487737","status":"success","legacy_id":"7487737","care_recipient_id":"5659a598-b962-4cff-9ace-543362b08418","processed_at":"2026-04-07T12:20:50.662Z"}
+{"batch_id":"batch_000019","source_id":"7487676","status":"success","legacy_id":"7487676","care_recipient_id":"8fa165cb-e71c-4e52-8d51-2c8ded8a45e9","processed_at":"2026-04-07T12:20:50.973Z"}
+{"batch_id":"batch_000019","source_id":"7487535","status":"success","legacy_id":"7487535","care_recipient_id":"7b120fee-c262-4fba-84b2-a6cb4e09a656","processed_at":"2026-04-07T12:20:51.298Z"}
+{"batch_id":"batch_000019","source_id":"7487519","status":"success","legacy_id":"7487519","care_recipient_id":"84d9e9eb-54ab-4fef-ad28-3bcacda35ff6","processed_at":"2026-04-07T12:20:51.605Z"}
+{"batch_id":"batch_000019","source_id":"7487440","status":"success","legacy_id":"7487440","care_recipient_id":"a7e0a7d3-2ce4-4296-87a7-94246de09eee","processed_at":"2026-04-07T12:20:52.304Z"}
+{"batch_id":"batch_000019","source_id":"7487421","status":"success","legacy_id":"7487421","care_recipient_id":"702a0374-35cd-452b-866f-c23e87c795e8","processed_at":"2026-04-07T12:20:52.689Z"}
+{"batch_id":"batch_000019","source_id":"7487308","status":"success","legacy_id":"7487308","care_recipient_id":"8b7a2bab-8ecf-459f-ad61-f73de3bcbe0d","processed_at":"2026-04-07T12:20:53.018Z"}
+{"batch_id":"batch_000019","source_id":"7487292","status":"success","legacy_id":"7487292","care_recipient_id":"10894865-d2ab-4493-9a88-13311a01aa5a","processed_at":"2026-04-07T12:20:53.327Z"}
+{"batch_id":"batch_000019","source_id":"7487172","status":"success","legacy_id":"7487172","care_recipient_id":"e3767f7a-d05b-49e5-841c-c1a014f5fd34","processed_at":"2026-04-07T12:20:53.699Z"}
+{"batch_id":"batch_000019","source_id":"7487166","status":"success","legacy_id":"7487166","care_recipient_id":"66453511-3321-4c39-82a5-fdd76dd00297","processed_at":"2026-04-07T12:20:54.008Z"}
+{"batch_id":"batch_000019","source_id":"7487055","status":"success","legacy_id":"7487055","care_recipient_id":"5b7a9bb2-2ffc-4aa4-af2e-d85322d868b1","processed_at":"2026-04-07T12:20:54.324Z"}
+{"batch_id":"batch_000019","source_id":"7486922","status":"success","legacy_id":"7486922","care_recipient_id":"2d3aefb4-2046-4d95-9efa-a4c6e6cb9b6d","processed_at":"2026-04-07T12:20:54.639Z"}
+{"batch_id":"batch_000019","source_id":"7486796","status":"success","legacy_id":"7486796","care_recipient_id":"c5648387-57df-4233-ad11-1444699545d5","processed_at":"2026-04-07T12:20:54.967Z"}
+{"batch_id":"batch_000019","source_id":"7486788","status":"success","legacy_id":"7486788","care_recipient_id":"7a32be4e-fd68-409c-aa65-017f924ad3ac","processed_at":"2026-04-07T12:20:55.278Z"}
+{"batch_id":"batch_000019","source_id":"7486576","status":"success","legacy_id":"7486576","care_recipient_id":"595aea65-e6a8-478f-a605-f1887ff74ae6","processed_at":"2026-04-07T12:20:55.680Z"}
+{"batch_id":"batch_000019","source_id":"7486431","status":"success","legacy_id":"7486431","care_recipient_id":"ecbeaa08-a48f-4b1c-bea3-b4dce8fa63e7","processed_at":"2026-04-07T12:20:56.002Z"}
+{"batch_id":"batch_000019","source_id":"7486392","status":"success","legacy_id":"7486392","care_recipient_id":"12b23aa8-035f-48e1-9c97-a46b4475ddd7","processed_at":"2026-04-07T12:20:56.397Z"}
+{"batch_id":"batch_000019","source_id":"7486213","status":"success","legacy_id":"7486213","care_recipient_id":"a41e88a6-8f0a-4b4f-813a-0c217cdbad48","processed_at":"2026-04-07T12:20:56.705Z"}
+{"batch_id":"batch_000019","source_id":"7486020","status":"success","legacy_id":"7486020","care_recipient_id":"6586a164-02ba-469c-9d75-54a4dbaa2b25","processed_at":"2026-04-07T12:20:57.114Z"}
+{"batch_id":"batch_000019","source_id":"7485987","status":"success","legacy_id":"7485987","care_recipient_id":"cfc0606c-2420-4e37-9a5e-6b159b466bec","processed_at":"2026-04-07T12:20:57.425Z"}
+{"batch_id":"batch_000019","source_id":"7485954","status":"success","legacy_id":"7485954","care_recipient_id":"d62fc597-073b-47ec-aefe-591ad0709304","processed_at":"2026-04-07T12:20:57.731Z"}
+{"batch_id":"batch_000019","source_id":"7485941","status":"success","legacy_id":"7485941","care_recipient_id":"d507b85a-dcb0-4703-8cbd-9b94797e684b","processed_at":"2026-04-07T12:20:58.044Z"}
+{"batch_id":"batch_000019","source_id":"7485936","status":"success","legacy_id":"7485936","care_recipient_id":"55838312-7e4f-4a85-8c42-8aeec204eb5f","processed_at":"2026-04-07T12:20:58.445Z"}
+{"batch_id":"batch_000019","source_id":"7485868","status":"success","legacy_id":"7485868","care_recipient_id":"d111dc2c-c966-467d-bd5d-1c986b274558","processed_at":"2026-04-07T12:20:58.854Z"}
+{"batch_id":"batch_000019","source_id":"7485850","status":"success","legacy_id":"7485850","care_recipient_id":"8f43c20a-e3ae-4bf1-9b0a-77ab6fa86db6","processed_at":"2026-04-07T12:20:59.264Z"}
+{"batch_id":"batch_000019","source_id":"7485743","status":"success","legacy_id":"7485743","care_recipient_id":"1296ea9b-c740-45b6-8f82-a2b76672533c","processed_at":"2026-04-07T12:20:59.570Z"}
+{"batch_id":"batch_000019","source_id":"7485725","status":"success","legacy_id":"7485725","care_recipient_id":"7fc144dd-d268-452a-8799-24521f09e05e","processed_at":"2026-04-07T12:20:59.885Z"}
+{"batch_id":"batch_000019","source_id":"7485717","status":"success","legacy_id":"7485717","care_recipient_id":"4a514346-c7aa-405c-8312-a95949546ea8","processed_at":"2026-04-07T12:21:00.188Z"}
+{"batch_id":"batch_000019","source_id":"7485649","status":"success","legacy_id":"7485649","care_recipient_id":"134c55e6-c99a-4efd-9a0b-fdbd9459f12f","processed_at":"2026-04-07T12:21:00.595Z"}
+{"batch_id":"batch_000019","source_id":"7485604","status":"success","legacy_id":"7485604","care_recipient_id":"3e50089e-8dec-4109-ab9c-eb954130c09c","processed_at":"2026-04-07T12:21:00.905Z"}
+{"batch_id":"batch_000019","source_id":"7485558","status":"success","legacy_id":"7485558","care_recipient_id":"d832e607-e8a3-4419-88eb-00e85a9724c1","processed_at":"2026-04-07T12:21:01.223Z"}
+{"batch_id":"batch_000019","source_id":"7485509","status":"success","legacy_id":"7485509","care_recipient_id":"8d7d79b1-6c03-4546-9a6b-a3cbd2818a91","processed_at":"2026-04-07T12:21:01.620Z"}
+{"batch_id":"batch_000019","source_id":"7485484","status":"success","legacy_id":"7485484","care_recipient_id":"d720a5e6-00a3-4381-aa25-5d856d4dfef0","processed_at":"2026-04-07T12:21:01.936Z"}
+{"batch_id":"batch_000019","source_id":"7485011","status":"success","legacy_id":"7485011","care_recipient_id":"5e703cce-85a3-49a4-87b8-091e9e746b33","processed_at":"2026-04-07T12:21:02.243Z"}
+{"batch_id":"batch_000019","source_id":"7485002","status":"success","legacy_id":"7485002","care_recipient_id":"f0d91f5e-5404-434c-bea8-d2045ac30b10","processed_at":"2026-04-07T12:21:02.920Z"}
+{"batch_id":"batch_000019","source_id":"7484981","status":"success","legacy_id":"7484981","care_recipient_id":"9e182375-4b9e-49ac-842f-dac749020dea","processed_at":"2026-04-07T12:21:03.229Z"}
+{"batch_id":"batch_000019","source_id":"7484913","status":"success","legacy_id":"7484913","care_recipient_id":"50aeb77a-e84a-49eb-bc5d-d6d48c50723e","processed_at":"2026-04-07T12:21:03.565Z"}
+{"batch_id":"batch_000019","source_id":"7484885","status":"success","legacy_id":"7484885","care_recipient_id":"199f37d5-3dd1-4fa5-b6de-7ee9daab1ab4","processed_at":"2026-04-07T12:21:03.875Z"}
+{"batch_id":"batch_000019","source_id":"7484849","status":"success","legacy_id":"7484849","care_recipient_id":"ebd3afce-d9c9-4693-afc6-167e6e43287a","processed_at":"2026-04-07T12:21:04.272Z"}
+{"batch_id":"batch_000019","source_id":"7484677","status":"success","legacy_id":"7484677","care_recipient_id":"d04c21ec-e532-4fb2-ac64-3591b8dd3757","processed_at":"2026-04-07T12:21:04.713Z"}
+{"batch_id":"batch_000019","source_id":"7484676","status":"success","legacy_id":"7484676","care_recipient_id":"d04c21ec-e532-4fb2-ac64-3591b8dd3757","processed_at":"2026-04-07T12:21:05.101Z"}
+{"batch_id":"batch_000019","source_id":"7484394","status":"success","legacy_id":"7484394","care_recipient_id":"2acac118-280a-41c1-82dd-b4a5287ea442","processed_at":"2026-04-07T12:21:05.587Z"}
+{"batch_id":"batch_000019","source_id":"7484290","status":"success","legacy_id":"7484290","care_recipient_id":"0ad831f5-27d8-43b2-8d4f-80109cc49755","processed_at":"2026-04-07T12:21:06.125Z"}
+{"batch_id":"batch_000019","source_id":"7483749","status":"success","legacy_id":"7483749","care_recipient_id":"b0960de8-0251-41ea-b46f-ffc3f21b1325","processed_at":"2026-04-07T12:21:06.597Z"}
+{"batch_id":"batch_000019","source_id":"7483734","status":"success","legacy_id":"7483734","care_recipient_id":"eef93ce4-d90f-418f-8b9d-e465f95da649","processed_at":"2026-04-07T12:21:07.125Z"}
+{"batch_id":"batch_000019","source_id":"7483713","status":"success","legacy_id":"7483713","care_recipient_id":"f30b007f-a75e-42ff-a97f-c935582b112e","processed_at":"2026-04-07T12:21:07.620Z"}
+{"batch_id":"batch_000019","source_id":"7483691","status":"success","legacy_id":"7483691","care_recipient_id":"3b4eaef5-880c-456c-b8f5-ed83a76ff980","processed_at":"2026-04-07T12:21:08.045Z"}
+{"batch_id":"batch_000019","source_id":"7483684","status":"success","legacy_id":"7483684","care_recipient_id":"8c6b0ecf-7c2e-4269-81dc-a9e303be1ba8","processed_at":"2026-04-07T12:21:08.479Z"}
+{"batch_id":"batch_000019","source_id":"7483498","status":"success","legacy_id":"7483498","care_recipient_id":"26121f95-0a6c-4cc1-9d59-db11c9cc3168","processed_at":"2026-04-07T12:21:08.814Z"}
+{"batch_id":"batch_000019","source_id":"7483373","status":"success","legacy_id":"7483373","care_recipient_id":"94cc7eae-7389-4fa6-912a-3c6ab29ef762","processed_at":"2026-04-07T12:21:09.299Z"}
+{"batch_id":"batch_000019","source_id":"7483109","status":"success","legacy_id":"7483109","care_recipient_id":"42582eea-19e5-48d4-91c7-36b9ec9e6d19","processed_at":"2026-04-07T12:21:09.612Z"}
+{"batch_id":"batch_000019","source_id":"7482973","status":"success","legacy_id":"7482973","care_recipient_id":"212f9b8d-3a42-4880-98f9-07ed019f39ea","processed_at":"2026-04-07T12:21:10.018Z"}
+{"batch_id":"batch_000019","source_id":"7482759","status":"success","legacy_id":"7482759","care_recipient_id":"7cdf7a02-ba7d-443a-b0b3-311d6ae30187","processed_at":"2026-04-07T12:21:10.340Z"}
+{"batch_id":"batch_000019","source_id":"7482551","status":"success","legacy_id":"7482551","care_recipient_id":"5980c1e4-3e5d-44d5-bde6-f2898e5fa06c","processed_at":"2026-04-07T12:21:10.650Z"}
+{"batch_id":"batch_000019","source_id":"7482425","status":"success","legacy_id":"7482425","care_recipient_id":"83eefe5d-e40d-4e9d-87ac-c2189be67bfa","processed_at":"2026-04-07T12:21:11.041Z"}
+{"batch_id":"batch_000019","source_id":"7482025","status":"success","legacy_id":"7482025","care_recipient_id":"840bcab7-b21b-440d-b30a-5b344cca2716","processed_at":"2026-04-07T12:21:11.554Z"}
+{"batch_id":"batch_000019","source_id":"7481895","status":"success","legacy_id":"7481895","care_recipient_id":"4d196e77-4f79-40c9-b021-a6b9bc0a1308","processed_at":"2026-04-07T12:21:11.962Z"}
+{"batch_id":"batch_000019","source_id":"7481852","status":"success","legacy_id":"7481852","care_recipient_id":"4aeb5db3-ae75-4f0b-9601-ed1e646d170f","processed_at":"2026-04-07T12:21:12.372Z"}
+{"batch_id":"batch_000019","source_id":"7481818","status":"success","legacy_id":"7481818","care_recipient_id":"efc0f660-870b-42fc-9f38-ca2abc800631","processed_at":"2026-04-07T12:21:12.681Z"}
+{"batch_id":"batch_000019","source_id":"7481650","status":"success","legacy_id":"7481650","care_recipient_id":"ae86bf7b-556c-4e2c-a6c2-c051aa7769e4","processed_at":"2026-04-07T12:21:13.293Z"}
+{"batch_id":"batch_000019","source_id":"7481449","status":"success","legacy_id":"7481449","care_recipient_id":"7cb5dba5-e3b5-4f0c-bb11-65ee79f17791","processed_at":"2026-04-07T12:21:13.627Z"}
+{"batch_id":"batch_000019","source_id":"7481446","status":"success","legacy_id":"7481446","care_recipient_id":"567d0d1e-9888-41a2-a299-3deb52724bf0","processed_at":"2026-04-07T12:21:14.011Z"}
+{"batch_id":"batch_000019","source_id":"7481439","status":"success","legacy_id":"7481439","care_recipient_id":"5cf4fa5c-7db1-44ae-b067-a9c3a2418d43","processed_at":"2026-04-07T12:21:14.521Z"}
+{"batch_id":"batch_000019","source_id":"7481430","status":"success","legacy_id":"7481430","care_recipient_id":"f676e685-8647-490b-95d9-3aaaa9ffe185","processed_at":"2026-04-07T12:21:14.967Z"}
+{"batch_id":"batch_000019","source_id":"7481428","status":"success","legacy_id":"7481428","care_recipient_id":"95aea06f-738d-4542-b788-49ec592fb182","processed_at":"2026-04-07T12:21:15.404Z"}
+{"batch_id":"batch_000019","source_id":"7481418","status":"success","legacy_id":"7481418","care_recipient_id":"93ab0410-11d3-4e55-b392-c3e648ec8a28","processed_at":"2026-04-07T12:21:15.818Z"}
+{"batch_id":"batch_000019","source_id":"7481414","status":"success","legacy_id":"7481414","care_recipient_id":"cda3324e-4b98-497c-9c08-246d7799af75","processed_at":"2026-04-07T12:21:16.248Z"}
+{"batch_id":"batch_000019","source_id":"7481359","status":"success","legacy_id":"7481359","care_recipient_id":"3e812725-68ff-4e15-8385-485637663910","processed_at":"2026-04-07T12:21:16.669Z"}
+{"batch_id":"batch_000019","source_id":"7481269","status":"success","legacy_id":"7481269","care_recipient_id":"7591cf16-d5ea-4269-ae4f-1ae49f6dffb8","processed_at":"2026-04-07T12:21:17.065Z"}
+{"batch_id":"batch_000019","source_id":"7481174","status":"success","legacy_id":"7481174","care_recipient_id":"5f1cce6a-660d-4391-b9a9-e52009776f7f","processed_at":"2026-04-07T12:21:17.492Z"}
+{"batch_id":"batch_000019","source_id":"7481171","status":"success","legacy_id":"7481171","care_recipient_id":"fb207b4a-d715-4e07-bd21-3c274fee7591","processed_at":"2026-04-07T12:21:17.910Z"}
+{"batch_id":"batch_000019","source_id":"7481086","status":"success","legacy_id":"7481086","care_recipient_id":"346c3268-35f3-4f25-a484-761040944d40","processed_at":"2026-04-07T12:21:18.345Z"}
+{"batch_id":"batch_000019","source_id":"7481040","status":"success","legacy_id":"7481040","care_recipient_id":"325b7073-ccb7-40da-81be-c14edcaad687","processed_at":"2026-04-07T12:21:18.721Z"}
+{"batch_id":"batch_000019","source_id":"7480869","status":"success","legacy_id":"7480869","care_recipient_id":"89620e67-9e3b-4712-9550-d018c67c5e84","processed_at":"2026-04-07T12:21:19.163Z"}
+{"batch_id":"batch_000019","source_id":"7480844","status":"success","legacy_id":"7480844","care_recipient_id":"299ea871-1351-46a8-a296-29c8725c2a70","processed_at":"2026-04-07T12:21:19.642Z"}
+{"batch_id":"batch_000019","source_id":"7480827","status":"success","legacy_id":"7480827","care_recipient_id":"93d07f0c-af27-4b0d-ac1b-3b3fd5194723","processed_at":"2026-04-07T12:21:19.951Z"}
+{"batch_id":"batch_000019","source_id":"7480815","status":"success","legacy_id":"7480815","care_recipient_id":"605be643-51f1-40a7-86e9-6436e607ec2d","processed_at":"2026-04-07T12:21:20.445Z"}
+{"batch_id":"batch_000019","source_id":"7480634","status":"success","legacy_id":"7480634","care_recipient_id":"ab541682-5b97-436f-8df0-8e687393470c","processed_at":"2026-04-07T12:21:20.755Z"}
+{"batch_id":"batch_000019","source_id":"7480500","status":"success","legacy_id":"7480500","care_recipient_id":"0fb08fa9-38c1-4525-95ff-a8d014a77457","processed_at":"2026-04-07T12:21:21.071Z"}
+{"batch_id":"batch_000019","source_id":"7480427","status":"success","legacy_id":"7480427","care_recipient_id":"ee1e2655-b624-475f-9498-29efbf8c25ff","processed_at":"2026-04-07T12:21:21.590Z"}
+{"batch_id":"batch_000019","source_id":"7480171","status":"success","legacy_id":"7480171","care_recipient_id":"b1d991a2-9fe5-4219-9717-708979776641","processed_at":"2026-04-07T12:21:22.102Z"}
+{"batch_id":"batch_000019","source_id":"7480131","status":"success","legacy_id":"7480131","care_recipient_id":"212912e4-050f-414b-9266-8f4a96a97257","processed_at":"2026-04-07T12:21:22.614Z"}
+{"batch_id":"batch_000019","source_id":"7479992","status":"success","legacy_id":"7479992","care_recipient_id":"b8c8c119-527a-437e-b0be-b850799d7054","processed_at":"2026-04-07T12:21:23.125Z"}
+{"batch_id":"batch_000019","source_id":"7479947","status":"success","legacy_id":"7479947","care_recipient_id":"4a7fa1cb-8530-4046-b7b4-d34b7e9503bb","processed_at":"2026-04-07T12:21:23.741Z"}
+{"batch_id":"batch_000019","source_id":"7479909","status":"success","legacy_id":"7479909","care_recipient_id":"5c42515d-061e-4ff2-8251-0cd40f00266a","processed_at":"2026-04-07T12:21:24.110Z"}
+{"batch_id":"batch_000019","source_id":"7479853","status":"success","legacy_id":"7479853","care_recipient_id":"d26dba53-b1c0-445e-9d5e-ab44362f0b10","processed_at":"2026-04-07T12:21:24.638Z"}
+{"batch_id":"batch_000019","source_id":"7479834","status":"success","legacy_id":"7479834","care_recipient_id":"dbc6a1c0-1c47-466e-b3ed-6fd6c45a38be","processed_at":"2026-04-07T12:21:25.072Z"}
+{"batch_id":"batch_000019","source_id":"7479757","status":"success","legacy_id":"7479757","care_recipient_id":"a1fbc07f-4f0b-42b3-a83a-305cabf23fe0","processed_at":"2026-04-07T12:21:25.689Z"}
+{"batch_id":"batch_000019","source_id":"7479640","status":"success","legacy_id":"7479640","care_recipient_id":"811b2789-a995-4f4b-aa26-ef9cf9465bf4","processed_at":"2026-04-07T12:21:26.207Z"}
+{"batch_id":"batch_000019","source_id":"7479045","status":"success","legacy_id":"7479045","care_recipient_id":"ee904443-b07c-4822-8fdc-36c75ba53f15","processed_at":"2026-04-07T12:21:26.735Z"}
+{"batch_id":"batch_000019","source_id":"7479029","status":"success","legacy_id":"7479029","care_recipient_id":"8099b217-8113-4f95-91ab-6a1aef1aed3d","processed_at":"2026-04-07T12:21:27.255Z"}
+{"batch_id":"batch_000019","source_id":"7479011","status":"success","legacy_id":"7479011","care_recipient_id":"6feb5fcf-842f-42df-894d-bccb57685cee","processed_at":"2026-04-07T12:21:27.667Z"}
+{"batch_id":"batch_000019","source_id":"7478987","status":"success","legacy_id":"7478987","care_recipient_id":"6f9fee40-19ef-4961-8c71-482c6bca6c45","processed_at":"2026-04-07T12:21:28.143Z"}
+{"batch_id":"batch_000019","source_id":"7478985","status":"success","legacy_id":"7478985","care_recipient_id":"c2d7a85e-229c-45de-96d8-67a41f8a3c82","processed_at":"2026-04-07T12:21:28.553Z"}
+{"batch_id":"batch_000019","source_id":"7478959","status":"success","legacy_id":"7478959","care_recipient_id":"7591a5f8-5401-4c20-b593-22e0fb69e3e5","processed_at":"2026-04-07T12:21:28.859Z"}
+{"batch_id":"batch_000019","source_id":"7478933","status":"success","legacy_id":"7478933","care_recipient_id":"080f0408-62a0-4150-86c0-a4e23159fa66","processed_at":"2026-04-07T12:21:29.473Z"}
+{"batch_id":"batch_000019","source_id":"7478921","status":"success","legacy_id":"7478921","care_recipient_id":"1339ad81-91b0-47d0-ac25-759ada97a6c3","processed_at":"2026-04-07T12:21:29.937Z"}
+{"batch_id":"batch_000022","source_id":"7478866","status":"success","legacy_id":"7478866","care_recipient_id":"d05113ff-a7b4-4ab9-bdef-09870ad29f4f","processed_at":"2026-04-08T05:18:00.472Z"}
+{"batch_id":"batch_000022","source_id":"7478684","status":"success","legacy_id":"7478684","care_recipient_id":"0bb6fe2b-fcec-45bf-82a3-db7747b25321","processed_at":"2026-04-08T05:18:00.820Z"}
+{"batch_id":"batch_000022","source_id":"7478605","status":"success","legacy_id":"7478605","care_recipient_id":"a6611956-93b3-4bea-a5e4-e870371f955a","processed_at":"2026-04-08T05:18:01.103Z"}
+{"batch_id":"batch_000022","source_id":"7478598","status":"success","legacy_id":"7478598","care_recipient_id":"b824d182-35ef-4086-85b8-e98590396c30","processed_at":"2026-04-08T05:18:01.393Z"}
+{"batch_id":"batch_000022","source_id":"7478575","status":"success","legacy_id":"7478575","care_recipient_id":"0a182238-9555-477d-bbc8-b54b642cfa7f","processed_at":"2026-04-08T05:18:01.701Z"}
+{"batch_id":"batch_000022","source_id":"7478564","status":"success","legacy_id":"7478564","care_recipient_id":"1133a664-32b6-41cf-89be-d5b02914354b","processed_at":"2026-04-08T05:18:01.990Z"}
+{"batch_id":"batch_000022","source_id":"7478544","status":"success","legacy_id":"7478544","care_recipient_id":"c67dc9c7-6795-4fb3-a7db-a9b332d7578b","processed_at":"2026-04-08T05:18:02.418Z"}
+{"batch_id":"batch_000022","source_id":"7478344","status":"success","legacy_id":"7478344","care_recipient_id":"e65724bf-fde9-4db4-9c61-bacf43130f95","processed_at":"2026-04-08T05:18:02.726Z"}
+{"batch_id":"batch_000022","source_id":"7478329","status":"success","legacy_id":"7478329","care_recipient_id":"22a1fd9e-e428-4658-8a2d-2cf662f73a92","processed_at":"2026-04-08T05:18:03.006Z"}
+{"batch_id":"batch_000022","source_id":"7477995","status":"success","legacy_id":"7477995","care_recipient_id":"8d7361fe-c278-465b-8e36-4d6c3efd1af2","processed_at":"2026-04-08T05:18:03.289Z"}
+{"batch_id":"batch_000022","source_id":"7477781","status":"success","legacy_id":"7477781","care_recipient_id":"d9621e63-e1b4-4782-9f47-09c29080f71d","processed_at":"2026-04-08T05:18:03.571Z"}
+{"batch_id":"batch_000022","source_id":"7477705","status":"success","legacy_id":"7477705","care_recipient_id":"af196827-9000-4b5b-b3c7-3f45c1499901","processed_at":"2026-04-08T05:18:03.853Z"}
+{"batch_id":"batch_000022","source_id":"7477623","status":"success","legacy_id":"7477623","care_recipient_id":"0c9290b2-fd33-493f-ad70-abc0c3b38d1d","processed_at":"2026-04-08T05:18:04.158Z"}
+{"batch_id":"batch_000022","source_id":"7477557","status":"success","legacy_id":"7477557","care_recipient_id":"28c9d033-9646-40ae-8178-27236388b0b1","processed_at":"2026-04-08T05:18:04.490Z"}
+{"batch_id":"batch_000022","source_id":"7477542","status":"success","legacy_id":"7477542","care_recipient_id":"a13d41ad-7485-49ce-a8d6-310d491426b0","processed_at":"2026-04-08T05:18:04.877Z"}
+{"batch_id":"batch_000022","source_id":"7477448","status":"success","legacy_id":"7477448","care_recipient_id":"6002b774-813e-4029-84ec-fe68d9a4d61c","processed_at":"2026-04-08T05:18:05.184Z"}
+{"batch_id":"batch_000022","source_id":"7477315","status":"success","legacy_id":"7477315","care_recipient_id":"70207cdf-31c8-4665-b944-f2b174c9809e","processed_at":"2026-04-08T05:18:05.592Z"}
+{"batch_id":"batch_000022","source_id":"7476800","status":"success","legacy_id":"7476800","care_recipient_id":"32809eed-d3e6-41a6-9d28-aa0fbc2e0176","processed_at":"2026-04-08T05:18:06.206Z"}
+{"batch_id":"batch_000022","source_id":"7476467","status":"success","legacy_id":"7476467","care_recipient_id":"bf25941f-4c26-4649-b9c3-997c61464323","processed_at":"2026-04-08T05:18:06.616Z"}
+{"batch_id":"batch_000022","source_id":"7476186","status":"success","legacy_id":"7476186","care_recipient_id":"d39983e2-be25-459f-94c9-c600cb685b6c","processed_at":"2026-04-08T05:18:06.924Z"}
+{"batch_id":"batch_000022","source_id":"7476184","status":"success","legacy_id":"7476184","care_recipient_id":"b547f7fb-19db-4cc6-9586-726abcc3145e","processed_at":"2026-04-08T05:18:07.230Z"}
+{"batch_id":"batch_000022","source_id":"7476103","status":"success","legacy_id":"7476103","care_recipient_id":"8113eb66-8826-4163-9847-087d65c81cd0","processed_at":"2026-04-08T05:18:07.528Z"}
+{"batch_id":"batch_000022","source_id":"7476093","status":"success","legacy_id":"7476093","care_recipient_id":"ce15fe46-8788-4d08-8125-869df6d7aed2","processed_at":"2026-04-08T05:18:07.846Z"}
+{"batch_id":"batch_000022","source_id":"7475963","status":"success","legacy_id":"7475963","care_recipient_id":"a1888d18-bd38-4b61-9cc5-97e68133c7d2","processed_at":"2026-04-08T05:18:08.159Z"}
+{"batch_id":"batch_000022","source_id":"7475962","status":"success","legacy_id":"7475962","care_recipient_id":"7bc57a8c-aba2-4c8f-a55b-aa3fc528160d","processed_at":"2026-04-08T05:18:08.461Z"}
+{"batch_id":"batch_000022","source_id":"7475960","status":"success","legacy_id":"7475960","care_recipient_id":"98f3f4cf-34da-440d-8c9b-3fb35068e991","processed_at":"2026-04-08T05:18:08.766Z"}
+{"batch_id":"batch_000022","source_id":"7475616","status":"success","legacy_id":"7475616","care_recipient_id":"626debe9-fd14-4b80-9959-6ce7160aedaf","processed_at":"2026-04-08T05:18:09.059Z"}
+{"batch_id":"batch_000022","source_id":"7475341","status":"success","legacy_id":"7475341","care_recipient_id":"3e428ee2-21c2-402e-a863-7e0ee0dfd002","processed_at":"2026-04-08T05:18:09.382Z"}
+{"batch_id":"batch_000022","source_id":"7475086","status":"success","legacy_id":"7475086","care_recipient_id":"903994f9-0d2e-4e6b-8815-50ba71f77cc9","processed_at":"2026-04-08T05:18:09.731Z"}
+{"batch_id":"batch_000022","source_id":"7475057","status":"success","legacy_id":"7475057","care_recipient_id":"6c1d21a4-efdd-4bdc-bd25-2183ea9e2f4b","processed_at":"2026-04-08T05:18:10.012Z"}
+{"batch_id":"batch_000022","source_id":"7474809","status":"success","legacy_id":"7474809","care_recipient_id":"4d586320-f9cc-47fb-9e1f-d06d9bc045d2","processed_at":"2026-04-08T05:18:10.302Z"}
+{"batch_id":"batch_000022","source_id":"7474768","status":"success","legacy_id":"7474768","care_recipient_id":"e3a09dcc-b08a-41d2-98c0-59c6a8d5c9d8","processed_at":"2026-04-08T05:18:10.611Z"}
+{"batch_id":"batch_000022","source_id":"7474760","status":"success","legacy_id":"7474760","care_recipient_id":"a5479009-8623-4b84-9448-b8a080d1d9bd","processed_at":"2026-04-08T05:18:10.889Z"}
+{"batch_id":"batch_000022","source_id":"7474611","status":"success","legacy_id":"7474611","care_recipient_id":"0ee88a74-f3d5-4df7-94a3-fefe857f2183","processed_at":"2026-04-08T05:18:11.170Z"}
+{"batch_id":"batch_000022","source_id":"7474179","status":"success","legacy_id":"7474179","care_recipient_id":"5ca5edbc-f508-4fac-ba49-7aaef7497750","processed_at":"2026-04-08T05:18:11.452Z"}
+{"batch_id":"batch_000022","source_id":"7474176","status":"success","legacy_id":"7474176","care_recipient_id":"78041fa0-dc55-41a3-9bed-f4544b6f014a","processed_at":"2026-04-08T05:18:11.838Z"}
+{"batch_id":"batch_000022","source_id":"7474143","status":"success","legacy_id":"7474143","care_recipient_id":"6b3f9452-e404-44a9-8825-44c9def23152","processed_at":"2026-04-08T05:18:12.146Z"}
+{"batch_id":"batch_000022","source_id":"7474135","status":"success","legacy_id":"7474135","care_recipient_id":"4b229618-1279-4cf9-b5d0-8149a4918f86","processed_at":"2026-04-08T05:18:12.453Z"}
+{"batch_id":"batch_000022","source_id":"7474115","status":"success","legacy_id":"7474115","care_recipient_id":"14b6047b-140c-46a9-814b-1d7563cbf00b","processed_at":"2026-04-08T05:18:12.733Z"}
+{"batch_id":"batch_000022","source_id":"7474095","status":"success","legacy_id":"7474095","care_recipient_id":"7288997e-da1a-4e76-a832-6b0a8ca55f7a","processed_at":"2026-04-08T05:18:13.014Z"}
+{"batch_id":"batch_000022","source_id":"7474089","status":"success","legacy_id":"7474089","care_recipient_id":"406a2e0a-61d9-4ee9-b6a8-cdf0f70fe05c","processed_at":"2026-04-08T05:18:13.296Z"}
+{"batch_id":"batch_000022","source_id":"7474085","status":"success","legacy_id":"7474085","care_recipient_id":"841d037f-305a-468c-b6e7-d4f05efd9da2","processed_at":"2026-04-08T05:18:13.578Z"}
+{"batch_id":"batch_000022","source_id":"7473996","status":"success","legacy_id":"7473996","care_recipient_id":"0b448047-841d-43b4-a5e8-817d24b31717","processed_at":"2026-04-08T05:18:13.922Z"}
+{"batch_id":"batch_000022","source_id":"7473988","status":"success","legacy_id":"7473988","care_recipient_id":"1e367b26-78b3-493c-b97c-cf7913531a07","processed_at":"2026-04-08T05:18:14.203Z"}
+{"batch_id":"batch_000022","source_id":"7473984","status":"success","legacy_id":"7473984","care_recipient_id":"13e07e8a-4b07-4208-bd7a-091a374b42b6","processed_at":"2026-04-08T05:18:14.500Z"}
+{"batch_id":"batch_000022","source_id":"7473973","status":"success","legacy_id":"7473973","care_recipient_id":"e6cefa5a-0b85-4f1b-8e13-be55b65a2fee","processed_at":"2026-04-08T05:18:14.781Z"}
+{"batch_id":"batch_000022","source_id":"7473925","status":"success","legacy_id":"7473925","care_recipient_id":"9c24db74-bfcc-450c-83fb-4ed7fdf008fe","processed_at":"2026-04-08T05:18:15.062Z"}
+{"batch_id":"batch_000022","source_id":"7473857","status":"success","legacy_id":"7473857","care_recipient_id":"bf9a71b8-1a34-4096-9abf-29d4ef5b0942","processed_at":"2026-04-08T05:18:15.344Z"}
+{"batch_id":"batch_000022","source_id":"7473732","status":"success","legacy_id":"7473732","care_recipient_id":"6c16627f-a0e3-4751-a95a-5b4f917db84e","processed_at":"2026-04-08T05:18:15.730Z"}
+{"batch_id":"batch_000022","source_id":"7473547","status":"success","legacy_id":"7473547","care_recipient_id":"f07feae2-c588-4464-9538-ff839f0bdb60","processed_at":"2026-04-08T05:18:16.025Z"}
+{"batch_id":"batch_000022","source_id":"7473289","status":"success","legacy_id":"7473289","care_recipient_id":"d7482308-795e-4316-be58-819181e01aa6","processed_at":"2026-04-08T05:18:16.651Z"}
+{"batch_id":"batch_000022","source_id":"7473184","status":"success","legacy_id":"7473184","care_recipient_id":"d9f19481-da64-4bb7-b32d-c7e0b75377b7","processed_at":"2026-04-08T05:18:16.934Z"}
+{"batch_id":"batch_000022","source_id":"7473169","status":"success","legacy_id":"7473169","care_recipient_id":"eaa2fd53-3a97-4ac7-a4b9-efb75e26e087","processed_at":"2026-04-08T05:18:17.218Z"}
+{"batch_id":"batch_000022","source_id":"7473165","status":"success","legacy_id":"7473165","care_recipient_id":"ecf4f321-078a-434f-9a06-9b8c8253dde5","processed_at":"2026-04-08T05:18:17.498Z"}
+{"batch_id":"batch_000022","source_id":"7472815","status":"success","legacy_id":"7472815","care_recipient_id":"288b3850-931f-4c77-b6f3-caeb008009f0","processed_at":"2026-04-08T05:18:17.781Z"}
+{"batch_id":"batch_000022","source_id":"7472786","status":"success","legacy_id":"7472786","care_recipient_id":"5d432513-ef23-48c6-ab26-78dd1d835034","processed_at":"2026-04-08T05:18:18.189Z"}
+{"batch_id":"batch_000022","source_id":"7472742","status":"success","legacy_id":"7472742","care_recipient_id":"9f6741e5-563f-4e6b-9a8f-f61c4e78f9f6","processed_at":"2026-04-08T05:18:18.473Z"}
+{"batch_id":"batch_000022","source_id":"7472705","status":"success","legacy_id":"7472705","care_recipient_id":"47c7430e-365b-4df5-b97d-60511648a213","processed_at":"2026-04-08T05:18:18.756Z"}
+{"batch_id":"batch_000022","source_id":"7472319","status":"success","legacy_id":"7472319","care_recipient_id":"b148cb00-d761-4cea-933c-d55f5d47cc45","processed_at":"2026-04-08T05:18:19.211Z"}
+{"batch_id":"batch_000022","source_id":"7472233","status":"success","legacy_id":"7472233","care_recipient_id":"2a2ba3ce-4df8-46dc-a2e1-c1719831675c","processed_at":"2026-04-08T05:18:19.516Z"}
+{"batch_id":"batch_000022","source_id":"7472207","status":"success","legacy_id":"7472207","care_recipient_id":"654e09fd-077b-4adc-a6e6-bc8bb18dae72","processed_at":"2026-04-08T05:18:19.825Z"}
+{"batch_id":"batch_000022","source_id":"7472184","status":"success","legacy_id":"7472184","care_recipient_id":"5463e2bc-da9e-4304-8829-53486436e0a3","processed_at":"2026-04-08T05:18:20.236Z"}
+{"batch_id":"batch_000022","source_id":"7472168","status":"success","legacy_id":"7472168","care_recipient_id":"615c0028-d6e5-4ee8-a53c-365277efde19","processed_at":"2026-04-08T05:18:20.542Z"}
+{"batch_id":"batch_000022","source_id":"7472167","status":"success","legacy_id":"7472167","care_recipient_id":"850609cc-ecf6-4df9-9fd3-a877fdc3d321","processed_at":"2026-04-08T05:18:20.849Z"}
+{"batch_id":"batch_000022","source_id":"7472111","status":"success","legacy_id":"7472111","care_recipient_id":"ec4e1adb-08fc-41d8-9edd-b59a12b345f8","processed_at":"2026-04-08T05:18:21.136Z"}
+{"batch_id":"batch_000022","source_id":"7472099","status":"success","legacy_id":"7472099","care_recipient_id":"66279c02-f748-4a65-985f-3abcc6a3ee86","processed_at":"2026-04-08T05:18:21.420Z"}
+{"batch_id":"batch_000022","source_id":"7472085","status":"success","legacy_id":"7472085","care_recipient_id":"ca826118-63b1-484e-b6a7-b99e0f2f9097","processed_at":"2026-04-08T05:18:21.874Z"}
+{"batch_id":"batch_000022","source_id":"7472077","status":"success","legacy_id":"7472077","care_recipient_id":"ed77328e-9a57-4643-8534-830397bf14b3","processed_at":"2026-04-08T05:18:22.181Z"}
+{"batch_id":"batch_000022","source_id":"7472069","status":"success","legacy_id":"7472069","care_recipient_id":"450d32d2-2a76-4235-8d01-8a8b21d38c14","processed_at":"2026-04-08T05:18:22.489Z"}
+{"batch_id":"batch_000022","source_id":"7472029","status":"success","legacy_id":"7472029","care_recipient_id":"d0c44664-9a8d-42dc-a4e2-437f12cd8a2e","processed_at":"2026-04-08T05:18:22.898Z"}
+{"batch_id":"batch_000022","source_id":"7471911","status":"success","legacy_id":"7471911","care_recipient_id":"e9fdd376-4e83-4f0c-8eb5-6baf96d03c7c","processed_at":"2026-04-08T05:18:23.203Z"}
+{"batch_id":"batch_000022","source_id":"7471853","status":"success","legacy_id":"7471853","care_recipient_id":"feaf58df-307c-4143-afe6-40bd3a68bff5","processed_at":"2026-04-08T05:18:23.486Z"}
+{"batch_id":"batch_000022","source_id":"7471805","status":"success","legacy_id":"7471805","care_recipient_id":"0cf3a9a0-bad3-4b37-8a40-b85431bfe0d5","processed_at":"2026-04-08T05:18:23.923Z"}
+{"batch_id":"batch_000022","source_id":"7471581","status":"success","legacy_id":"7471581","care_recipient_id":"4e737c15-0afc-43a7-8dbb-328659a644ef","processed_at":"2026-04-08T05:18:24.230Z"}
+{"batch_id":"batch_000022","source_id":"7471547","status":"success","legacy_id":"7471547","care_recipient_id":"fdedc918-afa2-4220-be2d-4bcd582d0a8c","processed_at":"2026-04-08T05:18:24.510Z"}
+{"batch_id":"batch_000022","source_id":"7471361","status":"success","legacy_id":"7471361","care_recipient_id":"c53290c0-16a9-4138-ac24-a8543a475156","processed_at":"2026-04-08T05:18:24.844Z"}
+{"batch_id":"batch_000022","source_id":"7471324","status":"success","legacy_id":"7471324","care_recipient_id":"c7eacfa3-c5a1-4791-af74-1f132204cb2d","processed_at":"2026-04-08T05:18:25.151Z"}
+{"batch_id":"batch_000022","source_id":"7471240","status":"success","legacy_id":"7471240","care_recipient_id":"30f862a8-ff45-49bd-a0a9-3b5bb926cfec","processed_at":"2026-04-08T05:18:25.457Z"}
+{"batch_id":"batch_000022","source_id":"7470842","status":"success","legacy_id":"7470842","care_recipient_id":"33163a8d-a3ac-4228-9714-5d1782d55ff0","processed_at":"2026-04-08T05:18:25.766Z"}
+{"batch_id":"batch_000022","source_id":"7470193","status":"success","legacy_id":"7470193","care_recipient_id":"1fe4af9b-61c9-4a54-8ceb-66e4df6fb6ec","processed_at":"2026-04-08T05:18:26.071Z"}
+{"batch_id":"batch_000022","source_id":"7470174","status":"success","legacy_id":"7470174","care_recipient_id":"495dd27d-e1b8-442f-8499-f45c95c2afdb","processed_at":"2026-04-08T05:18:26.379Z"}
+{"batch_id":"batch_000022","source_id":"7470167","status":"success","legacy_id":"7470167","care_recipient_id":"939a2a33-a6d6-49f3-8772-1ad24f4da5b6","processed_at":"2026-04-08T05:18:27.097Z"}
+{"batch_id":"batch_000022","source_id":"7470158","status":"success","legacy_id":"7470158","care_recipient_id":"a7dc3757-75e4-44be-aab3-217eba4193b4","processed_at":"2026-04-08T05:18:27.402Z"}
+{"batch_id":"batch_000022","source_id":"7470145","status":"success","legacy_id":"7470145","care_recipient_id":"30f71a28-fd61-460b-9456-b231bc764c41","processed_at":"2026-04-08T05:18:27.710Z"}
+{"batch_id":"batch_000022","source_id":"7470140","status":"success","legacy_id":"7470140","care_recipient_id":"83aa6f18-8bda-4419-911c-174a08b08058","processed_at":"2026-04-08T05:18:28.082Z"}
+{"batch_id":"batch_000022","source_id":"7470130","status":"success","legacy_id":"7470130","care_recipient_id":"aba8fde4-ede3-4140-afc1-ee836295f560","processed_at":"2026-04-08T05:18:28.364Z"}
+{"batch_id":"batch_000022","source_id":"7470112","status":"success","legacy_id":"7470112","care_recipient_id":"644988a2-95fb-4d0e-aebf-ecb9df55661b","processed_at":"2026-04-08T05:18:28.645Z"}
+{"batch_id":"batch_000022","source_id":"7469927","status":"success","legacy_id":"7469927","care_recipient_id":"a3e33e8e-716a-4268-8db6-766f5b698c9b","processed_at":"2026-04-08T05:18:28.939Z"}
+{"batch_id":"batch_000022","source_id":"7469816","status":"success","legacy_id":"7469816","care_recipient_id":"e74e4ef9-f4a6-4656-9771-0ab4318dc7a5","processed_at":"2026-04-08T05:18:29.245Z"}
+{"batch_id":"batch_000022","source_id":"7469628","status":"success","legacy_id":"7469628","care_recipient_id":"de427f86-1200-4380-b7c4-43c75d41a60d","processed_at":"2026-04-08T05:18:29.554Z"}
+{"batch_id":"batch_000022","source_id":"7469446","status":"success","legacy_id":"7469446","care_recipient_id":"7940873c-fd5f-46c4-a22f-25f0d888d773","processed_at":"2026-04-08T05:18:29.862Z"}
+{"batch_id":"batch_000022","source_id":"7469272","status":"success","legacy_id":"7469272","care_recipient_id":"df82faf0-5a16-4d5b-9ef6-03047e9a39fb","processed_at":"2026-04-08T05:18:30.271Z"}
+{"batch_id":"batch_000022","source_id":"7469038","status":"success","legacy_id":"7469038","care_recipient_id":"5892b265-94a0-43fa-a737-c57852c3b422","processed_at":"2026-04-08T05:18:30.577Z"}
+{"batch_id":"batch_000022","source_id":"7468916","status":"success","legacy_id":"7468916","care_recipient_id":"768ecd8b-3512-47a5-b3fe-959409d3dff5","processed_at":"2026-04-08T05:18:30.884Z"}
+{"batch_id":"batch_000022","source_id":"7468909","status":"success","legacy_id":"7468909","care_recipient_id":"c8b81b01-8efd-4ba0-8423-6cf04ca5d69f","processed_at":"2026-04-08T05:18:31.232Z"}
+{"batch_id":"batch_000022","source_id":"7468743","status":"success","legacy_id":"7468743","care_recipient_id":"35fd0809-5532-4a27-b566-82136e381ccb","processed_at":"2026-04-08T05:18:31.602Z"}
+{"batch_id":"batch_000022","source_id":"7468728","status":"success","legacy_id":"7468728","care_recipient_id":"a9e9c1f3-9ad0-485f-b7c9-850440cce14f","processed_at":"2026-04-08T05:18:31.897Z"}
+{"batch_id":"batch_000022","source_id":"7468558","status":"success","legacy_id":"7468558","care_recipient_id":"dbdf3e63-4f10-4c84-a51b-144ac3b58d1b","processed_at":"2026-04-08T05:18:32.319Z"}
+{"batch_id":"batch_000022","source_id":"7468345","status":"success","legacy_id":"7468345","care_recipient_id":"08313e23-8258-4091-94b6-08d150d7df26","processed_at":"2026-04-08T05:18:32.626Z"}
+{"batch_id":"batch_000022","source_id":"7467927","status":"success","legacy_id":"7467927","care_recipient_id":"54356533-cc81-45c1-881f-b86dba3a8ddb","processed_at":"2026-04-08T05:18:32.919Z"}
+{"batch_id":"batch_000022","source_id":"7467922","status":"success","legacy_id":"7467922","care_recipient_id":"818a5300-b339-4b23-9b1b-2f7dd4b51d92","processed_at":"2026-04-08T05:18:33.227Z"}
+{"batch_id":"batch_000022","source_id":"7467913","status":"success","legacy_id":"7467913","care_recipient_id":"bd23c06e-f830-41f6-af04-3231627a7d18","processed_at":"2026-04-08T05:18:33.548Z"}
+{"batch_id":"batch_000022","source_id":"7467906","status":"success","legacy_id":"7467906","care_recipient_id":"004b078c-63d7-443c-bfbf-aa8f7dea771a","processed_at":"2026-04-08T05:18:33.856Z"}
+{"batch_id":"batch_000022","source_id":"7467867","status":"success","legacy_id":"7467867","care_recipient_id":"7607e50a-c48c-4114-8d57-9f532f18c443","processed_at":"2026-04-08T05:18:34.162Z"}
+{"batch_id":"batch_000022","source_id":"7467863","status":"success","legacy_id":"7467863","care_recipient_id":"bdb7fe0a-9ba5-4f51-9b2e-650e74511b63","processed_at":"2026-04-08T05:18:34.469Z"}
+{"batch_id":"batch_000022","source_id":"7467848","status":"success","legacy_id":"7467848","care_recipient_id":"356f7baf-6214-41db-87c5-c18c26ba459a","processed_at":"2026-04-08T05:18:34.777Z"}
+{"batch_id":"batch_000022","source_id":"7467826","status":"success","legacy_id":"7467826","care_recipient_id":"cc8f7217-cf8e-4f10-92d7-4653addba76f","processed_at":"2026-04-08T05:18:35.086Z"}
+{"batch_id":"batch_000022","source_id":"7467824","status":"success","legacy_id":"7467824","care_recipient_id":"3b369e23-8288-4112-8220-85bc78345b2c","processed_at":"2026-04-08T05:18:35.494Z"}
+{"batch_id":"batch_000022","source_id":"7467792","status":"success","legacy_id":"7467792","care_recipient_id":"d271dc90-40ad-46da-8c01-0f6710339ff9","processed_at":"2026-04-08T05:18:35.800Z"}
+{"batch_id":"batch_000022","source_id":"7467755","status":"success","legacy_id":"7467755","care_recipient_id":"e7df1d56-fd0d-4691-8122-c5f8814ac47b","processed_at":"2026-04-08T05:18:36.108Z"}
+{"batch_id":"batch_000022","source_id":"7467634","status":"success","legacy_id":"7467634","care_recipient_id":"f47d8a76-9d08-4c8f-b7a4-cc1425ff98a5","processed_at":"2026-04-08T05:18:36.517Z"}
+{"batch_id":"batch_000022","source_id":"7467499","status":"success","legacy_id":"7467499","care_recipient_id":"75222eef-d1f8-4513-ac97-4a88499558f9","processed_at":"2026-04-08T05:18:36.825Z"}
+{"batch_id":"batch_000022","source_id":"7467311","status":"success","legacy_id":"7467311","care_recipient_id":"03244926-f133-4d5d-981a-e5a980aea53b","processed_at":"2026-04-08T05:18:37.543Z"}
+{"batch_id":"batch_000022","source_id":"7467191","status":"success","legacy_id":"7467191","care_recipient_id":"c0257e40-7b9e-4415-9a27-61d60384517b","processed_at":"2026-04-08T05:18:37.848Z"}
+{"batch_id":"batch_000022","source_id":"7467073","status":"success","legacy_id":"7467073","care_recipient_id":"74565fb2-d703-4f49-8c81-06d73e135252","processed_at":"2026-04-08T05:18:38.155Z"}
+{"batch_id":"batch_000022","source_id":"7466984","status":"success","legacy_id":"7466984","care_recipient_id":"5b32a0b4-eb3f-4590-a999-4d5fdff9581f","processed_at":"2026-04-08T05:18:38.463Z"}
+{"batch_id":"batch_000022","source_id":"7466976","status":"success","legacy_id":"7466976","care_recipient_id":"df82c785-cfcd-4da1-88d1-2f3f1f241a14","processed_at":"2026-04-08T05:18:38.770Z"}
+{"batch_id":"batch_000022","source_id":"7466892","status":"success","legacy_id":"7466892","care_recipient_id":"393ea763-4cfc-4797-843f-c726c1ec10a0","processed_at":"2026-04-08T05:18:39.105Z"}
+{"batch_id":"batch_000022","source_id":"7466634","status":"success","legacy_id":"7466634","care_recipient_id":"acabfc1e-1f73-49ee-8545-2e75cbfc0d25","processed_at":"2026-04-08T05:18:39.389Z"}
+{"batch_id":"batch_000022","source_id":"7466573","status":"success","legacy_id":"7466573","care_recipient_id":"3cc972f6-ffd3-432b-b366-a919be335883","processed_at":"2026-04-08T05:18:39.691Z"}
+{"batch_id":"batch_000022","source_id":"7466547","status":"success","legacy_id":"7466547","care_recipient_id":"142be14a-d6be-46f7-a796-73566a420568","processed_at":"2026-04-08T05:18:39.998Z"}
+{"batch_id":"batch_000022","source_id":"7466506","status":"success","legacy_id":"7466506","care_recipient_id":"c380d3b5-c13c-4384-b490-87f638a699f3","processed_at":"2026-04-08T05:18:40.306Z"}
+{"batch_id":"batch_000022","source_id":"7466269","status":"success","legacy_id":"7466269","care_recipient_id":"7db0b0ce-ab33-480d-80a9-a648a622fdee","processed_at":"2026-04-08T05:18:40.664Z"}
+{"batch_id":"batch_000022","source_id":"7465903","status":"success","legacy_id":"7465903","care_recipient_id":"f6adfdee-8b72-43de-bbea-7d57cf70638d","processed_at":"2026-04-08T05:18:41.023Z"}
+{"batch_id":"batch_000022","source_id":"7465878","status":"success","legacy_id":"7465878","care_recipient_id":"e36185c1-1e89-46d2-83b9-833705dc93b3","processed_at":"2026-04-08T05:18:41.329Z"}
+{"batch_id":"batch_000022","source_id":"7465725","status":"success","legacy_id":"7465725","care_recipient_id":"2e8c2fba-013b-45f6-9dc5-83b7931cf337","processed_at":"2026-04-08T05:18:41.740Z"}
+{"batch_id":"batch_000022","source_id":"7465719","status":"success","legacy_id":"7465719","care_recipient_id":"993407ea-4acf-4196-9f08-305d00a2c1e2","processed_at":"2026-04-08T05:18:42.046Z"}
+{"batch_id":"batch_000022","source_id":"7465691","status":"success","legacy_id":"7465691","care_recipient_id":"c8ef7dc9-63bb-4c9d-a46e-f401d8f4bee3","processed_at":"2026-04-08T05:18:42.353Z"}
+{"batch_id":"batch_000022","source_id":"7465518","status":"success","legacy_id":"7465518","care_recipient_id":"7da93979-8df8-4ec4-abf0-d75571588c25","processed_at":"2026-04-08T05:18:42.661Z"}
+{"batch_id":"batch_000022","source_id":"7465315","status":"success","legacy_id":"7465315","care_recipient_id":"4907c90a-fcba-469a-975f-b36a76f86f04","processed_at":"2026-04-08T05:18:42.969Z"}
+{"batch_id":"batch_000022","source_id":"7465303","status":"success","legacy_id":"7465303","care_recipient_id":"50cf7cf8-18de-4733-85c7-85fec4db7760","processed_at":"2026-04-08T05:18:43.379Z"}
+{"batch_id":"batch_000022","source_id":"7465252","status":"success","legacy_id":"7465252","care_recipient_id":"3fbfe982-294c-4bdf-ae02-7fbb3c4fe07a","processed_at":"2026-04-08T05:18:43.684Z"}
+{"batch_id":"batch_000022","source_id":"7465251","status":"success","legacy_id":"7465251","care_recipient_id":"d828b610-cc0c-49fa-a257-49aa835eb8bd","processed_at":"2026-04-08T05:18:43.993Z"}
+{"batch_id":"batch_000022","source_id":"7465191","status":"success","legacy_id":"7465191","care_recipient_id":"ff65630d-b140-4982-9bea-187e6f8efe14","processed_at":"2026-04-08T05:18:44.331Z"}
+{"batch_id":"batch_000022","source_id":"7465181","status":"success","legacy_id":"7465181","care_recipient_id":"28fd7f13-5b73-481b-a127-48945c5f9ccc","processed_at":"2026-04-08T05:18:44.709Z"}
+{"batch_id":"batch_000022","source_id":"7465122","status":"success","legacy_id":"7465122","care_recipient_id":"af33d55d-8846-44f6-8295-51142b73706c","processed_at":"2026-04-08T05:18:45.017Z"}
+{"batch_id":"batch_000022","source_id":"7465100","status":"success","legacy_id":"7465100","care_recipient_id":"3d2604cc-6732-4bc9-9577-a14972c6bd00","processed_at":"2026-04-08T05:18:45.907Z"}
+{"batch_id":"batch_000022","source_id":"7465051","status":"success","legacy_id":"7465051","care_recipient_id":"4d1dbd3d-a882-418d-bc14-b64ff3ceb5c6","processed_at":"2026-04-08T05:18:46.189Z"}
+{"batch_id":"batch_000022","source_id":"7465049","status":"success","legacy_id":"7465049","care_recipient_id":"d00e8d75-4c5e-46fd-bcb9-76e658712efa","processed_at":"2026-04-08T05:18:46.467Z"}
+{"batch_id":"batch_000022","source_id":"7464981","status":"success","legacy_id":"7464981","care_recipient_id":"e5d49425-1b69-478f-b66b-17cee9c3b721","processed_at":"2026-04-08T05:18:46.756Z"}
+{"batch_id":"batch_000022","source_id":"7464896","status":"success","legacy_id":"7464896","care_recipient_id":"b0b2c170-bb56-4396-981d-b56817a0e141","processed_at":"2026-04-08T05:18:47.064Z"}
+{"batch_id":"batch_000022","source_id":"7464773","status":"success","legacy_id":"7464773","care_recipient_id":"21edd055-efa7-414b-bca7-d52e973117cf","processed_at":"2026-04-08T05:18:47.372Z"}
+{"batch_id":"batch_000022","source_id":"7464714","status":"success","legacy_id":"7464714","care_recipient_id":"0e4f018f-714e-436e-81e3-844f3a6251eb","processed_at":"2026-04-08T05:18:48.004Z"}
+{"batch_id":"batch_000022","source_id":"7464475","status":"success","legacy_id":"7464475","care_recipient_id":"32029880-4c62-446d-90bd-a89cf5405c69","processed_at":"2026-04-08T05:18:48.290Z"}
+{"batch_id":"batch_000022","source_id":"7464418","status":"success","legacy_id":"7464418","care_recipient_id":"e2cfa3e9-b519-4a5e-802e-6c7ea8f7b82d","processed_at":"2026-04-08T05:18:48.600Z"}
+{"batch_id":"batch_000022","source_id":"7464409","status":"success","legacy_id":"7464409","care_recipient_id":"71d88cf8-9c2d-40fa-ab1a-948f03ef3eb0","processed_at":"2026-04-08T05:18:48.908Z"}
+{"batch_id":"batch_000022","source_id":"7464371","status":"success","legacy_id":"7464371","care_recipient_id":"a9666d49-d7b7-442c-8a09-44a0494eff04","processed_at":"2026-04-08T05:18:49.216Z"}
+{"batch_id":"batch_000022","source_id":"7464263","status":"success","legacy_id":"7464263","care_recipient_id":"26c9b4cb-e934-413e-8cbd-98602eb05aec","processed_at":"2026-04-08T05:18:49.572Z"}
+{"batch_id":"batch_000022","source_id":"7464258","status":"success","legacy_id":"7464258","care_recipient_id":"1e0a34c0-b80e-4199-9fa9-8925edde1d18","processed_at":"2026-04-08T05:18:49.932Z"}
+{"batch_id":"batch_000022","source_id":"7464246","status":"success","legacy_id":"7464246","care_recipient_id":"82e8df06-8ec8-4969-82a0-7c5a5572c2a6","processed_at":"2026-04-08T05:18:50.224Z"}
+{"batch_id":"batch_000022","source_id":"7463883","status":"success","legacy_id":"7463883","care_recipient_id":"191cf4aa-b7c1-41cc-84e2-ee1996c6f84e","processed_at":"2026-04-08T05:18:50.512Z"}
+{"batch_id":"batch_000022","source_id":"7463769","status":"success","legacy_id":"7463769","care_recipient_id":"bf8dbd79-a5d5-4101-a2f1-3144a1d248ee","processed_at":"2026-04-08T05:18:50.794Z"}
+{"batch_id":"batch_000022","source_id":"7463704","status":"success","legacy_id":"7463704","care_recipient_id":"d405c714-6139-4102-9542-eef25cb1ea9f","processed_at":"2026-04-08T05:18:51.151Z"}
+{"batch_id":"batch_000022","source_id":"7463703","status":"success","legacy_id":"7463703","care_recipient_id":"f1b94d9f-9425-42b0-b84e-4a71ea55cac1","processed_at":"2026-04-08T05:18:51.468Z"}
+{"batch_id":"batch_000022","source_id":"7463606","status":"success","legacy_id":"7463606","care_recipient_id":"d8b80d14-a643-41a9-9761-05d0d04186c6","processed_at":"2026-04-08T05:18:51.774Z"}
+{"batch_id":"batch_000022","source_id":"7463387","status":"success","legacy_id":"7463387","care_recipient_id":"351eeb0c-b209-4af0-9bbe-d99583127815","processed_at":"2026-04-08T05:18:52.082Z"}
+{"batch_id":"batch_000022","source_id":"7463357","status":"success","legacy_id":"7463357","care_recipient_id":"dcc363ed-9352-49c2-ab23-77386e413914","processed_at":"2026-04-08T05:18:52.391Z"}
+{"batch_id":"batch_000022","source_id":"7463222","status":"success","legacy_id":"7463222","care_recipient_id":"1529669d-eff6-451a-bce2-c7c71da260b9","processed_at":"2026-04-08T05:18:52.719Z"}
+{"batch_id":"batch_000022","source_id":"7463066","status":"success","legacy_id":"7463066","care_recipient_id":"bb8963c5-c901-4b48-91e1-309bc1686ddf","processed_at":"2026-04-08T05:18:53.003Z"}
+{"batch_id":"batch_000022","source_id":"7463062","status":"success","legacy_id":"7463062","care_recipient_id":"87a126ef-5172-41f3-a3f2-3f88bea438ea","processed_at":"2026-04-08T05:18:53.310Z"}
+{"batch_id":"batch_000022","source_id":"7463041","status":"success","legacy_id":"7463041","care_recipient_id":"d4cbd937-8f48-4135-8608-4a43fec09239","processed_at":"2026-04-08T05:18:53.618Z"}
+{"batch_id":"batch_000022","source_id":"7463031","status":"success","legacy_id":"7463031","care_recipient_id":"4ad001bf-f8cd-47dc-b5f6-d7811d9539c6","processed_at":"2026-04-08T05:18:53.926Z"}
+{"batch_id":"batch_000022","source_id":"7462968","status":"success","legacy_id":"7462968","care_recipient_id":"faf3805a-38a4-459c-83a3-bfc0de6cbc70","processed_at":"2026-04-08T05:18:54.335Z"}
+{"batch_id":"batch_000022","source_id":"7462748","status":"success","legacy_id":"7462748","care_recipient_id":"bfff0d6d-f7de-4059-a96a-d201e2306a32","processed_at":"2026-04-08T05:18:54.642Z"}
+{"batch_id":"batch_000022","source_id":"7462590","status":"success","legacy_id":"7462590","care_recipient_id":"9cbcf7ae-3224-4016-b60e-275521934ebf","processed_at":"2026-04-08T05:18:54.938Z"}
+{"batch_id":"batch_000022","source_id":"7462575","status":"success","legacy_id":"7462575","care_recipient_id":"eb93a56f-90ab-4381-89e1-4061d3e71225","processed_at":"2026-04-08T05:18:55.257Z"}
+{"batch_id":"batch_000022","source_id":"7462562","status":"success","legacy_id":"7462562","care_recipient_id":"6a817ac5-95a6-4aac-ad94-02f581f4e4d8","processed_at":"2026-04-08T05:18:55.666Z"}
+{"batch_id":"batch_000022","source_id":"7462503","status":"success","legacy_id":"7462503","care_recipient_id":"992fa496-88df-4e20-8cb7-eda3b15a2694","processed_at":"2026-04-08T05:18:55.972Z"}
+{"batch_id":"batch_000022","source_id":"7462417","status":"success","legacy_id":"7462417","care_recipient_id":"491089bc-24b0-4592-9814-808e1780876a","processed_at":"2026-04-08T05:18:56.280Z"}
+{"batch_id":"batch_000022","source_id":"7461950","status":"success","legacy_id":"7461950","care_recipient_id":"2b297999-0b57-4e8e-8a95-12aa34fb56f4","processed_at":"2026-04-08T05:18:56.560Z"}
+{"batch_id":"batch_000022","source_id":"7461829","status":"success","legacy_id":"7461829","care_recipient_id":"836b11a2-0c8d-4d77-bb2a-6aac2db55fb8","processed_at":"2026-04-08T05:18:56.913Z"}
+{"batch_id":"batch_000022","source_id":"7461776","status":"success","legacy_id":"7461776","care_recipient_id":"170bb062-13e4-42d8-880b-7a96900b7d88","processed_at":"2026-04-08T05:18:57.199Z"}
+{"batch_id":"batch_000022","source_id":"7461762","status":"success","legacy_id":"7461762","care_recipient_id":"65592f41-7cb1-42f8-bd0a-3b63b146a1c9","processed_at":"2026-04-08T05:18:57.508Z"}
+{"batch_id":"batch_000022","source_id":"7461748","status":"success","legacy_id":"7461748","care_recipient_id":"ec553623-1ca6-4d12-8822-197c83bdf985","processed_at":"2026-04-08T05:18:57.791Z"}
+{"batch_id":"batch_000022","source_id":"7461563","status":"success","legacy_id":"7461563","care_recipient_id":"9cebcf96-a4a5-4316-9ff8-15c5e6ea5612","processed_at":"2026-04-08T05:18:58.533Z"}
+{"batch_id":"batch_000022","source_id":"7461556","status":"success","legacy_id":"7461556","care_recipient_id":"eb77d015-ef0c-4b79-969a-8dca1d2df2f4","processed_at":"2026-04-08T05:18:58.839Z"}
+{"batch_id":"batch_000022","source_id":"7461292","status":"success","legacy_id":"7461292","care_recipient_id":"927b2828-288c-49ff-9034-464e1f8c808f","processed_at":"2026-04-08T05:18:59.149Z"}
+{"batch_id":"batch_000022","source_id":"7461197","status":"success","legacy_id":"7461197","care_recipient_id":"218ca605-3b1c-459a-901e-cba88a64ccfb","processed_at":"2026-04-08T05:18:59.541Z"}
+{"batch_id":"batch_000022","source_id":"7461191","status":"success","legacy_id":"7461191","care_recipient_id":"46d06e6a-6a9a-4cbc-98e1-3dbd1bbfde6d","processed_at":"2026-04-08T05:18:59.865Z"}
+{"batch_id":"batch_000022","source_id":"7461169","status":"success","legacy_id":"7461169","care_recipient_id":"d8efa10f-9f89-434c-b37b-20b40911a2d6","processed_at":"2026-04-08T05:19:00.153Z"}
+{"batch_id":"batch_000022","source_id":"7461141","status":"success","legacy_id":"7461141","care_recipient_id":"1ca1657a-2ec7-47e8-b18b-8d6982b59eac","processed_at":"2026-04-08T05:19:00.440Z"}
+{"batch_id":"batch_000022","source_id":"7461058","status":"success","legacy_id":"7461058","care_recipient_id":"b2bf26e8-c3ad-48c8-9a58-cd8b8647e4e7","processed_at":"2026-04-08T05:19:00.721Z"}
+{"batch_id":"batch_000022","source_id":"7461017","status":"success","legacy_id":"7461017","care_recipient_id":"3c9b6405-a6d3-4f98-b833-1212d7e74a7a","processed_at":"2026-04-08T05:19:01.001Z"}
+{"batch_id":"batch_000022","source_id":"7460685","status":"success","legacy_id":"7460685","care_recipient_id":"8539b2b0-189a-4349-a8ad-fdc67a48821d","processed_at":"2026-04-08T05:19:01.297Z"}
+{"batch_id":"batch_000022","source_id":"7460683","status":"success","legacy_id":"7460683","care_recipient_id":"e714c5c2-2cc3-48d1-8893-6ac419913b0a","processed_at":"2026-04-08T05:19:01.637Z"}
+{"batch_id":"batch_000022","source_id":"7460681","status":"success","legacy_id":"7460681","care_recipient_id":"98728676-e6be-4f4f-95c2-1589ddd7f940","processed_at":"2026-04-08T05:19:01.916Z"}
+{"batch_id":"batch_000022","source_id":"7460421","status":"success","legacy_id":"7460421","care_recipient_id":"5ad68919-3c46-4e92-bed4-e6803308aa78","processed_at":"2026-04-08T05:19:02.222Z"}
+{"batch_id":"batch_000022","source_id":"7460289","status":"success","legacy_id":"7460289","care_recipient_id":"62a85b12-8fec-4e9b-8194-cd6d1dbc8306","processed_at":"2026-04-08T05:19:02.507Z"}
+{"batch_id":"batch_000022","source_id":"7460271","status":"success","legacy_id":"7460271","care_recipient_id":"fa797098-1d14-4ee8-92a9-a17f3b379758","processed_at":"2026-04-08T05:19:02.787Z"}
+{"batch_id":"batch_000022","source_id":"7459625","status":"success","legacy_id":"7459625","care_recipient_id":"609b2e84-41b4-482f-8134-73e2e4a59476","processed_at":"2026-04-08T05:19:03.068Z"}
+{"batch_id":"batch_000022","source_id":"7459280","status":"success","legacy_id":"7459280","care_recipient_id":"f9d230fd-dca1-408c-afe7-67b5756ac91b","processed_at":"2026-04-08T05:19:03.350Z"}
+{"batch_id":"batch_000022","source_id":"7459264","status":"success","legacy_id":"7459264","care_recipient_id":"92559f84-8a72-4fec-aa80-2dd546858e94","processed_at":"2026-04-08T05:19:03.646Z"}
+{"batch_id":"batch_000022","source_id":"7459143","status":"success","legacy_id":"7459143","care_recipient_id":"57f458c0-3788-4d6f-a6f2-926f69ce7f07","processed_at":"2026-04-08T05:19:04.062Z"}
+{"batch_id":"batch_000022","source_id":"7459139","status":"success","legacy_id":"7459139","care_recipient_id":"c6c76015-6497-4df4-a6b4-a64857628bbc","processed_at":"2026-04-08T05:19:04.349Z"}
+{"batch_id":"batch_000022","source_id":"7458943","status":"success","legacy_id":"7458943","care_recipient_id":"49d577c6-82cd-4a86-8a09-1d463c114430","processed_at":"2026-04-08T05:19:04.680Z"}
+{"batch_id":"batch_000022","source_id":"7458920","status":"success","legacy_id":"7458920","care_recipient_id":"b72c7f31-5ae3-4c77-bb48-74bd4274dba3","processed_at":"2026-04-08T05:19:04.986Z"}
+{"batch_id":"batch_000022","source_id":"7458861","status":"success","legacy_id":"7458861","care_recipient_id":"10a3e4ff-68c4-4c71-b69f-847019ff0183","processed_at":"2026-04-08T05:19:05.831Z"}
+{"batch_id":"batch_000022","source_id":"7458791","status":"success","legacy_id":"7458791","care_recipient_id":"e9ed0a85-6cb9-4b12-8921-35cecb9805b3","processed_at":"2026-04-08T05:19:06.114Z"}
+{"batch_id":"batch_000022","source_id":"7458767","status":"success","legacy_id":"7458767","care_recipient_id":"8b232163-e4e6-4edc-b397-feabb99385b2","processed_at":"2026-04-08T05:19:06.392Z"}
+{"batch_id":"batch_000022","source_id":"7458706","status":"success","legacy_id":"7458706","care_recipient_id":"11337553-4923-47ba-a721-d3ac9808d489","processed_at":"2026-04-08T05:19:06.695Z"}
+{"batch_id":"batch_000022","source_id":"7458528","status":"success","legacy_id":"7458528","care_recipient_id":"d7635fa2-913b-4bca-83b5-431d3d60b304","processed_at":"2026-04-08T05:19:06.976Z"}
+{"batch_id":"batch_000022","source_id":"7458373","status":"success","legacy_id":"7458373","care_recipient_id":"e65ed463-112b-48d8-a92b-f5a95701a717","processed_at":"2026-04-08T05:19:07.260Z"}
+{"batch_id":"batch_000022","source_id":"7458276","status":"success","legacy_id":"7458276","care_recipient_id":"eca9c827-5199-47c1-958e-b40b3d2157cd","processed_at":"2026-04-08T05:19:07.647Z"}
+{"batch_id":"batch_000022","source_id":"7458181","status":"success","legacy_id":"7458181","care_recipient_id":"94e5f074-33f6-402f-aae9-bf909be238b2","processed_at":"2026-04-08T05:19:07.928Z"}
+{"batch_id":"batch_000022","source_id":"7458085","status":"success","legacy_id":"7458085","care_recipient_id":"d039dcb8-7789-4629-b0b5-44437339993f","processed_at":"2026-04-08T05:19:08.261Z"}
+{"batch_id":"batch_000022","source_id":"7458079","status":"success","legacy_id":"7458079","care_recipient_id":"bbcc9e6c-8e97-4cb9-844a-cbdc8e0fe31b","processed_at":"2026-04-08T05:19:08.877Z"}
+{"batch_id":"batch_000022","source_id":"7457934","status":"success","legacy_id":"7457934","care_recipient_id":"450d7903-9c84-404f-93cf-0678b89f8735","processed_at":"2026-04-08T05:19:09.167Z"}
+{"batch_id":"batch_000022","source_id":"7457871","status":"success","legacy_id":"7457871","care_recipient_id":"618f5388-4739-4d6c-ab84-ef08c8c9b235","processed_at":"2026-04-08T05:19:09.556Z"}
+{"batch_id":"batch_000022","source_id":"7457707","status":"success","legacy_id":"7457707","care_recipient_id":"3a532f96-11e8-4da5-973e-fe4dac87d1ac","processed_at":"2026-04-08T05:19:09.837Z"}
+{"batch_id":"batch_000022","source_id":"7457210","status":"success","legacy_id":"7457210","care_recipient_id":"6bd00f69-1e22-4447-a1ea-c84d14637ad8","processed_at":"2026-04-08T05:19:10.120Z"}
+{"batch_id":"batch_000022","source_id":"7457131","status":"success","legacy_id":"7457131","care_recipient_id":"2b4b6c59-9f1f-4aca-b03d-0f0f04002f57","processed_at":"2026-04-08T05:19:10.412Z"}
+{"batch_id":"batch_000022","source_id":"7456971","status":"success","legacy_id":"7456971","care_recipient_id":"17a08484-8aa4-4506-bad2-1035cbbfea28","processed_at":"2026-04-08T05:19:10.721Z"}
+{"batch_id":"batch_000022","source_id":"7456923","status":"success","legacy_id":"7456923","care_recipient_id":"9cf86b3a-818c-4602-94f7-280e8c843bea","processed_at":"2026-04-08T05:19:11.072Z"}
+{"batch_id":"batch_000022","source_id":"7456919","status":"success","legacy_id":"7456919","care_recipient_id":"538889d6-a932-4b3b-9b2f-b31a7f26aa3a","processed_at":"2026-04-08T05:19:11.356Z"}
+{"batch_id":"batch_000022","source_id":"7456906","status":"success","legacy_id":"7456906","care_recipient_id":"307593b1-b2b1-48f2-a802-6f9d5b7e145d","processed_at":"2026-04-08T05:19:11.636Z"}
+{"batch_id":"batch_000022","source_id":"7456864","status":"success","legacy_id":"7456864","care_recipient_id":"0d5ada08-0234-487b-8f37-8014483bc677","processed_at":"2026-04-08T05:19:11.947Z"}
+{"batch_id":"batch_000022","source_id":"7456807","status":"success","legacy_id":"7456807","care_recipient_id":"64d6778e-9327-4015-b719-efdb796653dd","processed_at":"2026-04-08T05:19:12.255Z"}
+{"batch_id":"batch_000022","source_id":"7456805","status":"success","legacy_id":"7456805","care_recipient_id":"90611cb6-fbc9-48c0-b44c-d7ffc6b6da97","processed_at":"2026-04-08T05:19:12.559Z"}
+{"batch_id":"batch_000022","source_id":"7456758","status":"success","legacy_id":"7456758","care_recipient_id":"3329f89d-4d1f-4133-8a4f-6d017636af0d","processed_at":"2026-04-08T05:19:12.921Z"}
+{"batch_id":"batch_000022","source_id":"7456716","status":"success","legacy_id":"7456716","care_recipient_id":"c7944acb-6301-4f00-b0f6-a13e6747b2ca","processed_at":"2026-04-08T05:19:13.203Z"}
+{"batch_id":"batch_000022","source_id":"7456593","status":"success","legacy_id":"7456593","care_recipient_id":"c492e0bd-3e54-4931-a1f5-e1d58269254c","processed_at":"2026-04-08T05:19:13.486Z"}
+{"batch_id":"batch_000022","source_id":"7456533","status":"success","legacy_id":"7456533","care_recipient_id":"3dcad0f5-0356-4d01-8e87-053d8289dba4","processed_at":"2026-04-08T05:19:13.792Z"}
+{"batch_id":"batch_000022","source_id":"7456420","status":"success","legacy_id":"7456420","care_recipient_id":"239f0cab-232b-41d7-ada8-09820db77e71","processed_at":"2026-04-08T05:19:14.100Z"}
+{"batch_id":"batch_000022","source_id":"7456393","status":"success","legacy_id":"7456393","care_recipient_id":"1d0a393f-27f5-4e41-83e3-88a3d4fd2533","processed_at":"2026-04-08T05:19:14.404Z"}
+{"batch_id":"batch_000022","source_id":"7456344","status":"success","legacy_id":"7456344","care_recipient_id":"d013e3a3-82fe-4a5a-a504-e124b031a524","processed_at":"2026-04-08T05:19:14.816Z"}
+{"batch_id":"batch_000022","source_id":"7456343","status":"success","legacy_id":"7456343","care_recipient_id":"d013e3a3-82fe-4a5a-a504-e124b031a524","processed_at":"2026-04-08T05:19:15.123Z"}
+{"batch_id":"batch_000022","source_id":"7456271","status":"success","legacy_id":"7456271","care_recipient_id":"e9663acb-2de7-4818-8d64-9507863cc35f","processed_at":"2026-04-08T05:19:15.431Z"}
+{"batch_id":"batch_000022","source_id":"7456030","status":"success","legacy_id":"7456030","care_recipient_id":"56e7bcea-fa5b-467a-9cb4-bb8e90483296","processed_at":"2026-04-08T05:19:15.842Z"}
+{"batch_id":"batch_000022","source_id":"7455797","status":"success","legacy_id":"7455797","care_recipient_id":"a12f1e50-c666-492c-9798-ec5acd2d0081","processed_at":"2026-04-08T05:19:16.146Z"}
+{"batch_id":"batch_000022","source_id":"7455716","status":"success","legacy_id":"7455716","care_recipient_id":"b5ef5ce2-e366-4c51-a41c-d78a4e61a8c1","processed_at":"2026-04-08T05:19:16.452Z"}
+{"batch_id":"batch_000022","source_id":"7455331","status":"success","legacy_id":"7455331","care_recipient_id":"83549242-94be-45aa-85ba-8fbc491b9b26","processed_at":"2026-04-08T05:19:16.865Z"}
+{"batch_id":"batch_000022","source_id":"7455066","status":"success","legacy_id":"7455066","care_recipient_id":"cd5cc49b-22cf-4ca0-b605-6418a9fb7cd1","processed_at":"2026-04-08T05:19:17.170Z"}
+{"batch_id":"batch_000022","source_id":"7455046","status":"success","legacy_id":"7455046","care_recipient_id":"8d4d0623-c9e7-4371-ad27-0790a946f6cd","processed_at":"2026-04-08T05:19:17.477Z"}
+{"batch_id":"batch_000022","source_id":"7454734","status":"success","legacy_id":"7454734","care_recipient_id":"223e858a-848f-4fa2-a941-4ce909b1f3d5","processed_at":"2026-04-08T05:19:17.784Z"}
+{"batch_id":"batch_000022","source_id":"7454631","status":"success","legacy_id":"7454631","care_recipient_id":"eed3eb73-96e2-4266-acb4-545aad8cc8c1","processed_at":"2026-04-08T05:19:18.092Z"}
+{"batch_id":"batch_000022","source_id":"7454627","status":"success","legacy_id":"7454627","care_recipient_id":"b0aba41a-9e9f-4e03-966d-79cd8bdaaed3","processed_at":"2026-04-08T05:19:18.413Z"}
+{"batch_id":"batch_000022","source_id":"7454566","status":"success","legacy_id":"7454566","care_recipient_id":"016dc987-3637-47fd-93c8-1f7902193762","processed_at":"2026-04-08T05:19:18.705Z"}
+{"batch_id":"batch_000022","source_id":"7454557","status":"success","legacy_id":"7454557","care_recipient_id":"763ffb1e-411b-4e8e-9c51-066ae5f4a468","processed_at":"2026-04-08T05:19:19.292Z"}
+{"batch_id":"batch_000022","source_id":"7454530","status":"success","legacy_id":"7454530","care_recipient_id":"b8b3f4b6-8fb4-4442-821d-ff1d8ff27cee","processed_at":"2026-04-08T05:19:19.571Z"}
+{"batch_id":"batch_000022","source_id":"7454484","status":"success","legacy_id":"7454484","care_recipient_id":"d1acba16-211a-44a7-bc34-07c4fb698040","processed_at":"2026-04-08T05:19:19.849Z"}
+{"batch_id":"batch_000022","source_id":"7454459","status":"success","legacy_id":"7454459","care_recipient_id":"2e4ec4e9-1953-4f55-bb9b-e20223ed3216","processed_at":"2026-04-08T05:19:20.139Z"}
+{"batch_id":"batch_000022","source_id":"7454415","status":"success","legacy_id":"7454415","care_recipient_id":"a4a1d2fe-0e9a-4c23-8cf6-f62036988bf0","processed_at":"2026-04-08T05:19:20.423Z"}
+{"batch_id":"batch_000022","source_id":"7454331","status":"success","legacy_id":"7454331","care_recipient_id":"b9b0b2c4-eaab-4620-8ed9-9892b39b55f9","processed_at":"2026-04-08T05:19:20.790Z"}
+{"batch_id":"batch_000022","source_id":"7454235","status":"success","legacy_id":"7454235","care_recipient_id":"fcb7a76a-ca47-4727-95ab-fe8ecf45c5db","processed_at":"2026-04-08T05:19:21.071Z"}
+{"batch_id":"batch_000022","source_id":"7454106","status":"success","legacy_id":"7454106","care_recipient_id":"4ee71acc-4d24-4890-8555-e83720288e33","processed_at":"2026-04-08T05:19:21.368Z"}
+{"batch_id":"batch_000022","source_id":"7453872","status":"success","legacy_id":"7453872","care_recipient_id":"c34a5550-4b7c-4cac-8331-98f3b4d12c3a","processed_at":"2026-04-08T05:19:21.675Z"}
+{"batch_id":"batch_000022","source_id":"7453723","status":"success","legacy_id":"7453723","care_recipient_id":"3a627fee-31fb-4296-ac27-5d52964ce494","processed_at":"2026-04-08T05:19:21.983Z"}
+{"batch_id":"batch_000022","source_id":"7453678","status":"success","legacy_id":"7453678","care_recipient_id":"dde38863-a676-41da-abe8-57567bb711ea","processed_at":"2026-04-08T05:19:22.291Z"}
+{"batch_id":"batch_000022","source_id":"7453656","status":"success","legacy_id":"7453656","care_recipient_id":"203d5790-db68-43eb-9d08-850edf1c2f76","processed_at":"2026-04-08T05:19:22.607Z"}
+{"batch_id":"batch_000022","source_id":"7453441","status":"success","legacy_id":"7453441","care_recipient_id":"3aa70b69-75f5-44bc-8fc9-f3e466c09619","processed_at":"2026-04-08T05:19:22.905Z"}
+{"batch_id":"batch_000001","source_id":"8793805","status":"success","legacy_id":"8793805","care_recipient_id":"8575adb8-5bed-4a63-ad92-d4bc57013983","processed_at":"2026-04-08T05:40:02.037Z"}
+{"batch_id":"batch_000001","source_id":"8787892","status":"success","legacy_id":"8787892","care_recipient_id":"c13c2d44-308c-4a05-ae55-f286854dce1b","processed_at":"2026-04-08T05:40:02.346Z"}
+{"batch_id":"batch_000001","source_id":"8787015","status":"success","legacy_id":"8787015","care_recipient_id":"4f91f1d7-57b0-4a57-b8a6-3aa3769680ba","processed_at":"2026-04-08T05:40:02.649Z"}
+{"batch_id":"batch_000001","source_id":"8786985","status":"success","legacy_id":"8786985","care_recipient_id":"f87f4427-ad0d-4a1f-9c58-9a354f7d59ed","processed_at":"2026-04-08T05:40:02.949Z"}
+{"batch_id":"batch_000001","source_id":"8786929","status":"success","legacy_id":"8786929","care_recipient_id":"56c39ef4-95f5-4fc3-85b0-909ad9b7e0bd","processed_at":"2026-04-08T05:40:03.249Z"}
+{"batch_id":"batch_000001","source_id":"8786210","status":"success","legacy_id":"8786210","care_recipient_id":"573a9fbe-1434-4c28-b635-b0339d005fbc","processed_at":"2026-04-08T05:40:03.611Z"}
+{"batch_id":"batch_000001","source_id":"8786170","status":"success","legacy_id":"8786170","care_recipient_id":"df41f756-1449-4505-bcd2-a454c5176bb8","processed_at":"2026-04-08T05:40:03.915Z"}
+{"batch_id":"batch_000001","source_id":"8785609","status":"success","legacy_id":"8785609","care_recipient_id":"c7b48c21-bfee-4790-b4df-e723d9ef1194","processed_at":"2026-04-08T05:40:04.215Z"}
+{"batch_id":"batch_000001","source_id":"8785596","status":"success","legacy_id":"8785596","care_recipient_id":"1c3a5f35-d47d-4752-81a6-082cd67bba1a","processed_at":"2026-04-08T05:40:04.518Z"}
+{"batch_id":"batch_000001","source_id":"8785363","status":"success","legacy_id":"8785363","care_recipient_id":"69b766ce-d404-4509-8580-3d50c48bbd8e","processed_at":"2026-04-08T05:40:04.818Z"}

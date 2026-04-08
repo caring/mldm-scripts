@@ -24,7 +24,7 @@ export function parseMigrationArgs(): MigrationCLIOptions {
   const options: MigrationCLIOptions = {
     from: 'now',
     to: null,
-    batchSize: 1000,
+    batchSize: 5000,
     dryRun: false,
     retryFailed: false,
     report: false,
@@ -88,7 +88,7 @@ Options:
   --to <date>           End timestamp (optional)
                         Examples: "5 years", "30 days", "2020-01-01"
 
-  --batch-size <num>    Number of rows per batch (default: 1000)
+  --batch-size <num>    Number of rows per batch (default: 5000)
 
   --lookback-years <num> Number of years to look back (default: varies by script)
                         Example: --lookback-years 3
