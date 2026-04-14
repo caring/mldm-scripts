@@ -8,7 +8,17 @@
     "dev": "ts-node src/index.ts",
     "start": "node dist/index.js",
     "clean": "rm -rf dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:affiliate-notes": "ts-node src/test-affiliate-notes-query.ts",
+    "test:self-qualified-notes": "ts-node test-self-qualified-query.ts",
+    "migrate:notes:affiliate": "ts-node src/migrations/notes/affiliate-notes.ts",
+    "migrate:notes:self-qualified": "ts-node src/migrations/notes/self-qualified-notes.ts",
+    "migrate:contact-history": "ts-node src/migrations/contact-history/contact-history.ts",
+    "migrate:lead-status-tour-history": "ts-node src/migrations/lead-status-tour-history/lead-status-tour-history.ts",
+    "migrate:inquiries": "ts-node src/migrations/inquiries/sync-inquiries.ts",
+    "migrate:care-recipient-lead-notes": "ts-node src/migrations/care-recipient-lead-notes/care-recipient-lead-notes.ts"
   },
   "engines": {
     "node": "20.20.0"
@@ -29,10 +39,13 @@
     "@types/pg": "^8.18.0",
     "@types/ssh2": "^1.15.5",
     "@types/tunnel-ssh": "^5.0.4",
+    "pg-mem": "^3.0.14",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
+    "date-fns": "^4.1.0",
     "dotenv": "^17.3.1",
     "mysql2": "^3.19.1",
     "pg": "^8.20.0",
