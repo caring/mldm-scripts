@@ -818,16 +818,19 @@ async function bulkUpdateMM(
   }
 
   const query = `
-    UPDATE care_recipient_leads AS crl
+    UPDATE care_recipient_leads
     SET
-      "legacyLeadStatusAndTourHistory" = v.summary,
+      "legacyLeadStatusAndTourHistory" = COALESCE(
+        v.summary,
+        care_recipient_leads."legacyLeadStatusAndTourHistory"
+      ),
       "leadPriority" = v.lead_priority,
       "pipelineStage" = v.pipeline_stage,
       "mldmMigratedModmonAt" = NOW(),
       "updatedAt" = NOW()
     FROM (VALUES ${values}) AS v(legacy_id, summary, lead_priority, pipeline_stage)
-    WHERE crl."legacyId" = v.legacy_id
-      AND crl."deletedAt" IS NULL
+    WHERE care_recipient_leads."legacyId" = v.legacy_id
+      AND care_recipient_leads."deletedAt" IS NULL
   `;
 
   await pgClient.query(query, params);

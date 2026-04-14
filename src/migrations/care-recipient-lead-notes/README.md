@@ -57,11 +57,18 @@ id: def-456, leadId: xyz-789, value: "[INTERNAL] Follow up needed next week"
 ```
 
 ### Benefits:
-- **No size limit** - Each note stored separately (TEXT field, no truncation)
+- **Smart prioritization** - AFFILIATE notes first (typically 1), then INTERNAL notes (latest first)
+- **3,000 char limit** - Per care recipient, covers ~85-90% of cases completely
+- **No truncation per note** - Each note stored separately as full text (VARCHAR field)
 - **Queryable** - Can filter/search by note type, date, etc.
 - **No Hubspot sync** - Migrated notes marked to exclude from sync
 - **User notes still sync** - Only migrated notes are excluded
 - **Scalable** - Can handle 1M+ notes without Hubspot rate limit issues
+
+### Character Limit Logic:
+1. **AFFILIATE notes** fetched first (usually 1 note, ~300 chars)
+2. **INTERNAL notes** fill remaining space up to 3,000 chars (latest first)
+3. Result: ~10 notes average per care recipient (based on data analysis)
 
 ## Usage
 

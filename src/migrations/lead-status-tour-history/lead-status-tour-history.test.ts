@@ -388,16 +388,19 @@ describe('bulk update care_recipient_leads', () => {
     );
 
     await client.query(
-      `UPDATE care_recipient_leads AS crl
+      `UPDATE care_recipient_leads
        SET
-         "legacyLeadStatusAndTourHistory" = COALESCE(v.summary, crl."legacyLeadStatusAndTourHistory"),
+         "legacyLeadStatusAndTourHistory" = COALESCE(
+           v.summary,
+           care_recipient_leads."legacyLeadStatusAndTourHistory"
+         ),
          "leadPriority" = v.lead_priority,
          "pipelineStage" = v.pipeline_stage,
          "mldmMigratedModmonAt" = NOW(),
          "updatedAt" = NOW()
        FROM (VALUES ($1, $2, $3, $4)) AS v(legacy_id, summary, lead_priority, pipeline_stage)
-       WHERE crl."legacyId" = v.legacy_id
-         AND crl."deletedAt" IS NULL`,
+       WHERE care_recipient_leads."legacyId" = v.legacy_id
+         AND care_recipient_leads."deletedAt" IS NULL`,
       ['1002', null, 'HOT', 'Working']
     );
 

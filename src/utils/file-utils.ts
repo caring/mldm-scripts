@@ -27,6 +27,8 @@ export interface RowRecord {
   dir_care_recipient_id?: string;
   reason?: string;
   error?: string;
+  notes_inserted?: number;
+  notes_deleted?: number;
   processed_at: string;
 }
 
@@ -71,6 +73,17 @@ export async function appendBatch(migrationName: string, batch: BatchRecord): Pr
 export async function appendRow(migrationName: string, row: RowRecord): Promise<void> {
   const filePath = join(MIGRATION_STATE_DIR, migrationName, 'rows.jsonl');
   await fs.appendFile(filePath, JSON.stringify(row) + '\n');
+}
+
+/**
+ * Append multiple row records to rows.jsonl in one file operation
+ */
+export async function appendRows(migrationName: string, rows: RowRecord[]): Promise<void> {
+  if (rows.length === 0) return;
+
+  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'rows.jsonl');
+  const content = rows.map(row => JSON.stringify(row)).join('\n') + '\n';
+  await fs.appendFile(filePath, content);
 }
 
 /**

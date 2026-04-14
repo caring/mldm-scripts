@@ -1,4 +1,10 @@
-import { formatNoteValue, generateUUID } from './care-recipient-lead-notes';
+import {
+  buildConcatenatedLeadNotePayload,
+  buildLeadNotesToInsert,
+  fetchCareRecipientIdsWithNotesAndLeads,
+  formatNoteValue,
+  generateUUID,
+} from './care-recipient-lead-notes';
 
 interface MMCareRecipientNote {
   id: string;
@@ -69,5 +75,168 @@ describe('formatNoteValue', () => {
     const result = formatNoteValue(note);
     expect(result).toBe(`[AFFILIATE] ${longText}`);
     expect(result.length).toBe(longText.length + 12); // +12 for "[AFFILIATE] "
+  });
+});
+
+describe('fetchCareRecipientIdsWithNotesAndLeads', () => {
+  it('filters affected care recipients by from date', async () => {
+    const pgCalls: Array<{ query: string; params: any[] }> = [];
+    const pgClient = {
+      query: async (query: string, params: any[]) => {
+        pgCalls.push({ query, params });
+        return {
+          rows: [{ careRecipientId: 'cr-1' }],
+        };
+      },
+    };
+
+    const fromDate = new Date('2024-01-01T00:00:00.000Z');
+
+    const rows = await fetchCareRecipientIdsWithNotesAndLeads(
+      pgClient,
+      fromDate,
+      null,
+      500,
+      '00000000-0000-0000-0000-000000000000'
+    );
+
+    expect(rows).toEqual(['cr-1']);
+    expect(pgCalls[0].query).toContain('AND crn."createdAt" >= $2');
+    expect(pgCalls[0].query).toContain('AND crn."careRecipientId" > $3');
+    expect(pgCalls[0].query).toContain('AND EXISTS (');
+    expect(pgCalls[0].query).toContain('FROM care_recipient_leads crl');
+    expect(pgCalls[0].query).not.toContain('source IN');
+    expect(pgCalls[0].params).toEqual([
+      500,
+      fromDate,
+      '00000000-0000-0000-0000-000000000000',
+    ]);
+  });
+
+  it('adds the to date filter when provided', async () => {
+    const pgCalls: Array<{ query: string; params: any[] }> = [];
+    const pgClient = {
+      query: async (query: string, params: any[]) => {
+        pgCalls.push({ query, params });
+        return {
+          rows: [],
+        };
+      },
+    };
+
+    const fromDate = new Date('2024-01-01T00:00:00.000Z');
+    const toDate = new Date('2024-12-31T23:59:59.999Z');
+
+    await fetchCareRecipientIdsWithNotesAndLeads(
+      pgClient,
+      fromDate,
+      toDate,
+      250,
+      'cursor-id'
+    );
+
+    expect(pgCalls[0].query).toContain('AND "createdAt" <= $4');
+    expect(pgCalls[0].params).toEqual([250, fromDate, 'cursor-id', toDate]);
+  });
+});
+
+describe('buildConcatenatedLeadNotePayload', () => {
+  function makeNote(overrides: Partial<MMCareRecipientNote> = {}): MMCareRecipientNote {
+    return {
+      id: 'note-1',
+      careRecipientId: 'cr-1',
+      noteText: 'Test note text',
+      noteType: 'affiliate_notes',
+      createdAt: new Date('2025-01-01T00:00:00.000Z'),
+      ...overrides,
+    };
+  }
+
+  it('joins notes with blank lines and preserves order', () => {
+    const payload = buildConcatenatedLeadNotePayload([
+      makeNote({ id: '1', noteText: 'Affiliate note', noteType: 'affiliate_notes' }),
+      makeNote({ id: '2', noteText: 'Internal note', noteType: 'internal_notes', createdAt: new Date('2025-02-01T00:00:00.000Z') }),
+    ]);
+
+    expect(payload).toEqual({
+      value: '[affiliate_notes] Affiliate note\n\n[internal_notes] Internal note',
+      includedNotesCount: 2,
+      createdAt: new Date('2025-02-01T00:00:00.000Z'),
+    });
+  });
+
+  it('caps the final value at 3000 characters', () => {
+    const longNote = makeNote({ noteText: 'A'.repeat(4000) });
+    const payload = buildConcatenatedLeadNotePayload([longNote]);
+
+    expect(payload?.value).toHaveLength(3000);
+    expect(payload?.includedNotesCount).toBe(1);
+  });
+
+  it('stops before adding a note that would exceed the limit', () => {
+    const payload = buildConcatenatedLeadNotePayload([
+      makeNote({ id: '1', noteText: 'A'.repeat(2900) }),
+      makeNote({ id: '2', noteText: 'B'.repeat(200), noteType: 'internal_notes' }),
+    ]);
+
+    expect(payload?.includedNotesCount).toBe(1);
+    expect(payload?.value).toContain('[affiliate_notes]');
+    expect(payload?.value).not.toContain('[internal_notes]');
+  });
+
+  it('trims the final concatenated value to 3000 characters when the first note alone is too long', () => {
+    const payload = buildConcatenatedLeadNotePayload([
+      makeNote({ id: '1', noteText: 'A'.repeat(4000), noteType: 'affiliate_notes' }),
+      makeNote({ id: '2', noteText: 'Should never appear', noteType: 'internal_notes' }),
+    ]);
+
+    const expectedValue = `[affiliate_notes] ${'A'.repeat(2982)}`;
+
+    expect(payload).toEqual({
+      value: expectedValue,
+      includedNotesCount: 1,
+      createdAt: new Date('2025-01-01T00:00:00.000Z'),
+    });
+    expect(payload?.value).toHaveLength(3000);
+    expect(payload?.value).not.toContain('Should never appear');
+  });
+});
+
+describe('buildLeadNotesToInsert', () => {
+  it('creates one concatenated row per lead for the same care recipient', () => {
+    const migratedAt = new Date('2025-03-01T00:00:00.000Z');
+    const rows = buildLeadNotesToInsert(
+      [
+        { id: 'lead-1', legacyId: 'legacy-1', careRecipientId: 'cr-1' },
+        { id: 'lead-2', legacyId: 'legacy-2', careRecipientId: 'cr-1' },
+      ],
+      {
+        'cr-1': [
+          {
+            id: 'note-1',
+            careRecipientId: 'cr-1',
+            noteText: 'Affiliate note',
+            noteType: 'affiliate_notes',
+            createdAt: new Date('2025-01-01T00:00:00.000Z'),
+          },
+          {
+            id: 'note-2',
+            careRecipientId: 'cr-1',
+            noteText: 'Internal note',
+            noteType: 'internal_notes',
+            createdAt: new Date('2025-02-01T00:00:00.000Z'),
+          },
+        ],
+      },
+      migratedAt
+    );
+
+    expect(rows).toHaveLength(2);
+    expect(rows[0].leadId).toBe('lead-1');
+    expect(rows[1].leadId).toBe('lead-2');
+    expect(rows[0].value).toBe('[affiliate_notes] Affiliate note\n\n[internal_notes] Internal note');
+    expect(rows[1].value).toBe(rows[0].value);
+    expect(rows[0].mldmMigratedModmonAt).toBe(migratedAt);
+    expect(rows[0].createdAt).toEqual(new Date('2025-02-01T00:00:00.000Z'));
   });
 });
