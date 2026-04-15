@@ -17,7 +17,7 @@ describe('Contact History Migration', () => {
       const dirCareRecipientId = '9987168';
 
       const query = `
-        SELECT id, "mldmMigratedAt"
+        SELECT id, "mldmMigratedModmonAt"
         FROM care_recipients
         WHERE "legacyId" = $1
           AND "deletedAt" IS NULL
@@ -26,14 +26,14 @@ describe('Contact History Migration', () => {
 
       expect(result.rows).toHaveLength(1);
       expect(result.rows[0].id).toBe('00000000-0000-0000-0000-000000000001');
-      expect(result.rows[0].mldmMigratedAt).toBeNull();
+      expect(result.rows[0].mldmMigratedModmonAt).toBeNull();
     });
 
     it('should return empty for non-existent care_recipient', async () => {
       const dirCareRecipientId = '999999';
 
       const query = `
-        SELECT id, "mldmMigratedAt"
+        SELECT id, "mldmMigratedModmonAt"
         FROM care_recipients
         WHERE "legacyId" = $1
           AND "deletedAt" IS NULL
@@ -47,7 +47,7 @@ describe('Contact History Migration', () => {
       const dirCareRecipientId = '9987169'; // This one is already migrated
 
       const query = `
-        SELECT id, "mldmMigratedAt"
+        SELECT id, "mldmMigratedModmonAt"
         FROM care_recipients
         WHERE "legacyId" = $1
           AND "deletedAt" IS NULL
@@ -55,7 +55,7 @@ describe('Contact History Migration', () => {
       const result = await client.query(query, [dirCareRecipientId]);
 
       expect(result.rows).toHaveLength(1);
-      expect(result.rows[0].mldmMigratedAt).not.toBeNull();
+      expect(result.rows[0].mldmMigratedModmonAt).not.toBeNull();
     });
   });
 
@@ -72,7 +72,7 @@ describe('Contact History Migration', () => {
           "legacyContactHistorySummary" = $1,
           "legacyLastContactedAt" = $2,
           "legacyLastDealSentAt" = $3,
-          "mldmMigratedAt" = NOW(),
+          "mldmMigratedModmonAt" = NOW(),
           "updatedAt" = NOW()
         WHERE id = $4
       `;
@@ -85,7 +85,7 @@ describe('Contact History Migration', () => {
           "legacyContactHistorySummary",
           "legacyLastContactedAt",
           "legacyLastDealSentAt",
-          "mldmMigratedAt"
+          "mldmMigratedModmonAt"
         FROM care_recipients
         WHERE id = $1
       `;
@@ -95,7 +95,7 @@ describe('Contact History Migration', () => {
       expect(result.rows[0].legacyContactHistorySummary).toBe(summary);
       expect(result.rows[0].legacyLastContactedAt).toEqual(lastContactedAt);
       expect(result.rows[0].legacyLastDealSentAt).toEqual(lastDealSentAt);
-      expect(result.rows[0].mldmMigratedAt).not.toBeNull();
+      expect(result.rows[0].mldmMigratedModmonAt).not.toBeNull();
     });
 
     it('should handle null timestamps', async () => {
@@ -110,7 +110,7 @@ describe('Contact History Migration', () => {
           "legacyContactHistorySummary" = $1,
           "legacyLastContactedAt" = $2,
           "legacyLastDealSentAt" = $3,
-          "mldmMigratedAt" = NOW(),
+          "mldmMigratedModmonAt" = NOW(),
           "updatedAt" = NOW()
         WHERE id = $4
       `;
@@ -146,7 +146,7 @@ describe('Contact History Migration', () => {
           "legacyContactHistorySummary" = $1,
           "legacyLastContactedAt" = $2,
           "legacyLastDealSentAt" = $3,
-          "mldmMigratedAt" = NOW()
+          "mldmMigratedModmonAt" = NOW()
         WHERE id = $4
       `;
 

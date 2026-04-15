@@ -33,3 +33,39 @@ npm run migrate:lead-status-tour-history -- --ids ./care-seeker-ids.csv
 
 
 ---
+
+### Incremetnal run commands
+
+
+dry run
+```
+npm run migrate:notes:affiliate -- --ids ./care-seeker-ids.csv --dry-run
+npm run migrate:care-recipient-lead-notes -- --ids ./care-seeker-ids.csv --dry-run
+npm run migrate:contact-history -- --ids ./care-seeker-ids.csv --dry-run
+npm run migrate:lead-status-tour-history -- --ids ./care-seeker-ids.csv --dry-run
+npm run migrate:inquiries -- --ids ./care-seeker-ids.csv --dry-run
+```
+
+```
+npm run migrate:notes:affiliate -- --ids ./care-seeker-ids.csv
+npm run migrate:care-recipient-lead-notes -- --ids ./care-seeker-ids.csv
+npm run migrate:contact-history -- --ids ./care-seeker-ids.csv
+npm run migrate:lead-status-tour-history -- --ids ./care-seeker-ids.csv
+npm run migrate:inquiries -- --ids ./care-seeker-ids.csv
+```
+
+---
+
+ENVIRONMENT=stage npm run migrate:notes:affiliate -- --from "2 years" --batch-size 10
+ENVIRONMENT=stage npm run migrate:contact-history -- --from "2 years" --batch-size 10
+ENVIRONMENT=stage npm run migrate:lead-status-tour-history -- --from "2 years" --batch-size 10
+ENVIRONMENT=stage npm run migrate:inquiries -- --from "2 years" --batch-size 10
+ENVIRONMENT=stage npm run migrate:care-recipient-lead-notes -- --from "2 years" --batch-size 10
+
+
+ENVIRONMENT=prod npm run migrate:notes:affiliate -- --from "2 years" --batch-size 10
+ENVIRONMENT=prod npm run migrate:contact-history -- --from "2 years" --batch-size 10
+ENVIRONMENT=prod npm run migrate:lead-status-tour-history -- --from "2 years" --batch-size 10
+ENVIRONMENT=prod npm run migrate:inquiries -- --from "2 years" --batch-size 10
+ENVIRONMENT=prod npm run migrate:care-recipient-lead-notes -- --from "2 years" --batch-size 10
+

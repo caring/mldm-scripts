@@ -288,7 +288,7 @@ async function runMigration(options: MigrationCLIOptions) {
           // Check if there are new events
           if (events.length === 0) {
             batchSkipped++;
-            const reason = mmInfo.mldmMigratedAt ? 'no_new_events' : 'no_events';
+            const reason = mmInfo.mldmMigratedModmonAt ? 'no_new_events' : 'no_events';
             console.log(`  ⊘ Care recipient ${dirCr.id}: ${reason}`);
 
             if (!options.dryRun) {
@@ -573,12 +573,12 @@ async function fetchCareRecipientBatch(
 async function fetchMMDataForBatch(
   pgClient: any,
   careRecipients: DirCareRecipient[]
-): Promise<Record<number, { id: string; mldmMigratedAt: Date | null }>> {
+): Promise<Record<number, { id: string; mldmMigratedModmonAt: Date | null }>> {
   const legacyIds = careRecipients.map(cr => cr.id.toString());
 
   const result = await pgClient.query(
     `
-    SELECT id, "legacyId", "mldmMigratedAt"
+    SELECT id, "legacyId", "mldmMigratedModmonAt"
     FROM care_recipients
     WHERE "legacyId" = ANY($1)
       AND "deletedAt" IS NULL
@@ -586,12 +586,12 @@ async function fetchMMDataForBatch(
     [legacyIds]
   );
 
-  // Build hashmap: legacyId -> {id, mldmMigratedAt}
-  const mmDataMap: Record<number, { id: string; mldmMigratedAt: Date | null }> = {};
+  // Build hashmap: legacyId -> {id, mldmMigratedModmonAt}
+  const mmDataMap: Record<number, { id: string; mldmMigratedModmonAt: Date | null }> = {};
   for (const row of result.rows) {
     mmDataMap[parseInt(row.legacyId, 10)] = {
       id: row.id,
-      mldmMigratedAt: row.mldmMigratedAt,
+      mldmMigratedModmonAt: row.mldmMigratedModmonAt,
     };
   }
 
@@ -604,7 +604,7 @@ async function fetchMMDataForBatch(
 async function fetchAllEventsForBatch(
   mysqlConn: any,
   careRecipients: DirCareRecipient[],
-  mmDataMap: Record<number, { id: string; mldmMigratedAt: Date | null }>
+  mmDataMap: Record<number, { id: string; mldmMigratedModmonAt: Date | null }>
 ): Promise<Record<number, HistoryEvent[]>> {
   const careRecipientIds = careRecipients.map(cr => cr.id);
 
@@ -630,14 +630,15 @@ async function fetchAllEventsForBatch(
     eventsMap[event.careRecipientId].push(event);
   }
 
-  // For each care recipient, filter by mldmMigratedAt, sort, and take top 10
+  // For each care recipient, filter by mldmMigratedModmonAt, sort, and take top 10
   for (const crId of careRecipientIds) {
     let events = eventsMap[crId] || [];
     const mmInfo = mmDataMap[crId];
+    const migratedAt = mmInfo?.mldmMigratedModmonAt;
 
-    // Filter events after mldmMigratedAt if it exists
-    if (mmInfo && mmInfo.mldmMigratedAt) {
-      events = events.filter(e => e.timestamp > mmInfo.mldmMigratedAt!);
+    // Filter events after mldmMigratedModmonAt if it exists
+    if (migratedAt) {
+      events = events.filter(e => e.timestamp > migratedAt);
     }
 
     // Sort by timestamp descending
@@ -682,7 +683,7 @@ async function bulkUpdateMM(
       "legacyContactHistorySummary" = v.summary,
       "legacyLastContactedAt" = v.last_contacted::timestamptz,
       "legacyLastDealSentAt" = v.last_deal_sent::timestamptz,
-      "mldmMigratedAt" = NOW(),
+      "mldmMigratedModmonAt" = NOW(),
       "updatedAt" = NOW()
     FROM (VALUES ${values}) AS v(id, summary, last_contacted, last_deal_sent)
     WHERE cr.id::text = v.id

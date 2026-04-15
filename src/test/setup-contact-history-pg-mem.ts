@@ -40,7 +40,7 @@ export function createContactHistoryTestDatabase() {
       "legacyContactHistorySummary" VARCHAR(1000),
       "legacyLastContactedAt" TIMESTAMP,
       "legacyLastDealSentAt" TIMESTAMP,
-      "mldmMigratedAt" TIMESTAMP,
+      "mldmMigratedModmonAt" TIMESTAMP,
       "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
       "updatedAt" TIMESTAMP DEFAULT NOW(),
       "deletedAt" TIMESTAMP
@@ -55,8 +55,8 @@ export function createContactHistoryTestDatabase() {
  */
 export async function seedContactHistoryTestData(db: any) {
   // Seed care_recipients
-  // - One ready to migrate (mldmMigratedAt = NULL)
-  // - One already migrated (mldmMigratedAt set)
+  // - One ready to migrate (mldmMigratedModmonAt = NULL)
+  // - One already migrated (mldmMigratedModmonAt set)
   // - One with existing summary (to test overwrite)
   await db.public.none(`
     INSERT INTO care_recipients (
@@ -65,7 +65,7 @@ export async function seedContactHistoryTestData(db: any) {
       "firstName", 
       "lastName", 
       "createdAt",
-      "mldmMigratedAt",
+      "mldmMigratedModmonAt",
       "legacyContactHistorySummary",
       "legacyLastContactedAt",
       "legacyLastDealSentAt"
@@ -111,17 +111,17 @@ export async function seedContactHistoryTestData(db: any) {
       { 
         id: '00000000-0000-0000-0000-000000000001', 
         legacyId: '9987168',
-        mldmMigratedAt: null 
+        mldmMigratedModmonAt: null 
       },
       { 
         id: '00000000-0000-0000-0000-000000000002', 
         legacyId: '9987169',
-        mldmMigratedAt: new Date('2024-03-01T00:00:00Z')
+        mldmMigratedModmonAt: new Date('2024-03-01T00:00:00Z')
       },
       { 
         id: '00000000-0000-0000-0000-000000000003', 
         legacyId: '9987170',
-        mldmMigratedAt: null
+        mldmMigratedModmonAt: null
       },
     ],
   };

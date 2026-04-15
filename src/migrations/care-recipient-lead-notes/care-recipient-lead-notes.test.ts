@@ -3,6 +3,7 @@ import {
   buildLeadNotesToInsert,
   fetchCareRecipientIdsWithNotesAndLeads,
   formatNoteValue,
+  getResumeCursor,
   generateUUID,
 } from './care-recipient-lead-notes';
 
@@ -137,6 +138,22 @@ describe('fetchCareRecipientIdsWithNotesAndLeads', () => {
 
     expect(pgCalls[0].query).toContain('AND "createdAt" <= $4');
     expect(pgCalls[0].params).toEqual([250, fromDate, 'cursor-id', toDate]);
+  });
+});
+
+describe('getResumeCursor', () => {
+  it('returns the initial cursor when there are no checkpoints', () => {
+    expect(getResumeCursor([])).toBe('00000000-0000-0000-0000-000000000000');
+  });
+
+  it('returns the most recent persisted care recipient cursor', () => {
+    expect(
+      getResumeCursor([
+        { last_care_recipient_id: '11111111-1111-1111-1111-111111111111' },
+        {},
+        { last_care_recipient_id: '33333333-3333-3333-3333-333333333333' },
+      ])
+    ).toBe('33333333-3333-3333-3333-333333333333');
   });
 });
 

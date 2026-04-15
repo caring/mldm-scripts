@@ -127,7 +127,7 @@ async function detectMigrationMode(
   // Mode 1: Care seeker-based (NEW)
   if (options.idsFile || options.idsInline) {
     // Check if IDs look like care seeker IDs (we'll parse to determine)
-    const parsedIds = await parseIds(options);
+    await parseIds(options);
     // For now, assume care seeker IDs if --ids is provided
     // (could enhance to detect lead IDs vs care seeker IDs)
     return 'care_seeker';
@@ -402,6 +402,11 @@ async function runCareSeekerBasedMigration(
 
   // Parse care seeker IDs from input
   const careSeekerIds = await parseIds(options);
+
+  if (!careSeekerIds || careSeekerIds.length === 0) {
+    throw new Error('No care seeker IDs found for care seeker-based migration');
+  }
+
   console.log(`Processing ${careSeekerIds.length} care seekers`);
   console.log();
 

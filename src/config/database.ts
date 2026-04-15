@@ -1,6 +1,6 @@
-import dotenv from 'dotenv';
+import { loadEnvironmentConfig } from './load-environment';
 
-dotenv.config();
+loadEnvironmentConfig();
 
 // Feature flags
 export const enablePostgresSSH = process.env.ENABLE_POSTGRES_SSH === 'true';

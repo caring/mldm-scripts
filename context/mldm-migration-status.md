@@ -31,8 +31,8 @@ This document tracks the progress of Mass Legacy Data Migration (MLDM) from lega
   - Supports retry-failed mode
 
 #### Self-Qualified Notes
-- **Status:** ❌ NOT Migrated (Intentionally skipped - old data)
-- **Script Location:** `src/migrations/notes/self-qualified-notes.ts` (exists but not run)
+- **Status:** 📦 Archived (intentionally not run)
+- **Script Location:** `src/migrations/notes/self-qualified-notes.ts` (kept for reference only)
 - **Source:** DIR `contacts.self_qualified_notes` table
 - **Reason Not Migrated:** Old, legacy data deemed not valuable for migration
 
@@ -448,7 +448,7 @@ Or simple list:
 ### Low Priority
 
 6. **Documentation Updates**
-   - Document why self-qualified notes were not migrated
+   - Document why self-qualified notes were archived and not migrated
    - Add examples of using `--lead-ids` parameter for each migration script
    - Create runbook for inquiry migration execution
 
@@ -459,7 +459,7 @@ Or simple list:
 | Migration Type | Script Path | Status | Supports Lead ID List | State Directory |
 |----------------|-------------|--------|----------------------|-----------------|
 | Affiliate Notes | `src/migrations/notes/affiliate-notes.ts` | ✅ Done | ✅ **Yes** (enhanced) | `migration-state/affiliate_notes/` |
-| Self-Qualified Notes | `src/migrations/notes/self-qualified-notes.ts` | ⏭️ Skipped | ❌ No | N/A |
+| Self-Qualified Notes | `src/migrations/notes/self-qualified-notes.ts` | 📦 Archived | ❌ No | N/A |
 | Contact History | `src/migrations/contact-history/contact-history.ts` | ✅ Done | ✅ **Yes** (enhanced) | `migration-state/contact_history/` |
 | Tour/Status History | `src/migrations/lead-status-tour-history/lead-status-tour-history.ts` | ✅ Done | ✅ Yes | `migration-state/lead_status_tour_history/` |
 | Inquiries | `src/migrations/inquiries/sync-inquiries.ts` | ⏸️ Ready | ✅ Yes | `migration-state/inquiries/` |

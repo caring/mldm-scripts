@@ -8,7 +8,7 @@ Data migration scripts to move data from legacy DIR (MySQL) to Modular Monolith 
 ## What We're Migrating
 
 1. **Call History** - Legacy Talk contact history
-2. **Notes** - Affiliate notes and self-qualified notes
+2. **Notes** - Affiliate notes (self-qualified notes intentionally archived)
 
 ## Setup
 

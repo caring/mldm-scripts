@@ -190,8 +190,14 @@ diff before.txt after.txt
 If something goes wrong, you can restore from backup:
 
 ```bash
-# Backups are in migration-state/lead_status_tour_history_backup_YYYYMMDD_HHMMSS/
-cp -r migration-state/lead_status_tour_history_backup_20260402_145135 migration-state/lead_status_tour_history
+# Backups are environment-scoped:
+#   migration-state/prod/lead_status_tour_history_backup_YYYYMMDD_HHMMSS/
+#   migration-state/stage/lead_status_tour_history_backup_YYYYMMDD_HHMMSS/
+
+# Example: restore prod backup into prod state
+cp -r \
+  migration-state/prod/lead_status_tour_history_backup_20260402_145135 \
+  migration-state/prod/lead_status_tour_history
 ```
 
 Or reset specific fields:

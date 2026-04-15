@@ -77,11 +77,15 @@ npm run migrate:contact-history -- --report
 
 ## Output Files
 
-All progress is tracked in `migration-state/contact_history/`:
+All progress is tracked in `migration-state/<environment>/contact_history/`:
 
 - `batches.jsonl` - Batch processing log
 - `rows.jsonl` - Individual care recipient results
 - `summary.json` - Overall migration summary
+
+Where `<environment>` is:
+- `prod` when `ENVIRONMENT=prod`
+- `stage` when `ENVIRONMENT=stage`
 
 ## Example Summary Output
 

@@ -1,0 +1,88 @@
+{
+  "affiliate_notes": {
+    "status": "completed",
+    "time_range": {
+      "from": "2024-04-15T15:18:32.011Z",
+      "to": "2026-04-15T15:18:32.013Z",
+      "to_relative": "-731 day"
+    },
+    "batch_size": 10,
+    "total_batches": 0,
+    "completed_batches": 0,
+    "total_rows_fetched": 0,
+    "total_success": 0,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-04-15T15:18:32.014Z",
+    "last_updated_at": null
+  },
+  "self_qualified_notes": {
+    "status": "completed",
+    "time_range": {
+      "from": "2024-04-15T15:18:46.652Z",
+      "to": null
+    },
+    "batch_size": 10,
+    "total_batches": 1,
+    "completed_batches": 1,
+    "total_rows_fetched": 2,
+    "total_success": 0,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-04-15T15:18:46.656Z",
+    "last_updated_at": "2026-04-15T15:18:46.954Z"
+  },
+  "contact_history": {
+    "status": "completed",
+    "time_range": {
+      "from": "2024-04-15T15:19:00.310Z",
+      "to": null
+    },
+    "batch_size": 10,
+    "total_batches": 0,
+    "completed_batches": 25,
+    "total_rows_fetched": 247,
+    "total_success": 220,
+    "total_skipped": 27,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-04-15T15:19:00.311Z",
+    "last_updated_at": "2026-04-15T15:30:40.286Z"
+  },
+  "lead_status_tour_history": {
+    "status": "completed",
+    "time_range": {
+      "from": "2024-04-15T15:19:34.527Z",
+      "to": null
+    },
+    "batch_size": 10,
+    "total_batches": 0,
+    "completed_batches": 0,
+    "total_rows_fetched": 0,
+    "total_success": 0,
+    "total_skipped": 0,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-04-15T15:19:34.531Z",
+    "last_updated_at": "2026-04-15T15:19:35.181Z"
+  },
+  "sync_inquiries": {
+    "status": "in_progress",
+    "time_range": {
+      "from": "2024-04-15T15:31:19.600Z",
+      "to": null
+    },
+    "batch_size": 10,
+    "total_batches": 0,
+    "completed_batches": 223,
+    "total_rows_fetched": 2680,
+    "total_success": 0,
+    "total_skipped": 2680,
+    "total_duplicate": 0,
+    "total_failed": 0,
+    "started_at": "2026-04-15T15:31:19.605Z",
+    "last_updated_at": "2026-04-15T15:34:38.395Z"
+  }
+}

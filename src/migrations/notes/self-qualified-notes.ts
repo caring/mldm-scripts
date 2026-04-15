@@ -5,6 +5,7 @@ import {
   ensureMigrationDir,
   appendBatch,
   appendRow,
+  getMigrationStatePath,
   readBatches,
   readRows,
   readSummary,
@@ -94,9 +95,9 @@ async function generateReport() {
   }
 
   console.log('Files:');
-  console.log(`  Batches: migration-state/${MIGRATION_NAME}/batches.jsonl`);
-  console.log(`  Rows: migration-state/${MIGRATION_NAME}/rows.jsonl`);
-  console.log(`  Summary: migration-state/summary.json`);
+  console.log(`  Batches: ${getMigrationStatePath(MIGRATION_NAME, 'batches.jsonl')}`);
+  console.log(`  Rows: ${getMigrationStatePath(MIGRATION_NAME, 'rows.jsonl')}`);
+  console.log(`  Summary: ${getMigrationStatePath('summary.json')}`);
 }
 
 /**
@@ -116,7 +117,7 @@ async function retryFailedRows(_options: MigrationCLIOptions) {
   console.log(`Found ${failedRows.length} failed rows`);
   console.log('Retry functionality - to be implemented in future iteration');
   console.log('For now, you can:');
-  console.log('1. Review failed rows in migration-state/self_qualified_notes/rows.jsonl');
+  console.log(`1. Review failed rows in ${getMigrationStatePath(MIGRATION_NAME, 'rows.jsonl')}`);
   console.log('2. Fix the underlying issues');
   console.log('3. Re-run the migration (it will skip already-processed rows)');
 }

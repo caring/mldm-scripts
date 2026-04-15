@@ -343,6 +343,7 @@ async function processBatch(args: {
         careRecipientLeadId: lead.careRecipientLeadId,
         legacyLeadId: lead.legacyId,
         legacyInquiryId,
+        existingInquiryId: null,
       });
     }
   }

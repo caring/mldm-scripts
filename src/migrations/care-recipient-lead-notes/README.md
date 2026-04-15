@@ -142,11 +142,14 @@ npm run migrate:care-recipient-lead-notes -- --from "2 years" --batch-size 500
 
 Migration state is tracked in:
 ```
-migration-state/care_recipient_lead_notes/
+migration-state/<environment>/care_recipient_lead_notes/
 ├── batches.jsonl          # Batch metadata
-└── batch_XXXXX/
-    └── rows.jsonl         # Individual record status
+└── rows.jsonl             # Individual record status
 ```
+
+Where `<environment>` is:
+- `prod` when `ENVIRONMENT=prod`
+- `stage` when `ENVIRONMENT=stage`
 
 ## Report
 

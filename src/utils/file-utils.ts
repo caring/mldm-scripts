@@ -1,7 +1,20 @@
 import { promises as fs } from 'fs';
 import { join } from 'path';
+import { getScriptEnvironment, ScriptEnvironment } from '../config/load-environment';
 
 const MIGRATION_STATE_DIR = 'migration-state';
+
+export function getMigrationStateRoot(
+  environment: ScriptEnvironment = getScriptEnvironment(),
+): string {
+  return join(MIGRATION_STATE_DIR, environment);
+}
+
+export function getMigrationStatePath(
+  ...pathSegments: string[]
+): string {
+  return join(getMigrationStateRoot(), ...pathSegments);
+}
 
 export interface BatchRecord {
   batch_id: string;
@@ -55,7 +68,7 @@ export interface MigrationSummary {
  * Ensure migration state directory exists
  */
 export async function ensureMigrationDir(migrationName: string): Promise<void> {
-  const dir = join(MIGRATION_STATE_DIR, migrationName);
+  const dir = getMigrationStatePath(migrationName);
   await fs.mkdir(dir, { recursive: true });
 }
 
@@ -63,7 +76,7 @@ export async function ensureMigrationDir(migrationName: string): Promise<void> {
  * Append a batch record to batches.jsonl
  */
 export async function appendBatch(migrationName: string, batch: BatchRecord): Promise<void> {
-  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'batches.jsonl');
+  const filePath = getMigrationStatePath(migrationName, 'batches.jsonl');
   await fs.appendFile(filePath, JSON.stringify(batch) + '\n');
 }
 
@@ -71,7 +84,7 @@ export async function appendBatch(migrationName: string, batch: BatchRecord): Pr
  * Append a row record to rows.jsonl
  */
 export async function appendRow(migrationName: string, row: RowRecord): Promise<void> {
-  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'rows.jsonl');
+  const filePath = getMigrationStatePath(migrationName, 'rows.jsonl');
   await fs.appendFile(filePath, JSON.stringify(row) + '\n');
 }
 
@@ -81,7 +94,7 @@ export async function appendRow(migrationName: string, row: RowRecord): Promise<
 export async function appendRows(migrationName: string, rows: RowRecord[]): Promise<void> {
   if (rows.length === 0) return;
 
-  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'rows.jsonl');
+  const filePath = getMigrationStatePath(migrationName, 'rows.jsonl');
   const content = rows.map(row => JSON.stringify(row)).join('\n') + '\n';
   await fs.appendFile(filePath, content);
 }
@@ -90,7 +103,7 @@ export async function appendRows(migrationName: string, rows: RowRecord[]): Prom
  * Read all batch records
  */
 export async function readBatches(migrationName: string): Promise<BatchRecord[]> {
-  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'batches.jsonl');
+  const filePath = getMigrationStatePath(migrationName, 'batches.jsonl');
   try {
     const content = await fs.readFile(filePath, 'utf-8');
     return content
@@ -110,7 +123,7 @@ export async function readBatches(migrationName: string): Promise<BatchRecord[]>
  * Read all row records
  */
 export async function readRows(migrationName: string): Promise<RowRecord[]> {
-  const filePath = join(MIGRATION_STATE_DIR, migrationName, 'rows.jsonl');
+  const filePath = getMigrationStatePath(migrationName, 'rows.jsonl');
   try {
     const content = await fs.readFile(filePath, 'utf-8');
     return content
@@ -130,7 +143,7 @@ export async function readRows(migrationName: string): Promise<RowRecord[]> {
  * Read summary
  */
 export async function readSummary(): Promise<Record<string, MigrationSummary>> {
-  const filePath = join(MIGRATION_STATE_DIR, 'summary.json');
+  const filePath = getMigrationStatePath('summary.json');
   try {
     const content = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(content);
@@ -146,10 +159,11 @@ export async function readSummary(): Promise<Record<string, MigrationSummary>> {
  * Write summary (atomic write)
  */
 export async function writeSummary(summary: Record<string, MigrationSummary>): Promise<void> {
-  const filePath = join(MIGRATION_STATE_DIR, 'summary.json');
+  const stateRoot = getMigrationStateRoot();
+  const filePath = getMigrationStatePath('summary.json');
   const tempPath = filePath + '.tmp';
   
-  await fs.mkdir(MIGRATION_STATE_DIR, { recursive: true });
+  await fs.mkdir(stateRoot, { recursive: true });
   await fs.writeFile(tempPath, JSON.stringify(summary, null, 2));
   await fs.rename(tempPath, filePath);
 }

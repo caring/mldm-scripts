@@ -2,15 +2,17 @@
 
 ## Decision
 
-We plan to move legacy **affiliate notes** and **self-qualified notes** into MM
-`care_recipient_notes`.
+We plan to move legacy **affiliate notes** into MM `care_recipient_notes`.
+
+Legacy **self-qualified notes** were evaluated earlier, but are now intentionally
+archived because the remaining data is old and not needed for migration.
 
 This fits the target model because **internal notes are already moved to
 `care_recipient_notes`**, so this gives us one recipient-level note store in MM.
 
 ## Source Mapping
 
-### 1. Self-qualified notes
+### 1. Self-qualified notes (archived)
 
 - Legacy source: `contacts.self_qualified_notes`
 - Legacy relationship: `contacts.care_recipient_id -> care_recipients.id`
@@ -57,7 +59,8 @@ Result:
 
 Conclusion:
 
-- self-qualified notes are safe to move to `care_recipient_notes`
+- self-qualified notes were technically safe to move to `care_recipient_notes`
+- operational decision: archive and do not run this migration
 
 ### Affiliate notes
 
@@ -78,9 +81,9 @@ Conclusion:
 
 ### Self-qualified notes
 
-- move all non-blank rows from `contacts.self_qualified_notes`
-- map through `contacts.care_recipient_id`
-- insert into `care_recipient_notes`
+- do not run this migration
+- keep `src/migrations/notes/self-qualified-notes.ts` only as historical
+  reference
 
 ### Affiliate notes
 
@@ -95,7 +98,7 @@ Conclusion:
 Use **`care_recipient_notes`** as the MM destination for:
 
 - legacy affiliate notes
-- legacy self-qualified notes
+- archived legacy self-qualified notes (not migrated)
 
 This is the cleanest option because it aligns with the MM recipient-level note
 model and with the existing migration direction for internal notes.

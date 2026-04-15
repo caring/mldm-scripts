@@ -14,7 +14,6 @@
     "test:affiliate-notes": "ts-node src/test-affiliate-notes-query.ts",
     "test:self-qualified-notes": "ts-node test-self-qualified-query.ts",
     "migrate:notes:affiliate": "ts-node src/migrations/notes/affiliate-notes.ts",
-    "migrate:notes:self-qualified": "ts-node src/migrations/notes/self-qualified-notes.ts",
     "migrate:contact-history": "ts-node src/migrations/contact-history/contact-history.ts",
     "migrate:lead-status-tour-history": "ts-node src/migrations/lead-status-tour-history/lead-status-tour-history.ts",
     "migrate:inquiries": "ts-node src/migrations/inquiries/sync-inquiries.ts",

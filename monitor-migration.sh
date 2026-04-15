@@ -1,7 +1,25 @@
 #!/bin/bash
 
+if [ -z "${ENVIRONMENT:-}" ]; then
+  echo 'ENVIRONMENT is required. Use "stage" or "prod".'
+  exit 1
+fi
+
+case "$ENVIRONMENT" in
+  prod|stage) ;;
+  *)
+    echo "Unsupported ENVIRONMENT=\"$ENVIRONMENT\". Use \"stage\" or \"prod\"."
+    exit 1
+    ;;
+esac
+
+STATE_ROOT="migration-state/$ENVIRONMENT"
+SUMMARY_PATH="$STATE_ROOT/summary.json"
+BATCHES_PATH="$STATE_ROOT/affiliate_notes/batches.jsonl"
+
 # Monitor migration progress
 echo "=== Migration Progress Monitor ==="
+echo "Environment: $ENVIRONMENT"
 echo ""
 
 while true; do
@@ -10,15 +28,15 @@ while true; do
   echo ""
   echo "📊 Local State Files:"
   
-  if [ -f "migration-state/affiliate_notes/summary.json" ]; then
+  if [ -f "$SUMMARY_PATH" ]; then
     echo "Summary:"
-    cat migration-state/affiliate_notes/summary.json | jq '.'
+    cat "$SUMMARY_PATH" | jq '.'
   fi
   
   echo ""
   echo "📝 Recent Batches (last 5):"
-  if [ -f "migration-state/affiliate_notes/batches.jsonl" ]; then
-    tail -5 migration-state/affiliate_notes/batches.jsonl | while read line; do
+  if [ -f "$BATCHES_PATH" ]; then
+    tail -5 "$BATCHES_PATH" | while read line; do
       echo "$line" | jq -r '"  Batch \(.batch_number): \(.rows_fetched) rows, \(.success) success, \(.failed) failed - \(.timestamp)"'
     done
   fi

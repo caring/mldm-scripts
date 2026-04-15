@@ -22,11 +22,30 @@ import {
 const MIGRATION_NAME = 'care_recipient_lead_notes';
 const MIGRATION_CREATOR = 'MLDM Migration';
 const MAX_CONCATENATED_NOTE_LENGTH = 3000;
+const INITIAL_CARE_RECIPIENT_CURSOR = '00000000-0000-0000-0000-000000000000';
 
 interface MMCareRecipientLead {
   id: string;
   legacyId: string;
   careRecipientId: string;
+}
+
+interface CareRecipientLeadNotesBatchCheckpoint {
+  last_care_recipient_id?: string;
+}
+
+function getResumeCursor(
+  existingBatches: CareRecipientLeadNotesBatchCheckpoint[]
+): string {
+  for (let index = existingBatches.length - 1; index >= 0; index--) {
+    const cursor = existingBatches[index].last_care_recipient_id;
+
+    if (cursor) {
+      return cursor;
+    }
+  }
+
+  return INITIAL_CARE_RECIPIENT_CURSOR;
 }
 
 interface MMCareRecipientNote {
@@ -196,8 +215,6 @@ async function runTimeBasedMigration(
 ) {
   console.log('=== Bulk Care Recipient Migration ===\n');
 
-  // Read last care_recipient_id from rows.jsonl as cursor
-  const existingRows = await readRows(MIGRATION_NAME);
   const existingBatches = await readBatches(MIGRATION_NAME);
   const batchSize = options.batchSize;
   let batchNumber = existingBatches.length;
@@ -205,17 +222,12 @@ async function runTimeBasedMigration(
   let totalLeadsUpdated = 0;
   let totalNotesInserted = 0;
 
-  // Get cursor from last processed row
-  let cursor = '00000000-0000-0000-0000-000000000000';
-  if (existingRows.length > 0) {
-    const lastRow = existingRows[existingRows.length - 1];
-    cursor = lastRow.care_recipient_id || cursor;
-  }
+  let cursor = getResumeCursor(existingBatches as CareRecipientLeadNotesBatchCheckpoint[]);
 
-  if (existingRows.length > 0) {
+  if (cursor !== INITIAL_CARE_RECIPIENT_CURSOR) {
     console.log(`📌 RESUMING from cursor: ${cursor.substring(0, 8)}...`);
     console.log(`   Previous batches completed: ${existingBatches.length}`);
-    console.log(`   Rows processed: ${existingRows.length}\n`);
+    console.log('   Resume checkpoint source: batches.jsonl\n');
   }
 
   console.log(`Batch size: ${batchSize}\n`);
@@ -755,6 +767,7 @@ async function bulkInsertLeadNotes(
 export {
   buildConcatenatedLeadNotePayload,
   buildLeadNotesToInsert,
+  getResumeCursor,
   formatNoteValue,
   generateUUID,
   fetchCareRecipientIdsWithNotesAndLeads,
@@ -845,7 +858,7 @@ async function deleteMigratedNotesForLead(
 
 /**
  * Fetch care_recipient_ids who have notes
- * NO JOIN - uses cursor from rows.jsonl for resume
+ * NO JOIN - uses persisted cursor for resume
  * Much faster than JOIN approach!
  */
 async function fetchCareRecipientIdsWithNotesAndLeads(
