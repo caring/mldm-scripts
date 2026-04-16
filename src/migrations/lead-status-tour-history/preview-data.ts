@@ -6,6 +6,7 @@
 
 import { connectMySQL, disconnectMySQL, getMySQLConnection } from '../../db/mysql';
 import { connectPostgres, disconnectPostgres, getPostgresClient } from '../../db/postgres';
+import { RowDataPacket } from 'mysql2/promise';
 import {
   buildLeadStatusSummary,
   deriveLeadPriority,
@@ -17,6 +18,10 @@ interface DirLead {
   created_at: Date;
   followup_rank: number | null;
   allowFollowup: boolean | number | string | null;
+}
+
+interface PreviewLeadStatusRow extends RowDataPacket, DirLeadStatus {
+  lead_id: number;
 }
 
 async function previewData() {
@@ -39,7 +44,7 @@ async function previewData() {
 
     // Fetch lead data
     const placeholders = leadIds.map(() => '?').join(', ');
-    const [leads] = await mysqlConn.query(
+    const [leadRows] = await mysqlConn.query(
       `
       SELECT
         lrl.id,
@@ -54,9 +59,10 @@ async function previewData() {
       `,
       leadIds
     );
+    const leads = leadRows as DirLead[];
 
     // Fetch statuses with account names
-    const [statuses] = await mysqlConn.query(
+    const [statusRows] = await mysqlConn.query(
       `
       SELECT
         ls.local_resource_lead_id AS lead_id,
@@ -74,6 +80,7 @@ async function previewData() {
       `,
       leadIds
     );
+    const statuses = statusRows as PreviewLeadStatusRow[];
 
     // Check MM status
     const mmResult = await pgClient.query(
@@ -99,7 +106,7 @@ async function previewData() {
     });
 
     // Display preview for each lead
-    for (const lead of leads as DirLead[]) {
+    for (const lead of leads) {
       const leadStatuses = statusesByLead.get(lead.id) || [];
       const mmData = mmMap.get(lead.id);
 

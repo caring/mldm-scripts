@@ -6,7 +6,14 @@
  */
 
 import { promises as fs } from 'fs';
+import { RowDataPacket } from 'mysql2/promise';
 import { connectMySQL, disconnectMySQL, getMySQLConnection } from '../../db/mysql';
+
+interface LegacyLeadRow extends RowDataPacket {
+  legacy_lead_id: number;
+  legacy_contact_id: number;
+  created_at: Date;
+}
 
 async function convertContactIdsToLeadIds() {
   const args = process.argv.slice(2);
@@ -85,7 +92,8 @@ Output:
       ORDER BY i.contact_id, lrl.created_at DESC
     `;
 
-    const [rows] = await mysqlConn.query(query, contactIds);
+    const [resultRows] = await mysqlConn.query(query, contactIds);
+    const rows = resultRows as LegacyLeadRow[];
 
     console.error(`Found ${rows.length} leads for ${contactIds.length} contacts`);
     console.error('');
@@ -94,7 +102,7 @@ Output:
     console.log('legacy_lead_id,legacy_contact_id,created_at');
 
     // Output CSV rows
-    for (const row of rows as any[]) {
+    for (const row of rows) {
       console.log(`${row.legacy_lead_id},${row.legacy_contact_id},${row.created_at.toISOString()}`);
     }
 
@@ -102,7 +110,7 @@ Output:
     console.error('');
     console.error('Summary:');
     const byContact = new Map<number, number>();
-    for (const row of rows as any[]) {
+    for (const row of rows) {
       const count = byContact.get(row.legacy_contact_id) || 0;
       byContact.set(row.legacy_contact_id, count + 1);
     }

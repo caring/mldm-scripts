@@ -1,3 +1,4 @@
+import { promises as fs } from 'fs';
 import { connectMySQL, disconnectMySQL, getMySQLConnection } from '../../db/mysql';
 import { connectPostgres, disconnectPostgres, getPostgresClient } from '../../db/postgres';
 import { parseTimeParam, formatDate, getRelativeDescription } from '../../utils/time-utils';
@@ -13,6 +14,7 @@ import {
   ensureMigrationDir,
   appendBatch,
   appendRow,
+  getMigrationStatePath,
   readBatches,
   readRows,
   readSummary,
@@ -27,27 +29,30 @@ import {
   MigrationCLIOptions,
   parseIds,
 } from '../../utils/migration-cli';
+import {
+  buildContactHistorySummary,
+  buildIdBatchClassificationFilename,
+  buildIdBatchClassificationReport,
+  chunkIds,
+  ContactHistoryIdClassificationRow,
+  classifyIdBasedCareRecipient,
+  getIdMigrationAction,
+  HistoryEvent,
+  MMCareRecipientData,
+} from './contact-history-helpers';
 
 const MIGRATION_NAME = 'contact_history';
-
-interface HistoryEvent {
-  type: 'call' | 'text' | 'inquiry' | 'contact_merge' | 'formal_affirmation' | 'lead_send';
-  timestamp: Date;
-  description: string;
-  sourceId: number;
-  sourceTable: string;
-  careRecipientId: number;
-}
+const ID_BASED_BATCH_SIZE = 1000;
 
 interface DirCareRecipient {
   id: number;
   created_at: Date;
 }
 
-interface ContactHistorySummary {
-  summary: string;
-  lastContactedAt: Date | null;
-  lastDealSentAt: Date | null;
+interface ResolvedCareSeekerInput {
+  inputId: number;
+  careRecipientId: number;
+  created_at: Date;
 }
 
 /**
@@ -426,82 +431,191 @@ async function runIdBasedMigration(
   options: MigrationCLIOptions
 ) {
   console.log(`Migration scope: ${careSeekerIds.length} care seeker IDs (legacy contact IDs)`);
+  console.log(`Fixed ID batch size: ${ID_BASED_BATCH_SIZE}`);
   console.log();
 
-  // Resolve care seeker IDs → care recipient IDs
-  console.log('Resolving care seeker IDs to care recipient IDs...');
-  const careRecipients = await fetchCareRecipientsByCareSeekerIds(mysqlConn, careSeekerIds);
-  console.log(`✓ Found ${careRecipients.length} care recipients for ${careSeekerIds.length} care seekers`);
-  console.log();
+  const idBatches = chunkIds(careSeekerIds, ID_BASED_BATCH_SIZE);
+  let totalPrepared = 0;
+  let totalSkipped = 0;
+  let totalDone = 0;
+  let totalNotDone = 0;
+  let totalNeedsRefresh = 0;
+  let totalNotInMM = 0;
+  let totalNoEvents = 0;
+  let totalNotFound = 0;
 
-  if (careRecipients.length === 0) {
-    console.log('No care recipients found for provided care seeker IDs');
-    return;
-  }
+  for (const [batchIndex, idBatch] of idBatches.entries()) {
+    const batchId = `id_batch_${String(batchIndex + 1).padStart(6, '0')}`;
+    console.log(`=== Processing ${batchId} (${idBatch.length} IDs) ===`);
 
-  // Fetch MM data
-  console.log('Fetching MM data...');
-  const mmDataMap = await fetchMMDataForBatch(pgClient, careRecipients);
-  console.log(`✓ Found ${Object.keys(mmDataMap).length} care recipients in MM`);
-  console.log();
+    await ensureMigrationDir(`${MIGRATION_NAME}/id-based/${batchId}`);
 
-  // Fetch events
-  console.log('Fetching history events...');
-  const allEventsMap = await fetchAllEventsForBatch(mysqlConn, careRecipients, mmDataMap);
-  console.log(`✓ Fetched events for ${Object.keys(allEventsMap).length} care recipients`);
-  console.log();
+    console.log('Resolving care seeker IDs to care recipient IDs...');
+    const resolvedInputs = await fetchCareRecipientsByCareSeekerIds(mysqlConn, idBatch);
+    console.log(`✓ Resolved ${resolvedInputs.length} input IDs to DIR care recipients`);
 
-  // Process and prepare bulk updates
-  const bulkUpdates: Array<{
-    id: string;
-    summary: string;
-    lastContactedAt: Date | null;
-    lastDealSentAt: Date | null;
-  }> = [];
-
-  let success = 0;
-  let skipped = 0;
-
-  for (const dirCr of careRecipients) {
-    const mmInfo = mmDataMap[dirCr.id];
-    const events = allEventsMap[dirCr.id] || [];
-
-    if (!mmInfo) {
-      skipped++;
-      console.log(`  ⊘ Care recipient ${dirCr.id}: Not in MM`);
-      continue;
+    const resolvedByInputId = new Map<number, ResolvedCareSeekerInput>();
+    for (const resolvedInput of resolvedInputs) {
+      resolvedByInputId.set(resolvedInput.inputId, resolvedInput);
     }
 
-    if (events.length === 0) {
-      skipped++;
-      console.log(`  ⊘ Care recipient ${dirCr.id}: No events`);
-      continue;
+    const careRecipients = buildDistinctCareRecipients(resolvedInputs);
+
+    let mmDataMap: Record<number, MMCareRecipientData> = {};
+    let allEventsMap: Record<number, HistoryEvent[]> = {};
+
+    if (careRecipients.length > 0) {
+      console.log('Fetching MM data...');
+      mmDataMap = await fetchMMDataForBatch(pgClient, careRecipients);
+      console.log(`✓ Found ${Object.keys(mmDataMap).length} care recipients in MM`);
+
+      console.log('Fetching history events...');
+      allEventsMap = await fetchAllEventsForBatch(
+        mysqlConn,
+        careRecipients,
+        mmDataMap,
+        { filterAfterMigratedModmonAt: false }
+      );
+      console.log(`✓ Fetched events for ${Object.keys(allEventsMap).length} care recipients`);
     }
 
-    const { summary, lastContactedAt, lastDealSentAt } = buildContactHistorySummary(events);
+    const classificationRows: ContactHistoryIdClassificationRow[] = [];
+    const actionableUpdatesByCareRecipient = new Map<number, {
+      id: string;
+      summary: string;
+      lastContactedAt: Date | null;
+      lastDealSentAt: Date | null;
+    }>();
 
-    bulkUpdates.push({
-      id: mmInfo.id,
-      summary,
-      lastContactedAt,
-      lastDealSentAt,
-    });
+    let batchPrepared = 0;
+    let batchSkipped = 0;
+    let batchDone = 0;
+    let batchNotDone = 0;
+    let batchNeedsRefresh = 0;
+    let batchNotInMM = 0;
+    let batchNoEvents = 0;
+    let batchNotFound = 0;
 
-    success++;
-    console.log(`  ✓ Care recipient ${dirCr.id}: Prepared (${events.length} events)`);
+    for (const inputId of idBatch) {
+      const resolvedInput = resolvedByInputId.get(inputId);
+
+      if (!resolvedInput) {
+        classificationRows.push({
+          inputId,
+          dirCareRecipientId: null,
+          mmCareRecipientId: null,
+          state: 'not_found',
+          action: getIdMigrationAction('not_found'),
+          reason: 'Input ID not found in DIR contacts',
+          mldmMigratedModmonAt: null,
+          eventsConsidered: 0,
+        });
+        batchSkipped++;
+        batchNotFound++;
+        continue;
+      }
+
+      const mmInfo = mmDataMap[resolvedInput.careRecipientId];
+      const summaryEvents = allEventsMap[resolvedInput.careRecipientId] || [];
+      const decision = classifyIdBasedCareRecipient(mmInfo, summaryEvents);
+
+      classificationRows.push({
+        inputId,
+        dirCareRecipientId: resolvedInput.careRecipientId,
+        mmCareRecipientId: mmInfo?.id ?? null,
+        state: decision.state,
+        action: getIdMigrationAction(decision.state),
+        reason: getClassificationReason(decision.state),
+        mldmMigratedModmonAt: mmInfo?.mldmMigratedModmonAt
+          ? new Date(mmInfo.mldmMigratedModmonAt).toISOString()
+          : null,
+        eventsConsidered: summaryEvents.length,
+      });
+
+      if (decision.state === 'done') {
+        batchSkipped++;
+        batchDone++;
+        continue;
+      }
+
+      if (decision.state === 'not_in_mm') {
+        batchSkipped++;
+        batchNotInMM++;
+        continue;
+      }
+
+      if (decision.state === 'no_events') {
+        batchSkipped++;
+        batchNoEvents++;
+        continue;
+      }
+
+      if (!mmInfo || actionableUpdatesByCareRecipient.has(resolvedInput.careRecipientId)) {
+        continue;
+      }
+
+      const { summary, lastContactedAt, lastDealSentAt } = buildContactHistorySummary(decision.summaryEvents);
+      actionableUpdatesByCareRecipient.set(resolvedInput.careRecipientId, {
+        id: mmInfo.id,
+        summary,
+        lastContactedAt,
+        lastDealSentAt,
+      });
+
+      batchPrepared++;
+      if (decision.state === 'not_done') {
+        batchNotDone++;
+      } else {
+        batchNeedsRefresh++;
+      }
+    }
+
+    const classificationReport = buildIdBatchClassificationReport(
+      batchId,
+      classificationRows,
+      careRecipients.length
+    );
+    const classificationFilePath = await writeIdBatchClassificationFile(batchId, classificationReport);
+    console.log(`✓ Wrote classification file to ${classificationFilePath}`);
+
+    const bulkUpdates = Array.from(actionableUpdatesByCareRecipient.values());
+
+    console.log(`Batch summary: ${batchPrepared} prepared, ${batchSkipped} skipped`);
+    console.log(`  Done: ${batchDone}`);
+    console.log(`  Not done: ${batchNotDone}`);
+    console.log(`  Needs refresh: ${batchNeedsRefresh}`);
+    console.log(`  Not in MM: ${batchNotInMM}`);
+    console.log(`  No events: ${batchNoEvents}`);
+    console.log(`  Not found: ${batchNotFound}`);
+
+    if (bulkUpdates.length > 0 && !options.dryRun) {
+      console.log(`Updating ${bulkUpdates.length} care recipients in MM...`);
+      await bulkUpdateMM(pgClient, bulkUpdates);
+      console.log('✓ Update complete');
+    } else if (options.dryRun) {
+      console.log(`[DRY RUN] Would update ${bulkUpdates.length} care recipients`);
+    }
+
+    totalPrepared += batchPrepared;
+    totalSkipped += batchSkipped;
+    totalDone += batchDone;
+    totalNotDone += batchNotDone;
+    totalNeedsRefresh += batchNeedsRefresh;
+    totalNotInMM += batchNotInMM;
+    totalNoEvents += batchNoEvents;
+    totalNotFound += batchNotFound;
+    console.log();
   }
 
-  console.log();
-  console.log(`Summary: ${success} prepared, ${skipped} skipped`);
-  console.log();
-
-  if (bulkUpdates.length > 0 && !options.dryRun) {
-    console.log(`Updating ${bulkUpdates.length} care recipients in MM...`);
-    await bulkUpdateMM(pgClient, bulkUpdates);
-    console.log('✓ Update complete');
-  } else if (options.dryRun) {
-    console.log(`[DRY RUN] Would update ${bulkUpdates.length} care recipients`);
-  }
+  console.log('=== ID-Based Contact History Migration Summary ===');
+  console.log(`Prepared: ${totalPrepared}`);
+  console.log(`Skipped: ${totalSkipped}`);
+  console.log(`  Done: ${totalDone}`);
+  console.log(`  Not done: ${totalNotDone}`);
+  console.log(`  Needs refresh: ${totalNeedsRefresh}`);
+  console.log(`  Not in MM: ${totalNotInMM}`);
+  console.log(`  No events: ${totalNoEvents}`);
+  console.log(`  Not found: ${totalNotFound}`);
 }
 
 /**
@@ -510,13 +624,14 @@ async function runIdBasedMigration(
 async function fetchCareRecipientsByCareSeekerIds(
   mysqlConn: any,
   careSeekerIds: number[]
-): Promise<DirCareRecipient[]> {
+): Promise<ResolvedCareSeekerInput[]> {
   if (careSeekerIds.length === 0) return [];
 
   const placeholders = careSeekerIds.map(() => '?').join(', ');
   const query = `
-    SELECT DISTINCT
-      c.care_recipient_id AS id,
+    SELECT
+      c.id AS inputId,
+      c.care_recipient_id AS careRecipientId,
       cr.created_at
     FROM contacts c
     INNER JOIN care_recipients cr ON cr.id = c.care_recipient_id
@@ -529,6 +644,58 @@ async function fetchCareRecipientsByCareSeekerIds(
 
   const [rows] = await mysqlConn.query(query, careSeekerIds);
   return rows;
+}
+
+function buildDistinctCareRecipients(
+  resolvedInputs: ResolvedCareSeekerInput[]
+): DirCareRecipient[] {
+  const careRecipientsById = new Map<number, DirCareRecipient>();
+
+  for (const resolvedInput of resolvedInputs) {
+    if (!careRecipientsById.has(resolvedInput.careRecipientId)) {
+      careRecipientsById.set(resolvedInput.careRecipientId, {
+        id: resolvedInput.careRecipientId,
+        created_at: resolvedInput.created_at,
+      });
+    }
+  }
+
+  return Array.from(careRecipientsById.values());
+}
+
+function getClassificationReason(
+  state: ContactHistoryIdClassificationRow['state']
+): string {
+  switch (state) {
+    case 'done':
+      return 'No new events since last migration';
+    case 'not_done':
+      return 'Never migrated in MM';
+    case 'needs_refresh':
+      return 'New events found after last migration';
+    case 'not_in_mm':
+      return 'DIR care recipient not found in MM';
+    case 'no_events':
+      return 'No contact history events found';
+    case 'not_found':
+      return 'Input ID not found in DIR contacts';
+    default:
+      return 'Unknown classification';
+  }
+}
+
+async function writeIdBatchClassificationFile(
+  batchId: string,
+  report: ReturnType<typeof buildIdBatchClassificationReport>
+): Promise<string> {
+  const fileName = buildIdBatchClassificationFilename(report.generatedAt);
+  const filePath = getMigrationStatePath(MIGRATION_NAME, 'id-based', batchId, fileName);
+  const tempPath = `${filePath}.tmp`;
+
+  await fs.writeFile(tempPath, JSON.stringify(report, null, 2));
+  await fs.rename(tempPath, filePath);
+
+  return filePath;
 }
 
 /**
@@ -573,7 +740,7 @@ async function fetchCareRecipientBatch(
 async function fetchMMDataForBatch(
   pgClient: any,
   careRecipients: DirCareRecipient[]
-): Promise<Record<number, { id: string; mldmMigratedModmonAt: Date | null }>> {
+): Promise<Record<number, MMCareRecipientData>> {
   const legacyIds = careRecipients.map(cr => cr.id.toString());
 
   const result = await pgClient.query(
@@ -587,7 +754,7 @@ async function fetchMMDataForBatch(
   );
 
   // Build hashmap: legacyId -> {id, mldmMigratedModmonAt}
-  const mmDataMap: Record<number, { id: string; mldmMigratedModmonAt: Date | null }> = {};
+  const mmDataMap: Record<number, MMCareRecipientData> = {};
   for (const row of result.rows) {
     mmDataMap[parseInt(row.legacyId, 10)] = {
       id: row.id,
@@ -604,9 +771,11 @@ async function fetchMMDataForBatch(
 async function fetchAllEventsForBatch(
   mysqlConn: any,
   careRecipients: DirCareRecipient[],
-  mmDataMap: Record<number, { id: string; mldmMigratedModmonAt: Date | null }>
+  mmDataMap: Record<number, MMCareRecipientData>,
+  options: { filterAfterMigratedModmonAt?: boolean } = {}
 ): Promise<Record<number, HistoryEvent[]>> {
   const careRecipientIds = careRecipients.map(cr => cr.id);
+  const shouldFilterAfterMigratedModmonAt = options.filterAfterMigratedModmonAt ?? true;
 
   // Fetch from all 6 tables in parallel (6 queries total for entire batch!)
   const [calls, texts, inquiries, inquiryLogs, affirmations, leadSends] = await Promise.all([
@@ -630,14 +799,13 @@ async function fetchAllEventsForBatch(
     eventsMap[event.careRecipientId].push(event);
   }
 
-  // For each care recipient, filter by mldmMigratedModmonAt, sort, and take top 10
+  // For each care recipient, optionally filter by migration time, then sort and take top 10
   for (const crId of careRecipientIds) {
     let events = eventsMap[crId] || [];
     const mmInfo = mmDataMap[crId];
     const migratedAt = mmInfo?.mldmMigratedModmonAt;
 
-    // Filter events after mldmMigratedModmonAt if it exists
-    if (migratedAt) {
+    if (shouldFilterAfterMigratedModmonAt && migratedAt) {
       events = events.filter(e => e.timestamp > migratedAt);
     }
 
@@ -694,64 +862,10 @@ async function bulkUpdateMM(
 
 // Old single-care-recipient functions removed - now using batch functions from batch-fetchers.ts
 
-/**
- * Build contact history summary from events
- */
-function buildContactHistorySummary(events: HistoryEvent[]): ContactHistorySummary {
-  // Events are already sorted and limited to top 10
-
-  // 1. lastContactedAt = most recent event timestamp
-  const lastContactedAt = events.length > 0 ? events[0].timestamp : null;
-
-  // 2. lastDealSentAt = most recent lead_send timestamp
-  const lastDealSentAt = events.find((e) => e.type === 'lead_send')?.timestamp || null;
-
-  // 3. Build summary string (max 1000 chars)
-  const MAX_LENGTH = 1000;
-  const TRUNCATED_SUFFIX = '... (truncated)';
-  let summary = '';
-
-  for (const event of events) {
-    const dateStr = formatEventDate(event.timestamp);
-    const line = `[${event.type.toUpperCase()}] ${event.description} - ${dateStr}\n`;
-
-    // Check if adding this line would exceed max length
-    if (summary.length + line.length > MAX_LENGTH - TRUNCATED_SUFFIX.length) {
-      // Add truncation marker if we have room
-      if (summary.length + TRUNCATED_SUFFIX.length <= MAX_LENGTH) {
-        summary += TRUNCATED_SUFFIX;
-      }
-      break;
-    }
-    summary += line;
-  }
-
-  // Final safety check - truncate if somehow still over limit
-  if (summary.length > MAX_LENGTH) {
-    summary = summary.substring(0, MAX_LENGTH - TRUNCATED_SUFFIX.length) + TRUNCATED_SUFFIX;
-  }
-
-  return {
-    summary: summary.trim().substring(0, MAX_LENGTH), // Extra safety
-    lastContactedAt,
-    lastDealSentAt,
-  };
+if (require.main === module) {
+  migrateContactHistory().catch((error) => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });
 }
-
-/**
- * Format event date for display
- */
-function formatEventDate(date: Date): string {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const month = months[date.getMonth()];
-  const day = date.getDate();
-  const year = date.getFullYear();
-  return `${month} ${day}, ${year}`;
-}
-
-// Run migration
-migrateContactHistory().catch((error) => {
-  console.error('Fatal error:', error);
-  process.exit(1);
-});
 

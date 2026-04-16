@@ -69,3 +69,15 @@ ENVIRONMENT=prod npm run migrate:lead-status-tour-history -- --from "2 years" --
 ENVIRONMENT=prod npm run migrate:inquiries -- --from "2 years" --batch-size 10
 ENVIRONMENT=prod npm run migrate:care-recipient-lead-notes -- --from "2 years" --batch-size 10
 
+ENVIRONMENT=stage npm run migrate:notes:affiliate -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=stage npm run migrate:contact-history -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=stage npm run migrate:lead-status-tour-history -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=stage npm run migrate:inquiries -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=stage npm run migrate:care-recipient-lead-notes -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+
+
+ENVIRONMENT=prod npm run migrate:notes:affiliate -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=prod npm run migrate:contact-history -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=prod npm run migrate:lead-status-tour-history -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=prod npm run migrate:inquiries -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
+ENVIRONMENT=prod npm run migrate:care-recipient-lead-notes -- --ids stage-care-seeker-ids.csv --batch-size 10 --dry-run
