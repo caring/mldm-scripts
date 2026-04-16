@@ -28,6 +28,8 @@ export function createLeadStatusTourHistoryTestDatabase() {
       "legacyLeadStatusAndTourHistory" VARCHAR(2000),
       "leadPriority" VARCHAR(50),
       "pipelineStage" VARCHAR(50),
+      "legacyLastInteractingFAName" VARCHAR,
+      "legacyLastInteractingFAEmail" VARCHAR,
       "mldmMigratedModmonAt" TIMESTAMP WITH TIME ZONE,
       "createdAt" TIMESTAMP NOT NULL DEFAULT NOW(),
       "updatedAt" TIMESTAMP DEFAULT NOW(),

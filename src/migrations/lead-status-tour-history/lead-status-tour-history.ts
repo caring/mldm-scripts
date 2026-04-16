@@ -1,5 +1,3 @@
-import { connectMySQL, disconnectMySQL, getMySQLConnection } from '../../db/mysql';
-import { connectPostgres, disconnectPostgres, getPostgresClient } from '../../db/postgres';
 import { parseTimeParam, formatDate, getRelativeDescription } from '../../utils/time-utils';
 import {
   ensureMigrationDir,
@@ -25,12 +23,16 @@ import {
 } from '../../utils/care-recipient-lead-selection';
 
 const MIGRATION_NAME = 'lead_status_tour_history';
+const ID_BASED_BATCH_SIZE = 1000;
 
 interface DirLead {
   id: number;
+  contactId: number | null;
   created_at: Date;
   followup_rank: number | null;
   allowFollowup: boolean | number | string | null;
+  faName: string | null;
+  faEmail: string | null;
 }
 
 export interface DirLeadStatus {
@@ -148,6 +150,9 @@ async function detectMigrationMode(
 }
 
 async function runMigration(options: MigrationCLIOptions) {
+  const { connectMySQL, disconnectMySQL, getMySQLConnection } = await import('../../db/mysql');
+  const { connectPostgres, disconnectPostgres, getPostgresClient } = await import('../../db/postgres');
+
   console.log('Connecting to databases...');
   await connectMySQL();
   await connectPostgres();
@@ -398,48 +403,34 @@ async function runCareSeekerBasedMigration(
   pgClient: any,
   options: MigrationCLIOptions
 ) {
-  console.log('=== Care Seeker-Based Migration ===\n');
+  console.log('=== Contact / Care Seeker ID-Based Migration ===\n');
 
-  // Parse care seeker IDs from input
-  const careSeekerIds = await parseIds(options);
+  const inputIds = await parseIds(options);
 
-  if (!careSeekerIds || careSeekerIds.length === 0) {
-    throw new Error('No care seeker IDs found for care seeker-based migration');
+  if (!inputIds || inputIds.length === 0) {
+    throw new Error('No contact / care seeker IDs found for ID-based migration');
   }
 
-  console.log(`Processing ${careSeekerIds.length} care seekers`);
+  console.log(`Processing ${inputIds.length} contact / care seeker IDs`);
+  console.log(`Fixed ID batch size: ${ID_BASED_BATCH_SIZE}`);
   console.log();
-
-  // Resolve care_seekers → care_recipients → leads
-  const resolvedLeads = await resolveCareSeekerToLeads(pgClient, careSeekerIds);
-  console.log(`✓ Found ${resolvedLeads.length} leads for these care seekers`);
-  console.log();
-
-  if (resolvedLeads.length === 0) {
-    console.log('No leads found for the provided care seekers');
-    console.log('Migration complete (nothing to migrate)');
-    return;
-  }
-
-  // Get legacy lead IDs for DIR queries
-  const legacyLeadIds = resolvedLeads.map(l => parseInt(l.leadId, 10));
-
-  // Fetch lead data from DIR
-  const dirLeads = await fetchLeadsByIds(mysqlConn, legacyLeadIds);
-  console.log(`✓ Fetched ${dirLeads.length} lead records from DIR`);
-  console.log();
-
-  // Process in batches
-  const batchSize = options.batchSize;
   let processedCount = 0;
 
-  for (let i = 0; i < dirLeads.length; i += batchSize) {
-    const batch = dirLeads.slice(i, i + batchSize);
-    const batchNumber = Math.floor(i / batchSize) + 1;
+  for (let i = 0; i < inputIds.length; i += ID_BASED_BATCH_SIZE) {
+    const inputBatch = inputIds.slice(i, i + ID_BASED_BATCH_SIZE);
+    const batchNumber = Math.floor(i / ID_BASED_BATCH_SIZE) + 1;
     const batchId = `batch_${String(batchNumber).padStart(6, '0')}`;
 
     console.log(`\n=== Processing ${batchId} ===`);
-    console.log(`Leads in batch: ${batch.length}`);
+    console.log(`Input IDs in batch: ${inputBatch.length}`);
+
+    const dirLeads = await fetchLeadsByContactIds(mysqlConn, inputBatch);
+    console.log(`✓ Found ${dirLeads.length} leads for the provided contact / care seeker IDs`);
+
+    if (dirLeads.length === 0) {
+      console.log('No leads found for this input batch, moving to next batch');
+      continue;
+    }
 
     await processLeadBatch({
       options,
@@ -447,17 +438,18 @@ async function runCareSeekerBasedMigration(
       fromDate: new Date('2000-01-01'), // No time filter for care seeker mode
       toDate: new Date(),
       batchNumber,
-      dirLeads: batch,
+      dirLeads,
       processedIds: new Set(), // No skip logic for care seeker mode
       mysqlConn,
       pgClient,
+      recordBatchLimit: ID_BASED_BATCH_SIZE,
     });
 
-    processedCount += batch.length;
-    console.log(`Progress: ${processedCount}/${dirLeads.length} leads processed`);
+    processedCount += dirLeads.length;
+    console.log(`Progress: ${Math.min(i + ID_BASED_BATCH_SIZE, inputIds.length)}/${inputIds.length} input IDs processed`);
   }
 
-  console.log('\n=== Care Seeker Migration Complete ===');
+  console.log('\n=== Contact / Care Seeker ID Migration Complete ===');
   console.log(`Total leads updated: ${processedCount}`);
 }
 
@@ -471,9 +463,10 @@ async function processLeadBatch(args: {
   processedIds: Set<number>;
   mysqlConn: any;
   pgClient: any;
+  recordBatchLimit?: number;
 }): Promise<void> {
   const {
-    options, batchId, fromDate, toDate, batchNumber, dirLeads, processedIds, mysqlConn, pgClient,
+    options, batchId, fromDate, toDate, batchNumber, dirLeads, processedIds, mysqlConn, pgClient, recordBatchLimit,
   } = args;
 
   const unprocessedLeads = dirLeads.filter(l => !processedIds.has(l.id));
@@ -505,6 +498,8 @@ async function processLeadBatch(args: {
     summary: string | null;
     leadPriority: string;
     pipelineStage: string;
+    faName: string | null;
+    faEmail: string | null;
   }> = [];
 
   for (const lead of unprocessedLeads) {
@@ -539,6 +534,8 @@ async function processLeadBatch(args: {
         summary,
         leadPriority,
         pipelineStage,
+        faName: lead.faName,
+        faEmail: lead.faEmail,
       });
       batchSuccess++;
 
@@ -591,7 +588,7 @@ async function processLeadBatch(args: {
   if (bulkUpdates.length > 0) {
     if (options.dryRun) {
       console.log(`\n[DRY RUN] Would update ${bulkUpdates.length} leads in care_recipient_leads`);
-      console.log(`[DRY RUN] Fields to update: legacyLeadStatusAndTourHistory, leadPriority, pipelineStage, mldmMigratedModmonAt`);
+      console.log(`[DRY RUN] Fields to update: legacyLeadStatusAndTourHistory, leadPriority, pipelineStage, legacyLastInteractingFAName, legacyLastInteractingFAEmail, mldmMigratedModmonAt`);
     } else {
       console.log(`\nPerforming bulk update for ${bulkUpdates.length} leads...`);
       await bulkUpdateMM(pgClient, bulkUpdates);
@@ -611,7 +608,7 @@ async function processLeadBatch(args: {
         to: toDate ? formatDate(toDate) : null,
         last_created_at: lastLeadDate,
         last_id: dirLeads.length > 0 ? dirLeads[dirLeads.length - 1].id.toString() : null,
-        limit: options.batchSize,
+        limit: recordBatchLimit ?? options.batchSize,
       },
       fetched_count: dirLeads.length,
       started_at: formatDate(new Date()),
@@ -662,16 +659,49 @@ async function fetchLeadsByIds(mysqlConn: any, leadIds: number[]): Promise<DirLe
     `
     SELECT
       lrl.id,
+      i.contact_id AS contactId,
       lrl.created_at,
       c.followup_rank,
-      c.allow_followup AS allowFollowup
+      c.allow_followup AS allowFollowup,
+      a.full_name AS faName,
+      a.email AS faEmail
     FROM local_resource_leads lrl
     LEFT JOIN inquiries i ON i.id = lrl.inquiry_id
     LEFT JOIN contacts c ON c.id = i.contact_id
+    LEFT JOIN accounts a ON a.id = lrl.account_id
     WHERE lrl.id IN (${placeholders})
       AND lrl.deleted_at IS NULL
     `,
     leadIds
+  );
+
+  return rows as DirLead[];
+}
+
+export async function fetchLeadsByContactIds(mysqlConn: any, contactIds: number[]): Promise<DirLead[]> {
+  if (contactIds.length === 0) return [];
+
+  const placeholders = contactIds.map(() => '?').join(', ');
+  const [rows] = await mysqlConn.query(
+    `
+    SELECT
+      lrl.id,
+      c.id AS contactId,
+      lrl.created_at,
+      c.followup_rank,
+      c.allow_followup AS allowFollowup,
+      a.full_name AS faName,
+      a.email AS faEmail
+    FROM contacts c
+    JOIN inquiries i ON i.contact_id = c.id
+    JOIN local_resource_leads lrl ON lrl.inquiry_id = i.id
+    LEFT JOIN accounts a ON a.id = lrl.account_id
+    WHERE c.id IN (${placeholders})
+      AND c.deleted_at IS NULL
+      AND lrl.deleted_at IS NULL
+    ORDER BY c.created_at DESC, lrl.created_at DESC, lrl.id DESC
+    `,
+    contactIds
   );
 
   return rows as DirLead[];
@@ -697,43 +727,6 @@ async function fetchAffectedLeadsFromNewStatuses(
 
   return (rows as any[]).map(r => r.lead_id);
 }
-
-/**
- * Resolve care seeker IDs to lead IDs
- * (Care seeker-based mode: care_seekers → care_recipients → leads)
- */
-async function resolveCareSeekerToLeads(
-  pgClient: any,
-  careSeekerIds: number[]
-): Promise<{ leadId: string; careSeekerId: string; careRecipientId: string }[]> {
-  if (careSeekerIds.length === 0) return [];
-
-  const result = await pgClient.query(
-    `
-    SELECT
-      crl.id as lead_id,
-      crl."legacyId" as lead_legacy_id,
-      cr.id as care_recipient_id,
-      cs."legacyId" as care_seeker_legacy_id
-    FROM care_recipient_leads crl
-    INNER JOIN care_recipients cr ON cr.id = crl."careRecipientId"
-    INNER JOIN care_seekers cs ON cs.id = cr."careSeekerId"
-    WHERE cs."legacyId" = ANY($1)
-      AND crl."deletedAt" IS NULL
-      AND cr."deletedAt" IS NULL
-      AND cs."deletedAt" IS NULL
-    ORDER BY crl."createdAt" DESC
-    `,
-    [careSeekerIds.map(id => id.toString())]
-  );
-
-  return result.rows.map((row: any) => ({
-    leadId: row.lead_legacy_id,
-    careSeekerId: row.care_seeker_legacy_id,
-    careRecipientId: row.care_recipient_id,
-  }));
-}
-
 
 async function fetchStatusesForBatch(
   mysqlConn: any,
@@ -806,20 +799,22 @@ async function bulkUpdateMM(
     summary: string | null;
     leadPriority: string;
     pipelineStage: string;
+    faName: string | null;
+    faEmail: string | null;
   }>
 ): Promise<void> {
   if (updates.length === 0) return;
 
   const values = updates
     .map((_u, idx) => {
-      const baseIdx = idx * 4;
-      return `($${baseIdx + 1}, $${baseIdx + 2}, $${baseIdx + 3}, $${baseIdx + 4})`;
+      const baseIdx = idx * 6;
+      return `($${baseIdx + 1}, $${baseIdx + 2}, $${baseIdx + 3}, $${baseIdx + 4}, $${baseIdx + 5}, $${baseIdx + 6})`;
     })
     .join(', ');
 
   const params: any[] = [];
   for (const u of updates) {
-    params.push(u.legacyId, u.summary, u.leadPriority, u.pipelineStage);
+    params.push(u.legacyId, u.summary, u.leadPriority, u.pipelineStage, u.faName, u.faEmail);
   }
 
   const query = `
@@ -831,9 +826,11 @@ async function bulkUpdateMM(
       ),
       "leadPriority" = v.lead_priority,
       "pipelineStage" = v.pipeline_stage,
+      "legacyLastInteractingFAName" = v.fa_name,
+      "legacyLastInteractingFAEmail" = v.fa_email,
       "mldmMigratedModmonAt" = NOW(),
       "updatedAt" = NOW()
-    FROM (VALUES ${values}) AS v(legacy_id, summary, lead_priority, pipeline_stage)
+    FROM (VALUES ${values}) AS v(legacy_id, summary, lead_priority, pipeline_stage, fa_name, fa_email)
     WHERE care_recipient_leads."legacyId" = v.legacy_id
       AND care_recipient_leads."deletedAt" IS NULL
   `;
@@ -956,7 +953,9 @@ export function formatStatusDate(date: Date): string {
   return `${M}/${D}/${YY} ${hh}:${minutes}${ampm}`;
 }
 
-migrateLeadStatusTourHistory().catch((error) => {
-  console.error('Fatal error:', error);
-  process.exit(1);
-});
+if (require.main === module) {
+  migrateLeadStatusTourHistory().catch((error) => {
+    console.error('Fatal error:', error);
+    process.exit(1);
+  });
+}

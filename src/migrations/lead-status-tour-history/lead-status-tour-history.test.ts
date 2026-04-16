@@ -13,6 +13,7 @@ import {
   formatStatusLine,
   buildLeadStatusSummary,
   deriveLeadPriority,
+  fetchLeadsByContactIds,
   fetchLeadBatchFromMM,
   DirLeadStatus,
 } from './lead-status-tour-history';
@@ -311,19 +312,23 @@ describe('bulk update care_recipient_leads', () => {
       `UPDATE care_recipient_leads
        SET
          "legacyLeadStatusAndTourHistory" = $1,
+         "legacyLastInteractingFAName" = $2,
+         "legacyLastInteractingFAEmail" = $3,
          "mldmMigratedModmonAt" = NOW(),
          "updatedAt" = NOW()
-       WHERE "legacyId" = $2 AND "deletedAt" IS NULL`,
-      [summary, '1001']
+       WHERE "legacyId" = $4 AND "deletedAt" IS NULL`,
+      [summary, 'Aidan Moloney', 'aidan@example.com', '1001']
     );
 
     const result = await client.query(
-      `SELECT "legacyLeadStatusAndTourHistory", "mldmMigratedModmonAt"
+      `SELECT "legacyLeadStatusAndTourHistory", "legacyLastInteractingFAName", "legacyLastInteractingFAEmail", "mldmMigratedModmonAt"
        FROM care_recipient_leads WHERE "legacyId" = $1`,
       ['1001']
     );
 
     expect(result.rows[0].legacyLeadStatusAndTourHistory).toBe(summary);
+    expect(result.rows[0].legacyLastInteractingFAName).toBe('Aidan Moloney');
+    expect(result.rows[0].legacyLastInteractingFAEmail).toBe('aidan@example.com');
     expect(result.rows[0].mldmMigratedModmonAt).not.toBeNull();
   });
 
@@ -396,16 +401,18 @@ describe('bulk update care_recipient_leads', () => {
          ),
          "leadPriority" = v.lead_priority,
          "pipelineStage" = v.pipeline_stage,
+         "legacyLastInteractingFAName" = v.fa_name,
+         "legacyLastInteractingFAEmail" = v.fa_email,
          "mldmMigratedModmonAt" = NOW(),
          "updatedAt" = NOW()
-       FROM (VALUES ($1, $2, $3, $4)) AS v(legacy_id, summary, lead_priority, pipeline_stage)
+       FROM (VALUES ($1, $2, $3, $4, $5, $6)) AS v(legacy_id, summary, lead_priority, pipeline_stage, fa_name, fa_email)
        WHERE care_recipient_leads."legacyId" = v.legacy_id
          AND care_recipient_leads."deletedAt" IS NULL`,
-      ['1002', null, 'HOT', 'Working']
+      ['1002', null, 'HOT', 'Working', 'Jane Smith', 'jane@example.com']
     );
 
     const result = await client.query(
-      `SELECT "legacyLeadStatusAndTourHistory", "leadPriority", "pipelineStage"
+      `SELECT "legacyLeadStatusAndTourHistory", "leadPriority", "pipelineStage", "legacyLastInteractingFAName", "legacyLastInteractingFAEmail"
        FROM care_recipient_leads
        WHERE "legacyId" = '1002'`
     );
@@ -413,6 +420,42 @@ describe('bulk update care_recipient_leads', () => {
     expect(result.rows[0].legacyLeadStatusAndTourHistory).toBe('existing summary');
     expect(result.rows[0].leadPriority).toBe('HOT');
     expect(result.rows[0].pipelineStage).toBe('Working');
+    expect(result.rows[0].legacyLastInteractingFAName).toBe('Jane Smith');
+    expect(result.rows[0].legacyLastInteractingFAEmail).toBe('jane@example.com');
+  });
+});
+
+describe('fetchLeadsByContactIds', () => {
+  it('fetches leads and FA details for provided contact ids', async () => {
+    const mysqlCalls: any[] = [];
+    const mysqlConn = {
+      query: async (query: string, params: any[]) => {
+        mysqlCalls.push({ query, params });
+        return [[
+          {
+            id: 57601684,
+            contactId: 123456,
+            created_at: new Date('2025-01-01T00:00:00Z'),
+            followup_rank: 0,
+            allowFollowup: 0,
+            faName: 'Aidan Moloney',
+            faEmail: 'aidan@example.com',
+          },
+        ]];
+      },
+    };
+
+    const rows = await fetchLeadsByContactIds(mysqlConn, [123456, 789012]);
+
+    expect(rows).toHaveLength(1);
+    expect(rows[0].contactId).toBe(123456);
+    expect(rows[0].faName).toBe('Aidan Moloney');
+    expect(rows[0].faEmail).toBe('aidan@example.com');
+    expect(mysqlCalls).toHaveLength(1);
+    expect(mysqlCalls[0].query).toContain('FROM contacts c');
+    expect(mysqlCalls[0].query).toContain('JOIN local_resource_leads lrl ON lrl.inquiry_id = i.id');
+    expect(mysqlCalls[0].query).toContain('LEFT JOIN accounts a ON a.id = lrl.account_id');
+    expect(mysqlCalls[0].params).toEqual([123456, 789012]);
   });
 });
 
